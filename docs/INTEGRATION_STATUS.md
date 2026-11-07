@@ -2,7 +2,7 @@
 
 Updated at every integration. `main` is always required to typecheck + test + run examples.
 
-## Current state: EXPLAINABILITY & REPORT GENERATOR LANDED (174 tests passing)
+## Current state: VERIFICATION ENGINE & INTEGRATION SUITE LANDED (184 tests passing)
 - [x] Repository scaffold (package.json, tsconfig, vitest, gitignore)
 - [x] Shared contracts authored and typechecking (`src/contracts/*`) — v1.2 (Amendments A+1 through A+10)
 - [x] Three preset fixtures authored (`presets/*.json`) — canonicalized schemas
@@ -17,12 +17,14 @@ Updated at every integration. `main` is always required to typecheck + test + ru
 - [x] Routing engine: protocol chooser, OSPF single/multi-area planner, eBGP planner, route summarizer, QoS DiffServ, route failover (`src/engines/routing`)
 - [x] Config generation: Two-stage intermediate model + Cisco IOS renderer, Packet Tracer compatibility mode (`src/configuration/`)
 - [x] Explainability & Report Generator: Structured EngineeringDecision model, DecisionCollector, RationaleFormatter, and 12-section Markdown report exporter (`src/explainability/`, `src/exporters/`)
-- [x] 174 tests passing across 21 test suites; `example:profiles`, `example:vlsm`, `example:media`, `example:topology-vlan`, `example:routing`, `example:configgen`, `example:report` runnable
+- [x] Verification engine: Fail-closed V-01..V-10 invariant checks (`src/verification/`)
+- [x] Level 2 Integration tests: Full pipeline tests for Campus LAN, Metro MAN, and Global WAN (`tests/integration/`)
+- [x] Packet Tracer verification evidence & simulation test matrix (`docs/VERIFICATION.md`)
+- [x] Mandatory AI Code Audit & Defense Log (`ai_audit_log.md`)
+- [x] 184 tests passing across 23 test suites; all examples and demos runnable
 - [x] HLD, LLD, DATA_CONTRACTS, ASSUMPTIONS, DECISION, FLOW, INTEGRATION_STATUS, ARCHITECTURE_DECISIONS
-- [ ] Verification engine (fail-closed V-01..V-08 checks) + filesystem export manager
-- [ ] End-to-end Application Orchestrator & CLI (`netarch`)
-- [ ] GNS3/Packet Tracer evidence for 3 scenarios
-- [ ] `ai_audit_log.md` (documented real AI networking flaws + technical defense)
+- [ ] Export manager (final filesystem artifact exporter)
+- [ ] Application Orchestrator & CLI (`netarch`)
 
 ## Module status board
 | Module | Directory | Owner | Status | Tests | Example / Run Target |
@@ -38,7 +40,7 @@ Updated at every integration. `main` is always required to typecheck + test + ru
 | vlan | `src/engines/vlan/` | VLAN specialist (Agent-D) | **done** — deterministic 802.1Q allocator, trunk allowed lists, native VLAN 99 hardening, VLSM adapter | 8 tests (`tests/unit/vlan/`) | `examples/run-topology-vlan-demo.ts` |
 | routing | `src/engines/routing/` | Routing specialist (Agent-E) | **done** — protocol chooser, single/multi-area OSPF, eBGP, route summarizer, failover, QoS | 24 tests (`tests/unit/routing/`) | `examples/run-routing-demo.ts` |
 | configgen | `src/configuration/` | ConfigGen specialist (Agent-F) | **done** — two-stage IR + renderer, router/switch/vlan/ospf/bgp/acl/qos generators | 15 tests (`tests/unit/configuration/`) | `examples/generate-sample-configs.ts` (`npm run example:configgen`) |
-| verify | `src/engines/verify/` | Verification specialist (Agent-G) | pending | To be integrated in next wave | V-01..V-08 test suite |
+| verify | `src/verification/` | Verification specialist (Agent-G) | **done** — fail-closed V-01..V-10 invariant checks, capacity, overlap, wildcard, media feasibility | 10 tests (`tests/unit/verification/`, `tests/integration/`) | Automated verification gate in pipeline |
 | export | `src/engines/export/` | Export specialist (Agent-G) | pending | To be integrated in next wave | Filesystem export test |
 | orchestrator | `src/orchestrator/` | Lead Architect | pending | Integration test suite | CLI `netarch` |
 
