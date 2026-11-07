@@ -24,6 +24,7 @@ Updated at every integration. `main` is always required to typecheck + test + ru
 | profiles | Foundation/Profiles agent | **done** — loader + defaults + catalog | 41 tests passing (`tests/profiles.test.ts`, `tests/validation.test.ts`) | `examples/run-profiles-demo.ts` |
 | domain models | Foundation/Profiles agent | done — typed aliases + DeviceInterface/NetworkDesign | alias honesty tests | same example |
 | vlsm | VLSM specialist agent | **done** — deterministic bitwise allocator (`src/engines/vlsm/`), contract amendments A+3 (gateway) + A+4 (totalAddresses) | 34 tests (`tests/unit/vlsm/`) + worked-example test | `examples/run-vlsm-demo.ts` + `docs/VLSM_ALGORITHM.md` |
+| media | media specialist agent | **done** — L1 decision engine (`src/engines/media/`): policy/rules split, extensible transceiver catalog, contract amendments A+5 (linkId/bandwidthTransceiver on MediaQuery) + A+6 (rationale/warnings/compatibilityIssues on MediaRecommendation) | 25 tests (`tests/unit/media/`) incl. every listed boundary case | `examples/run-media-demo.ts` (`npm run example:media`) |
 | media | Agent-B | pending | | |
 | topology | Agent-C | pending | | |
 | vlan | Agent-D | pending | | |
