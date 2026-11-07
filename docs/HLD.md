@@ -46,7 +46,7 @@ NetArchitect/
 ├─ presets/              # campus-lan.json, metro-man.json, global-wan.json
 ├─ examples/             # runnable end-to-end scripts (one per scenario)
 ├─ tests/                # Vitest suites per module + integration
-└─ docs/                 # HLD, LLD, DATA_CONTRACTS, ASSUMPTIONS, INTEGRATION_STATUS, ARCHITECTURE_DECISIONS
+└─ docs/                 # DECISION, FLOW, HLD, LLD, DATA_CONTRACTS, ASSUMPTIONS, INTEGRATION_STATUS, ARCHITECTURE_DECISIONS
 ```
 
 ## Ownership matrix (strict trunk boundaries)
