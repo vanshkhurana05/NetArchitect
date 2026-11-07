@@ -16,6 +16,7 @@
     "example:media": "tsx examples/run-media-demo.ts",
     "example:vlsm": "tsx examples/run-vlsm-demo.ts",
     "example:topology-vlan": "tsx examples/run-topology-vlan-demo.ts",
+    "example:routing": "tsx examples/run-routing-demo.ts",
     "run:campus": "tsx examples/run-campus-lan.ts",
     "run:metro": "tsx examples/run-metro-man.ts",
     "run:wan": "tsx examples/run-global-wan.ts",
