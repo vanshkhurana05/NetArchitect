@@ -30,6 +30,10 @@ export interface VerificationReport {
   advisories: string[];
 }
 
+/**
+ * Amendment A+10 (architect): optional latencyTargetMs and rootBlockCidr added
+ * to VerificationInput to support V-07 (latency verification) and V-01 (root containment).
+ */
 export interface VerificationInput {
   subject: string; // scenario name
   subnets: SubnetPlanItem[];
@@ -37,4 +41,6 @@ export interface VerificationInput {
   devices: Array<{ id: string; name: string; role: string }>;
   links: Link[];
   routing: RoutingPlan;
+  latencyTargetMs?: number;
+  rootBlockCidr?: string;
 }

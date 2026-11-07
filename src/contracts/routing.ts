@@ -3,7 +3,7 @@
  * OWNER: routing specialist agent (implementation in src/routing/).
  */
 import type { ExplainRecord } from "./explain.js";
-import type { Site, Device } from "./topology.js";
+import type { Site, Device, Link } from "./topology.js";
 import type { SubnetPlanItem } from "./vlsm.js";
 
 export interface OspfAreaPlan {
@@ -55,6 +55,10 @@ export interface RoutingPlan {
   explanations: ExplainRecord[];
 }
 
+/**
+ * Amendment A+9 (architect): optional links, qosClasses, evplBandwidthMbps, and cloudVpc
+ * passed into RoutingEngineInput for comprehensive OSPF, BGP, IPsec, and QoS planning.
+ */
 export interface RoutingEngineInput {
   sites: Site[];
   devices: Device[];
@@ -62,4 +66,13 @@ export interface RoutingEngineInput {
   /** Profile-level flags that steer the protocol chooser. */
   profile: "campus-lan" | "metro-man" | "global-wan";
   asNumber: number;
+  links?: Link[];
+  qosClasses?: string[];
+  evplBandwidthMbps?: number;
+  cloudVpc?: {
+    provider: string;
+    vpcCidr: string;
+    vpnPeerPublicIps: string[];
+    iotNodes?: number;
+  };
 }

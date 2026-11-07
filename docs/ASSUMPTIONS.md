@@ -49,3 +49,11 @@ testable or was checked against a primary reference.
     documented advisory instead of a rejection.
 14. **Exact-boundary values produce advisories** (100 m, 400 m, 15/35 km, 5 ms): validation
     accepts them and the engines decide inclusively; users see the boundary in the report.
+15. **Packet Tracer Device Modeling**:
+    - Switches: Cisco Catalyst 3650 / 3560 for L3 Core switches; Catalyst 2960 for L2 Access switches.
+    - Routers: Cisco ISR 2911 / 4331 for MAN Edge and WAN Edge routers.
+    - Interfaces: Standard `GigabitEthernet` and `TenGigabitEthernet` naming compatible with PT parser.
+16. **Explainability Record Immutability**:
+    - Once pushed to `ExplainCollector`, an `ExplainRecord` is immutable; engines cannot overwrite prior rationales.
+17. **AI Defenses & Audit Post-Mortem**:
+    - Real AI-generated networking flaws (e.g. prefix scan direction errors, unconstrained VLAN trunks, optical dispersion miscalculations) are captured in `ai_audit_log.md` with prompt, faulty code, technical analysis, and regression tests.

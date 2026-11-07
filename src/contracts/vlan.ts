@@ -3,6 +3,7 @@
  * OWNER: VLSM+VLAN specialist agent (implementation in src/vlan/).
  */
 import type { ExplainRecord } from "./explain.js";
+import type { Device, Link } from "./topology.js";
 
 export interface VlanItem {
   vlanId: number; // 1..4094, unique
@@ -34,7 +35,13 @@ export interface VlanRequestItem {
   hosts: number;
 }
 
+/**
+ * Amendment A+8 (architect): optional devices and links passed to VLAN engine
+ * so trunk plans and SVI mappings can resolve device/link identifiers directly.
+ */
 export interface VlanEngineInput {
   requests: VlanRequestItem[];
   siteIds: string[];
+  devices?: Device[];
+  links?: Link[];
 }
