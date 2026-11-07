@@ -2,7 +2,7 @@
 
 Updated at every integration. `main` is always required to typecheck + test + run examples.
 
-## Current state: ROUTING ENGINE LANDED (153 tests passing)
+## Current state: CISCO IOS CONFIG GENERATOR LANDED (168 tests passing)
 - [x] Repository scaffold (package.json, tsconfig, vitest, gitignore)
 - [x] Shared contracts authored and typechecking (`src/contracts/*`) — v1.2 (Amendments A+1 through A+10)
 - [x] Three preset fixtures authored (`presets/*.json`) — canonicalized schemas
@@ -15,9 +15,9 @@ Updated at every integration. `main` is always required to typecheck + test + ru
 - [x] Topology engine: hierarchical graph builder, device planner, graph validator, DOT exporter (`src/engines/topology`)
 - [x] VLAN engine: deterministic 802.1Q allocator, trunk allowed lists, native VLAN 99 hardening, VLSM adapter (`src/engines/vlan`)
 - [x] Routing engine: protocol chooser, OSPF single/multi-area planner, eBGP planner, route summarizer, QoS DiffServ, route failover (`src/engines/routing`)
-- [x] 153 tests passing across 17 test suites; `example:profiles`, `example:vlsm`, `example:media`, `example:topology-vlan`, `example:routing` runnable
+- [x] Config generation: Two-stage intermediate model + Cisco IOS renderer, Packet Tracer compatibility mode (`src/configuration/`)
+- [x] 168 tests passing across 18 test suites; `example:profiles`, `example:vlsm`, `example:media`, `example:topology-vlan`, `example:routing`, `example:configgen` runnable
 - [x] HLD, LLD, DATA_CONTRACTS, ASSUMPTIONS, DECISION, FLOW, INTEGRATION_STATUS, ARCHITECTURE_DECISIONS
-- [ ] Config generation (Packet Tracer compatible Cisco IOS templates)
 - [ ] Verification engine (fail-closed V-01..V-08 checks) + filesystem export manager
 - [ ] End-to-end Application Orchestrator & CLI (`netarch`)
 - [ ] GNS3/Packet Tracer evidence for 3 scenarios
@@ -36,7 +36,7 @@ Updated at every integration. `main` is always required to typecheck + test + ru
 | topology | `src/engines/topology/` | Topology specialist (Agent-C) | **done** — hierarchical graph builder, device planner, graph validator, DOT exporter | 18 tests (`tests/unit/topology/`) | `examples/run-topology-vlan-demo.ts` |
 | vlan | `src/engines/vlan/` | VLAN specialist (Agent-D) | **done** — deterministic 802.1Q allocator, trunk allowed lists, native VLAN 99 hardening, VLSM adapter | 8 tests (`tests/unit/vlan/`) | `examples/run-topology-vlan-demo.ts` |
 | routing | `src/engines/routing/` | Routing specialist (Agent-E) | **done** — protocol chooser, single/multi-area OSPF, eBGP, route summarizer, failover, QoS | 24 tests (`tests/unit/routing/`) | `examples/run-routing-demo.ts` |
-| configgen | `src/engines/configgen/` | ConfigGen specialist (Agent-F) | pending | To be integrated in next wave | Device config demos |
+| configgen | `src/configuration/` | ConfigGen specialist (Agent-F) | **done** — two-stage IR + renderer, router/switch/vlan/ospf/bgp/acl/qos generators | 15 tests (`tests/unit/configuration/`) | `examples/generate-sample-configs.ts` (`npm run example:configgen`) |
 | verify | `src/engines/verify/` | Verification specialist (Agent-G) | pending | To be integrated in next wave | V-01..V-08 test suite |
 | export | `src/engines/export/` | Export specialist (Agent-G) | pending | To be integrated in next wave | Filesystem export test |
 | orchestrator | `src/orchestrator/` | Lead Architect | pending | Integration test suite | CLI `netarch` |
