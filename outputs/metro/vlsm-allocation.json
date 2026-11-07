@@ -1,0 +1,102 @@
+{
+  "root": {
+    "baseNetwork": "10.60.0.0",
+    "prefix": 16
+  },
+  "subnets": [
+    {
+      "name": "USERS-NET",
+      "index": 0,
+      "network": "10.60.0.0",
+      "prefix": 23,
+      "mask": "255.255.254.0",
+      "wildcard": "0.0.1.255",
+      "broadcast": "10.60.1.255",
+      "firstHost": "10.60.0.1",
+      "lastHost": "10.60.1.254",
+      "gateway": "10.60.0.1",
+      "totalAddresses": 512,
+      "requestedHosts": 260,
+      "capacity": 510,
+      "utilization": 0.5098
+    },
+    {
+      "name": "MGMT-NET",
+      "index": 1,
+      "network": "10.60.2.0",
+      "prefix": 28,
+      "mask": "255.255.255.240",
+      "wildcard": "0.0.0.15",
+      "broadcast": "10.60.2.15",
+      "firstHost": "10.60.2.1",
+      "lastHost": "10.60.2.14",
+      "gateway": "10.60.2.1",
+      "totalAddresses": 16,
+      "requestedHosts": 10,
+      "capacity": 14,
+      "utilization": 0.7143
+    }
+  ],
+  "efficiency": 0.008,
+  "explanations": [
+    {
+      "module": "vlsm",
+      "id": "VLSM.ALLOC-0-USERS-NET",
+      "rule": "VLSM.DESCENDING-CARVE",
+      "decision": "Allocated USERS-NET as 10.60.0.0/23",
+      "rationale": "260 requested hosts map to the minimal /23 under RFC 3021 host-capacity math; carved monotonically after all larger blocks, gateway reserved at 10.60.0.1 (first usable IP).",
+      "inputs": {
+        "hosts": 260,
+        "inputIndex": 1,
+        "prefix": 23
+      },
+      "references": [
+        "RFC 950",
+        "RFC 3021"
+      ]
+    },
+    {
+      "module": "vlsm",
+      "id": "VLSM.ALLOC-1-MGMT-NET",
+      "rule": "VLSM.DESCENDING-CARVE",
+      "decision": "Allocated MGMT-NET as 10.60.2.0/28",
+      "rationale": "10 requested hosts map to the minimal /28 under RFC 3021 host-capacity math; carved monotonically after all larger blocks, gateway reserved at 10.60.2.1 (first usable IP).",
+      "inputs": {
+        "hosts": 10,
+        "inputIndex": 0,
+        "prefix": 28
+      },
+      "references": [
+        "RFC 950",
+        "RFC 3021"
+      ]
+    },
+    {
+      "module": "vlsm",
+      "id": "VLSM.UTILIZATION",
+      "rule": "VLSM.CAPACITY",
+      "decision": "Root-block utilization 0.80%",
+      "rationale": "(524 usable addresses of 65534 in 10.60.0.0/16, 2 blocks carved, 65008 address(es) left free.",
+      "inputs": {
+        "allocatedCapacity": 524,
+        "rootCapacity": 65534
+      },
+      "references": [
+        "RFC 950"
+      ]
+    },
+    {
+      "module": "vlsm",
+      "id": "VLSM.NO-OVERLAP",
+      "rule": "VLSM.INVARIANT",
+      "decision": "No-overlap invariant holds across all allocations.",
+      "rationale": "Monotone carving guarantees non-intersection; verified with an O(n) boundary assertion.",
+      "inputs": {
+        "count": 2
+      },
+      "references": [
+        "RFC 950"
+      ]
+    }
+  ]
+}
