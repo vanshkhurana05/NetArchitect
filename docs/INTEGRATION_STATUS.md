@@ -23,6 +23,7 @@ Updated at every integration. `main` is always required to typecheck + test + ru
 | contracts | Lead Architect | done (v1.1 — amendments A+1 type exports, A+2 cloudVpc.iotNodes) | — | — |
 | profiles | Foundation/Profiles agent | **done** — loader + defaults + catalog | 41 tests passing (`tests/profiles.test.ts`, `tests/validation.test.ts`) | `examples/run-profiles-demo.ts` |
 | domain models | Foundation/Profiles agent | done — typed aliases + DeviceInterface/NetworkDesign | alias honesty tests | same example |
+| vlsm | VLSM specialist agent | **done** — deterministic bitwise allocator (`src/engines/vlsm/`), contract amendments A+3 (gateway) + A+4 (totalAddresses) | 34 tests (`tests/unit/vlsm/`) + worked-example test | `examples/run-vlsm-demo.ts` + `docs/VLSM_ALGORITHM.md` |
 | media | Agent-B | pending | | |
 | topology | Agent-C | pending | | |
 | vlan | Agent-D | pending | | |
