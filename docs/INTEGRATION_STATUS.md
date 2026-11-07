@@ -2,7 +2,7 @@
 
 Updated at every integration. `main` is always required to typecheck + test + run examples.
 
-## Current state: CISCO IOS CONFIG GENERATOR LANDED (168 tests passing)
+## Current state: EXPLAINABILITY & REPORT GENERATOR LANDED (174 tests passing)
 - [x] Repository scaffold (package.json, tsconfig, vitest, gitignore)
 - [x] Shared contracts authored and typechecking (`src/contracts/*`) — v1.2 (Amendments A+1 through A+10)
 - [x] Three preset fixtures authored (`presets/*.json`) — canonicalized schemas
@@ -16,7 +16,8 @@ Updated at every integration. `main` is always required to typecheck + test + ru
 - [x] VLAN engine: deterministic 802.1Q allocator, trunk allowed lists, native VLAN 99 hardening, VLSM adapter (`src/engines/vlan`)
 - [x] Routing engine: protocol chooser, OSPF single/multi-area planner, eBGP planner, route summarizer, QoS DiffServ, route failover (`src/engines/routing`)
 - [x] Config generation: Two-stage intermediate model + Cisco IOS renderer, Packet Tracer compatibility mode (`src/configuration/`)
-- [x] 168 tests passing across 18 test suites; `example:profiles`, `example:vlsm`, `example:media`, `example:topology-vlan`, `example:routing`, `example:configgen` runnable
+- [x] Explainability & Report Generator: Structured EngineeringDecision model, DecisionCollector, RationaleFormatter, and 12-section Markdown report exporter (`src/explainability/`, `src/exporters/`)
+- [x] 174 tests passing across 21 test suites; `example:profiles`, `example:vlsm`, `example:media`, `example:topology-vlan`, `example:routing`, `example:configgen`, `example:report` runnable
 - [x] HLD, LLD, DATA_CONTRACTS, ASSUMPTIONS, DECISION, FLOW, INTEGRATION_STATUS, ARCHITECTURE_DECISIONS
 - [ ] Verification engine (fail-closed V-01..V-08 checks) + filesystem export manager
 - [ ] End-to-end Application Orchestrator & CLI (`netarch`)
@@ -32,7 +33,7 @@ Updated at every integration. `main` is always required to typecheck + test + ru
 | validation | `src/validation/` | Profiles specialist (Agent-A) | **done** — Zod schemas + capacity/link checks | 26 tests (`tests/validation.test.ts`) | `examples/run-profiles-demo.ts` |
 | vlsm | `src/engines/vlsm/` | VLSM specialist (Agent-D) | **done** — deterministic bitwise allocator, RFC 3021 /31, gateway reservation | 34 tests (`tests/unit/vlsm/`) | `examples/run-vlsm-demo.ts` |
 | media | `src/engines/media/` | Media specialist (Agent-B) | **done** — L1 physics rules table + transceiver catalog | 25 tests (`tests/unit/media/`) | `examples/run-media-demo.ts` |
-| explain | `src/explain/` | Lead Architect / Explain specialist | **done** — in-memory log collector + Markdown renderer | 3 tests (`tests/unit/explain/`) | Used by media & vlsm demos |
+| explain | `src/explainability/` | Explainability specialist (Agent-G) | **done** — Decision model, collector, formatter, and 12-section report generator | 9 tests (`tests/unit/explainability/`, `tests/unit/explain/`) | `examples/run-report-demo.ts` (`npm run example:report`) |
 | topology | `src/engines/topology/` | Topology specialist (Agent-C) | **done** — hierarchical graph builder, device planner, graph validator, DOT exporter | 18 tests (`tests/unit/topology/`) | `examples/run-topology-vlan-demo.ts` |
 | vlan | `src/engines/vlan/` | VLAN specialist (Agent-D) | **done** — deterministic 802.1Q allocator, trunk allowed lists, native VLAN 99 hardening, VLSM adapter | 8 tests (`tests/unit/vlan/`) | `examples/run-topology-vlan-demo.ts` |
 | routing | `src/engines/routing/` | Routing specialist (Agent-E) | **done** — protocol chooser, single/multi-area OSPF, eBGP, route summarizer, failover, QoS | 24 tests (`tests/unit/routing/`) | `examples/run-routing-demo.ts` |
