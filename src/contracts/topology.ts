@@ -66,10 +66,28 @@ export interface Topology {
 export type LinkRoleKey = `${string}:${string}`;
 export type LinkRoleQuery = "access" | "building-backbone" | "man-evpl" | "wan";
 
+/**
+ * Amendment A+7 (architect): enriched ProfileShape with topology-steering flags
+ * (collapsedCore, dualHomedFailover, evplBandwidthMbps, cloudVpc).
+ */
 export type ProfileShape =
-  | { profile: "campus-lan"; buildings: BuildingSpec[] }
-  | { profile: "metro-man"; sites: MetroSiteSpec[] }
-  | { profile: "global-wan"; cities: WanCitySpec[] };
+  | { profile: "campus-lan"; buildings: BuildingSpec[]; collapsedCore?: boolean }
+  | {
+      profile: "metro-man";
+      sites: MetroSiteSpec[];
+      dualHomedFailover?: boolean;
+      evplBandwidthMbps?: number;
+    }
+  | {
+      profile: "global-wan";
+      cities: WanCitySpec[];
+      cloudVpc?: {
+        provider: "aws" | "azure" | "gcp";
+        vpcCidr: string;
+        vpnPeerPublicIps: string[];
+        iotNodes?: number;
+      };
+    };
 
 export interface TopologyRequest {
   profileShape: ProfileShape;

@@ -45,7 +45,30 @@ domains but violates the assignment's explicit focus on 802.1Q trunking + single
 complicates the VLSM demo). Documented as a trade-off in ASSUMPTIONS.md #4.
 
 ## ADR-008 — Packet Tracer compatibility mode
-**Status:** proposed.
-Config generator offers a flag that disables IOS-XE-only commands so the three preset configs
-can be loaded into GNS3/OR Packet Tracer for the verification evidence deliverable. Acceptance
-criteria require evidence, so this mode ships in release 1.
+**Status:** accepted.
+Config generator emits standard Cisco IOS commands compatible with supported Packet Tracer
+devices (Catalyst 2960/3560/3650 and ISR 2911/4331), ensuring copy-paste readiness without syntax errors.
+
+## ADR-009 — Cloud-VPC block canonicalization
+**Status:** accepted.
+The `cloudVpc` configuration block is the single authoritative source for the cloud domain.
+Defining a `cloud-vpc` role inside the WAN `cities` array is rejected as a validation error
+(`CLOUD_ROLE_IN_CITIES`), preventing dual-definition divergence.
+
+## ADR-010 — RFC 3021 /31 point-to-point and /32 loopback allocation
+**Status:** accepted.
+Classical /30 allocation wastes 50% of addresses on P2P links. NetArchitect enforces RFC 3021
+semantics: a 2-host link request receives a `/31` (both addresses usable). Single host requests
+receive a `/32` (loopback). Larger requests use classical $2^{32-P} - 2$ sizing.
+
+## ADR-011 — Physical media policy and transceiver catalog separation
+**Status:** accepted.
+Distance policy rules (`MEDIA.01`–`MEDIA.06`) enforce assignment-mandated reach thresholds, while
+an extensible transceiver catalog holds physical attributes (wavelength, optical power budget).
+This allows adding new transceivers without altering threshold boundary rules.
+
+## ADR-012 — Pipeline-threaded ExplainCollector
+**Status:** accepted.
+Instead of global mutable loggers or console output, an instance of `ExplainCollector` is created
+at pipeline invocation and passed to each engine. Engines push structured `ExplainRecord` objects
+which are aggregated and rendered into `report.md` and `explain-log.json`.
