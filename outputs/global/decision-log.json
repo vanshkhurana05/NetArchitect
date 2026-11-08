@@ -1,0 +1,302 @@
+[
+  {
+    "decisionId": "TOPO.GLOBAL-WAN-MESH",
+    "ruleId": "TOPO.04",
+    "module": "topology",
+    "selected": "Constructed hub-and-spoke WAN with IPsec tunnels and Cloud VPC gateway",
+    "inputs": {
+      "citiesCount": 4,
+      "cloudProvider": "aws"
+    },
+    "rationale": [
+      "Hub-and-spoke topology with IPsec VPN connectivity enables cost-effective WAN integration of 2,000 distributed IoT nodes with secure VPC aggregation."
+    ],
+    "warnings": [],
+    "assumptions": [],
+    "references": [
+      "RFC 4301 IPsec Architecture",
+      "RFC 4271 BGP-4"
+    ]
+  },
+  {
+    "decisionId": "VLAN.DETERMINISTIC-TAGS",
+    "ruleId": "VLAN.01",
+    "module": "vlan",
+    "selected": "Assigned deterministic 802.1Q tags starting at 10 (+10)",
+    "inputs": {
+      "totalVlans": 4,
+      "startId": 10,
+      "increment": 10
+    },
+    "rationale": [
+      "Standardized VLAN numbering ensures uniform broadcast domain mapping across campus switches and prevents conflicting PVIDs."
+    ],
+    "warnings": [],
+    "assumptions": [],
+    "references": [
+      "IEEE 802.1Q",
+      "Cisco Campus LAN Best Practices"
+    ]
+  },
+  {
+    "decisionId": "VLAN.NATIVE-HARDENING",
+    "ruleId": "VLAN.02",
+    "module": "vlan",
+    "selected": "Configured Native VLAN 99 as untagged and unused on all trunks",
+    "inputs": {
+      "nativeVlanId": 99,
+      "defaultVlanDisabled": 1
+    },
+    "rationale": [
+      "Setting the native VLAN to an unused ID (VLAN 99) and disallowing default VLAN 1 mitigates 802.1Q double-tagging and VLAN hopping security vulnerabilities."
+    ],
+    "warnings": [],
+    "assumptions": [],
+    "references": [
+      "NIST SP 800-115",
+      "DISA Network Infrastructure STIG"
+    ]
+  },
+  {
+    "decisionId": "VLAN.TRUNK-PRUNING",
+    "ruleId": "VLAN.03",
+    "module": "vlan",
+    "selected": "Restricted trunk links to explicitly allowed VLAN list [10,20,30,40]",
+    "inputs": {
+      "allowedVlanIds": [
+        10,
+        20,
+        30,
+        40
+      ]
+    },
+    "rationale": [
+      "Explicit allowed-VLAN pruning confines broadcast/multicast traffic strictly to authorized switches, conserving backplane bandwidth."
+    ],
+    "warnings": [],
+    "assumptions": [],
+    "references": [
+      "IEEE 802.1Q Clause 9",
+      "RFC 3069"
+    ]
+  },
+  {
+    "decisionId": "VLSM.ALLOC-0-IOT-NODES-NET",
+    "ruleId": "VLSM.DESCENDING-CARVE",
+    "module": "vlsm",
+    "selected": "Allocated IOT-NODES-NET as 10.40.0.0/21",
+    "inputs": {
+      "hosts": 1800,
+      "inputIndex": 1,
+      "prefix": 21
+    },
+    "rationale": [
+      "1800 requested hosts map to the minimal /21 under RFC 3021 host-capacity math; carved monotonically after all larger blocks, gateway reserved at 10.40.0.1 (first usable IP)."
+    ],
+    "warnings": [],
+    "assumptions": [],
+    "references": [
+      "RFC 950",
+      "RFC 3021"
+    ]
+  },
+  {
+    "decisionId": "VLSM.ALLOC-1-SCANNERS-NET",
+    "ruleId": "VLSM.DESCENDING-CARVE",
+    "module": "vlsm",
+    "selected": "Allocated SCANNERS-NET as 10.40.8.0/24",
+    "inputs": {
+      "hosts": 200,
+      "inputIndex": 2,
+      "prefix": 24
+    },
+    "rationale": [
+      "200 requested hosts map to the minimal /24 under RFC 3021 host-capacity math; carved monotonically after all larger blocks, gateway reserved at 10.40.8.1 (first usable IP)."
+    ],
+    "warnings": [],
+    "assumptions": [],
+    "references": [
+      "RFC 950",
+      "RFC 3021"
+    ]
+  },
+  {
+    "decisionId": "VLSM.ALLOC-2-ANALYTICS-NET",
+    "ruleId": "VLSM.DESCENDING-CARVE",
+    "module": "vlsm",
+    "selected": "Allocated ANALYTICS-NET as 10.40.9.0/25",
+    "inputs": {
+      "hosts": 100,
+      "inputIndex": 3,
+      "prefix": 25
+    },
+    "rationale": [
+      "100 requested hosts map to the minimal /25 under RFC 3021 host-capacity math; carved monotonically after all larger blocks, gateway reserved at 10.40.9.1 (first usable IP)."
+    ],
+    "warnings": [],
+    "assumptions": [],
+    "references": [
+      "RFC 950",
+      "RFC 3021"
+    ]
+  },
+  {
+    "decisionId": "VLSM.ALLOC-3-MGMT-NET",
+    "ruleId": "VLSM.DESCENDING-CARVE",
+    "module": "vlsm",
+    "selected": "Allocated MGMT-NET as 10.40.9.128/27",
+    "inputs": {
+      "hosts": 30,
+      "inputIndex": 0,
+      "prefix": 27
+    },
+    "rationale": [
+      "30 requested hosts map to the minimal /27 under RFC 3021 host-capacity math; carved monotonically after all larger blocks, gateway reserved at 10.40.9.129 (first usable IP)."
+    ],
+    "warnings": [],
+    "assumptions": [],
+    "references": [
+      "RFC 950",
+      "RFC 3021"
+    ]
+  },
+  {
+    "decisionId": "VLSM.UTILIZATION",
+    "ruleId": "VLSM.CAPACITY",
+    "module": "vlsm",
+    "selected": "Root-block utilization 3.75%",
+    "inputs": {
+      "allocatedCapacity": 2456,
+      "rootCapacity": 65534
+    },
+    "rationale": [
+      "(2456 usable addresses of 65534 in 10.40.0.0/16, 4 blocks carved, 63072 address(es) left free."
+    ],
+    "warnings": [],
+    "assumptions": [],
+    "references": [
+      "RFC 950"
+    ]
+  },
+  {
+    "decisionId": "VLSM.NO-OVERLAP",
+    "ruleId": "VLSM.INVARIANT",
+    "module": "vlsm",
+    "selected": "No-overlap invariant holds across all allocations.",
+    "inputs": {
+      "count": 4
+    },
+    "rationale": [
+      "Monotone carving guarantees non-intersection; verified with an O(n) boundary assertion."
+    ],
+    "warnings": [],
+    "assumptions": [],
+    "references": [
+      "RFC 950"
+    ]
+  },
+  {
+    "decisionId": "ROUTING.PROTOCOL.OSPF-EBGP",
+    "ruleId": "ROUTING.03",
+    "module": "routing",
+    "selected": "Selected OSPF + eBGP multi-domain routing architecture",
+    "inputs": {
+      "asNumber": 65001,
+      "subnetCount": 4,
+      "cloudVpcProvider": "aws",
+      "distinctAutonomousSystems": true
+    },
+    "rationale": [
+      "Enterprise Autonomous System AS 65001 connects to external Cloud VPC boundary. eBGP handles policy-based inter-AS exchange (RFC 4271), while multi-area OSPF isolates internal enterprise areas."
+    ],
+    "warnings": [],
+    "assumptions": [],
+    "references": [
+      "RFC 4271 BGP-4",
+      "RFC 4364 BGP/MPLS IP VPNs",
+      "RFC 2328 OSPFv2"
+    ]
+  },
+  {
+    "decisionId": "ROUTING.OSPF.AREAS",
+    "ruleId": "ROUTING.04",
+    "module": "routing",
+    "selected": "Configured 1 OSPF area(s) with 4 network statements",
+    "inputs": {
+      "areasCount": 1,
+      "totalNetworks": 4
+    },
+    "rationale": [
+      "Network statements map exact network-aligned CIDRs and inverse wildcard masks directly from the VLSM plan, ensuring flawless LSDB population."
+    ],
+    "warnings": [],
+    "assumptions": [],
+    "references": [
+      "RFC 2328 Section 3.1",
+      "RFC 1878"
+    ]
+  },
+  {
+    "decisionId": "ROUTING.BGP.EBGP-PEERING",
+    "ruleId": "ROUTING.05",
+    "module": "routing",
+    "selected": "Established eBGP peering between Enterprise AS 65001 and Cloud Provider AS 64512",
+    "inputs": {
+      "localAs": 65001,
+      "remoteAs": 64512,
+      "peerIps": [
+        "203.0.113.10",
+        "203.0.113.11"
+      ]
+    },
+    "rationale": [
+      "eBGP session advertises summarized enterprise supernet towards Cloud VPC peer IP to prevent routing table bloat and enforce policy separation."
+    ],
+    "warnings": [],
+    "assumptions": [],
+    "references": [
+      "RFC 4271 BGP-4",
+      "RFC 6996 Autonomous System Number Reservation"
+    ]
+  },
+  {
+    "decisionId": "ROUTING.SECURITY.IPSEC-IKEV2",
+    "ruleId": "SEC.01",
+    "module": "security",
+    "selected": "Configured 2 IKEv2 site-to-site IPsec tunnel(s) toward Cloud VPC",
+    "inputs": {
+      "tunnelsCount": 2,
+      "peerIps": [
+        "203.0.113.10",
+        "203.0.113.11"
+      ]
+    },
+    "rationale": [
+      "IKEv2 protects transit between enterprise border routers and Cloud VPC with AES-256-GCM encryption and SHA-384 integrity (RFC 7296)."
+    ],
+    "warnings": [],
+    "assumptions": [],
+    "references": [
+      "RFC 7296 IKEv2",
+      "NIST SP 800-77"
+    ]
+  },
+  {
+    "decisionId": "ROUTING.FAILOVER.METRIC-STEERING",
+    "ruleId": "ROUTING.06",
+    "module": "routing",
+    "selected": "Planned deterministic route failover across 1 circuit pair(s)",
+    "inputs": {
+      "failoverPairs": 1
+    },
+    "rationale": [
+      "Primary circuits are biased with metric 10 while secondary circuits carry metric 20, guaranteeing hitless failover upon primary link flap."
+    ],
+    "warnings": [],
+    "assumptions": [],
+    "references": [
+      "Cisco Resilient Network Design",
+      "RFC 2328 Cost Metric Semantics"
+    ]
+  }
+]

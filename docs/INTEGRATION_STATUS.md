@@ -2,7 +2,7 @@
 
 Updated at every integration. `main` is always required to typecheck + test + run examples.
 
-## Current state: VERIFICATION ENGINE & INTEGRATION SUITE LANDED (184 tests passing)
+## Current state: FINAL INTEGRATION & RELEASE READY (v1.0.0 — 186 tests passing)
 - [x] Repository scaffold (package.json, tsconfig, vitest, gitignore)
 - [x] Shared contracts authored and typechecking (`src/contracts/*`) — v1.2 (Amendments A+1 through A+10)
 - [x] Three preset fixtures authored (`presets/*.json`) — canonicalized schemas
@@ -18,13 +18,13 @@ Updated at every integration. `main` is always required to typecheck + test + ru
 - [x] Config generation: Two-stage intermediate model + Cisco IOS renderer, Packet Tracer compatibility mode (`src/configuration/`)
 - [x] Explainability & Report Generator: Structured EngineeringDecision model, DecisionCollector, RationaleFormatter, and 12-section Markdown report exporter (`src/explainability/`, `src/exporters/`)
 - [x] Verification engine: Fail-closed V-01..V-10 invariant checks (`src/verification/`)
+- [x] Export manager: Complete filesystem output generator (`src/engines/export/`, `src/exporters/artifact.exporter.ts`)
+- [x] Application Orchestrator & CLI: Pipeline coordinator and CLI binary `netarch` (`src/orchestrator/`)
 - [x] Level 2 Integration tests: Full pipeline tests for Campus LAN, Metro MAN, and Global WAN (`tests/integration/`)
 - [x] Packet Tracer verification evidence & simulation test matrix (`docs/VERIFICATION.md`)
 - [x] Mandatory AI Code Audit & Defense Log (`ai_audit_log.md`)
-- [x] 184 tests passing across 23 test suites; all examples and demos runnable
+- [x] 186 tests passing across 24 test suites; all design runs, examples, and demos verified
 - [x] HLD, LLD, DATA_CONTRACTS, ASSUMPTIONS, DECISION, FLOW, INTEGRATION_STATUS, ARCHITECTURE_DECISIONS
-- [ ] Export manager (final filesystem artifact exporter)
-- [ ] Application Orchestrator & CLI (`netarch`)
 
 ## Module status board
 | Module | Directory | Owner | Status | Tests | Example / Run Target |
@@ -41,8 +41,8 @@ Updated at every integration. `main` is always required to typecheck + test + ru
 | routing | `src/engines/routing/` | Routing specialist (Agent-E) | **done** — protocol chooser, single/multi-area OSPF, eBGP, route summarizer, failover, QoS | 24 tests (`tests/unit/routing/`) | `examples/run-routing-demo.ts` |
 | configgen | `src/configuration/` | ConfigGen specialist (Agent-F) | **done** — two-stage IR + renderer, router/switch/vlan/ospf/bgp/acl/qos generators | 15 tests (`tests/unit/configuration/`) | `examples/generate-sample-configs.ts` (`npm run example:configgen`) |
 | verify | `src/verification/` | Verification specialist (Agent-G) | **done** — fail-closed V-01..V-10 invariant checks, capacity, overlap, wildcard, media feasibility | 10 tests (`tests/unit/verification/`, `tests/integration/`) | Automated verification gate in pipeline |
-| export | `src/engines/export/` | Export specialist (Agent-G) | pending | To be integrated in next wave | Filesystem export test |
-| orchestrator | `src/orchestrator/` | Lead Architect | pending | Integration test suite | CLI `netarch` |
+| export | `src/engines/export/` | Export specialist (Agent-G) | **done** — outputs/<scenario>/ directory layout generator | 5 tests (`tests/unit/export/`, `tests/integration/`) | Automated export gate in pipeline |
+| orchestrator | `src/orchestrator/` | Lead Architect | **done** — end-to-end pipeline + CLI (netarch run/validate) | 5 tests (`tests/unit/orchestrator/`, `tests/integration/`) | CLI `netarch run --preset <name>` |
 
 ## Integration gates (every PR must pass)
 1. `npm run typecheck` clean (`tsc --noEmit`).

@@ -1,0 +1,2494 @@
+{
+  "profile": "campus-lan",
+  "source": "preset",
+  "topology": {
+    "tier": "collapsed-core",
+    "sites": [
+      {
+        "id": "SITE-CORE",
+        "label": "Campus Main Distribution Facility (MDF)",
+        "kind": "building",
+        "deviceIds": [
+          "CORE-01",
+          "CORE-02"
+        ]
+      },
+      {
+        "id": "BLD-A",
+        "label": "Building A (Engineering)",
+        "kind": "building",
+        "deviceIds": [
+          "DIST-BLD-A",
+          "ACC-BLD-A-SW1",
+          "ACC-BLD-A-SW2",
+          "ACC-BLD-A-SW3",
+          "ACC-BLD-A-SW4",
+          "ACC-BLD-A-SW5",
+          "ACC-BLD-A-SW6",
+          "ACC-BLD-A-SW7",
+          "ACC-BLD-A-SW8",
+          "ACC-BLD-A-SW9",
+          "ACC-BLD-A-SW10",
+          "ACC-BLD-A-SW11",
+          "ACC-BLD-A-SW12",
+          "ACC-BLD-A-SW13",
+          "ACC-BLD-A-SW14",
+          "ACC-BLD-A-SW15",
+          "ACC-BLD-A-SW16",
+          "ACC-BLD-A-SW17"
+        ]
+      },
+      {
+        "id": "BLD-B",
+        "label": "Building B (Library)",
+        "kind": "building",
+        "deviceIds": [
+          "DIST-BLD-B",
+          "ACC-BLD-B-SW1",
+          "ACC-BLD-B-SW2",
+          "ACC-BLD-B-SW3",
+          "ACC-BLD-B-SW4",
+          "ACC-BLD-B-SW5",
+          "ACC-BLD-B-SW6",
+          "ACC-BLD-B-SW7",
+          "ACC-BLD-B-SW8",
+          "ACC-BLD-B-SW9",
+          "ACC-BLD-B-SW10",
+          "ACC-BLD-B-SW11",
+          "ACC-BLD-B-SW12",
+          "ACC-BLD-B-SW13",
+          "ACC-BLD-B-SW14",
+          "ACC-BLD-B-SW15",
+          "ACC-BLD-B-SW16"
+        ]
+      },
+      {
+        "id": "BLD-C",
+        "label": "Building C (Admin)",
+        "kind": "building",
+        "deviceIds": [
+          "DIST-BLD-C",
+          "ACC-BLD-C-SW1",
+          "ACC-BLD-C-SW2",
+          "ACC-BLD-C-SW3",
+          "ACC-BLD-C-SW4",
+          "ACC-BLD-C-SW5",
+          "ACC-BLD-C-SW6",
+          "ACC-BLD-C-SW7",
+          "ACC-BLD-C-SW8",
+          "ACC-BLD-C-SW9",
+          "ACC-BLD-C-SW10",
+          "ACC-BLD-C-SW11"
+        ]
+      }
+    ],
+    "devices": [
+      {
+        "id": "CORE-01",
+        "name": "Campus Core Switch 01",
+        "role": "core-switch",
+        "siteId": "SITE-CORE",
+        "mgmtIp": "10.0.0.1",
+        "portCount": 24
+      },
+      {
+        "id": "CORE-02",
+        "name": "Campus Core Switch 02",
+        "role": "core-switch",
+        "siteId": "SITE-CORE",
+        "mgmtIp": "10.0.0.2",
+        "portCount": 24
+      },
+      {
+        "id": "DIST-BLD-A",
+        "name": "Distribution Switch Building A (Engineering)",
+        "role": "distribution-switch",
+        "siteId": "BLD-A",
+        "portCount": 24
+      },
+      {
+        "id": "ACC-BLD-A-SW1",
+        "name": "Access Switch BLD-A #1",
+        "role": "access-switch",
+        "siteId": "BLD-A",
+        "portCount": 48,
+        "poe": true
+      },
+      {
+        "id": "ACC-BLD-A-SW2",
+        "name": "Access Switch BLD-A #2",
+        "role": "access-switch",
+        "siteId": "BLD-A",
+        "portCount": 48,
+        "poe": true
+      },
+      {
+        "id": "ACC-BLD-A-SW3",
+        "name": "Access Switch BLD-A #3",
+        "role": "access-switch",
+        "siteId": "BLD-A",
+        "portCount": 48,
+        "poe": true
+      },
+      {
+        "id": "ACC-BLD-A-SW4",
+        "name": "Access Switch BLD-A #4",
+        "role": "access-switch",
+        "siteId": "BLD-A",
+        "portCount": 48,
+        "poe": true
+      },
+      {
+        "id": "ACC-BLD-A-SW5",
+        "name": "Access Switch BLD-A #5",
+        "role": "access-switch",
+        "siteId": "BLD-A",
+        "portCount": 48,
+        "poe": true
+      },
+      {
+        "id": "ACC-BLD-A-SW6",
+        "name": "Access Switch BLD-A #6",
+        "role": "access-switch",
+        "siteId": "BLD-A",
+        "portCount": 48,
+        "poe": true
+      },
+      {
+        "id": "ACC-BLD-A-SW7",
+        "name": "Access Switch BLD-A #7",
+        "role": "access-switch",
+        "siteId": "BLD-A",
+        "portCount": 48,
+        "poe": true
+      },
+      {
+        "id": "ACC-BLD-A-SW8",
+        "name": "Access Switch BLD-A #8",
+        "role": "access-switch",
+        "siteId": "BLD-A",
+        "portCount": 48,
+        "poe": true
+      },
+      {
+        "id": "ACC-BLD-A-SW9",
+        "name": "Access Switch BLD-A #9",
+        "role": "access-switch",
+        "siteId": "BLD-A",
+        "portCount": 48,
+        "poe": true
+      },
+      {
+        "id": "ACC-BLD-A-SW10",
+        "name": "Access Switch BLD-A #10",
+        "role": "access-switch",
+        "siteId": "BLD-A",
+        "portCount": 48,
+        "poe": true
+      },
+      {
+        "id": "ACC-BLD-A-SW11",
+        "name": "Access Switch BLD-A #11",
+        "role": "access-switch",
+        "siteId": "BLD-A",
+        "portCount": 48,
+        "poe": true
+      },
+      {
+        "id": "ACC-BLD-A-SW12",
+        "name": "Access Switch BLD-A #12",
+        "role": "access-switch",
+        "siteId": "BLD-A",
+        "portCount": 48,
+        "poe": true
+      },
+      {
+        "id": "ACC-BLD-A-SW13",
+        "name": "Access Switch BLD-A #13",
+        "role": "access-switch",
+        "siteId": "BLD-A",
+        "portCount": 48,
+        "poe": true
+      },
+      {
+        "id": "ACC-BLD-A-SW14",
+        "name": "Access Switch BLD-A #14",
+        "role": "access-switch",
+        "siteId": "BLD-A",
+        "portCount": 48,
+        "poe": true
+      },
+      {
+        "id": "ACC-BLD-A-SW15",
+        "name": "Access Switch BLD-A #15",
+        "role": "access-switch",
+        "siteId": "BLD-A",
+        "portCount": 48,
+        "poe": true
+      },
+      {
+        "id": "ACC-BLD-A-SW16",
+        "name": "Access Switch BLD-A #16",
+        "role": "access-switch",
+        "siteId": "BLD-A",
+        "portCount": 48,
+        "poe": true
+      },
+      {
+        "id": "ACC-BLD-A-SW17",
+        "name": "Access Switch BLD-A #17",
+        "role": "access-switch",
+        "siteId": "BLD-A",
+        "portCount": 48,
+        "poe": true
+      },
+      {
+        "id": "DIST-BLD-B",
+        "name": "Distribution Switch Building B (Library)",
+        "role": "distribution-switch",
+        "siteId": "BLD-B",
+        "portCount": 24
+      },
+      {
+        "id": "ACC-BLD-B-SW1",
+        "name": "Access Switch BLD-B #1",
+        "role": "access-switch",
+        "siteId": "BLD-B",
+        "portCount": 48,
+        "poe": true
+      },
+      {
+        "id": "ACC-BLD-B-SW2",
+        "name": "Access Switch BLD-B #2",
+        "role": "access-switch",
+        "siteId": "BLD-B",
+        "portCount": 48,
+        "poe": true
+      },
+      {
+        "id": "ACC-BLD-B-SW3",
+        "name": "Access Switch BLD-B #3",
+        "role": "access-switch",
+        "siteId": "BLD-B",
+        "portCount": 48,
+        "poe": true
+      },
+      {
+        "id": "ACC-BLD-B-SW4",
+        "name": "Access Switch BLD-B #4",
+        "role": "access-switch",
+        "siteId": "BLD-B",
+        "portCount": 48,
+        "poe": true
+      },
+      {
+        "id": "ACC-BLD-B-SW5",
+        "name": "Access Switch BLD-B #5",
+        "role": "access-switch",
+        "siteId": "BLD-B",
+        "portCount": 48,
+        "poe": true
+      },
+      {
+        "id": "ACC-BLD-B-SW6",
+        "name": "Access Switch BLD-B #6",
+        "role": "access-switch",
+        "siteId": "BLD-B",
+        "portCount": 48,
+        "poe": true
+      },
+      {
+        "id": "ACC-BLD-B-SW7",
+        "name": "Access Switch BLD-B #7",
+        "role": "access-switch",
+        "siteId": "BLD-B",
+        "portCount": 48,
+        "poe": true
+      },
+      {
+        "id": "ACC-BLD-B-SW8",
+        "name": "Access Switch BLD-B #8",
+        "role": "access-switch",
+        "siteId": "BLD-B",
+        "portCount": 48,
+        "poe": true
+      },
+      {
+        "id": "ACC-BLD-B-SW9",
+        "name": "Access Switch BLD-B #9",
+        "role": "access-switch",
+        "siteId": "BLD-B",
+        "portCount": 48,
+        "poe": true
+      },
+      {
+        "id": "ACC-BLD-B-SW10",
+        "name": "Access Switch BLD-B #10",
+        "role": "access-switch",
+        "siteId": "BLD-B",
+        "portCount": 48,
+        "poe": true
+      },
+      {
+        "id": "ACC-BLD-B-SW11",
+        "name": "Access Switch BLD-B #11",
+        "role": "access-switch",
+        "siteId": "BLD-B",
+        "portCount": 48,
+        "poe": true
+      },
+      {
+        "id": "ACC-BLD-B-SW12",
+        "name": "Access Switch BLD-B #12",
+        "role": "access-switch",
+        "siteId": "BLD-B",
+        "portCount": 48,
+        "poe": true
+      },
+      {
+        "id": "ACC-BLD-B-SW13",
+        "name": "Access Switch BLD-B #13",
+        "role": "access-switch",
+        "siteId": "BLD-B",
+        "portCount": 48,
+        "poe": true
+      },
+      {
+        "id": "ACC-BLD-B-SW14",
+        "name": "Access Switch BLD-B #14",
+        "role": "access-switch",
+        "siteId": "BLD-B",
+        "portCount": 48,
+        "poe": true
+      },
+      {
+        "id": "ACC-BLD-B-SW15",
+        "name": "Access Switch BLD-B #15",
+        "role": "access-switch",
+        "siteId": "BLD-B",
+        "portCount": 48,
+        "poe": true
+      },
+      {
+        "id": "ACC-BLD-B-SW16",
+        "name": "Access Switch BLD-B #16",
+        "role": "access-switch",
+        "siteId": "BLD-B",
+        "portCount": 48,
+        "poe": true
+      },
+      {
+        "id": "DIST-BLD-C",
+        "name": "Distribution Switch Building C (Admin)",
+        "role": "distribution-switch",
+        "siteId": "BLD-C",
+        "portCount": 24
+      },
+      {
+        "id": "ACC-BLD-C-SW1",
+        "name": "Access Switch BLD-C #1",
+        "role": "access-switch",
+        "siteId": "BLD-C",
+        "portCount": 48,
+        "poe": true
+      },
+      {
+        "id": "ACC-BLD-C-SW2",
+        "name": "Access Switch BLD-C #2",
+        "role": "access-switch",
+        "siteId": "BLD-C",
+        "portCount": 48,
+        "poe": true
+      },
+      {
+        "id": "ACC-BLD-C-SW3",
+        "name": "Access Switch BLD-C #3",
+        "role": "access-switch",
+        "siteId": "BLD-C",
+        "portCount": 48,
+        "poe": true
+      },
+      {
+        "id": "ACC-BLD-C-SW4",
+        "name": "Access Switch BLD-C #4",
+        "role": "access-switch",
+        "siteId": "BLD-C",
+        "portCount": 48,
+        "poe": true
+      },
+      {
+        "id": "ACC-BLD-C-SW5",
+        "name": "Access Switch BLD-C #5",
+        "role": "access-switch",
+        "siteId": "BLD-C",
+        "portCount": 48,
+        "poe": true
+      },
+      {
+        "id": "ACC-BLD-C-SW6",
+        "name": "Access Switch BLD-C #6",
+        "role": "access-switch",
+        "siteId": "BLD-C",
+        "portCount": 48,
+        "poe": true
+      },
+      {
+        "id": "ACC-BLD-C-SW7",
+        "name": "Access Switch BLD-C #7",
+        "role": "access-switch",
+        "siteId": "BLD-C",
+        "portCount": 48,
+        "poe": true
+      },
+      {
+        "id": "ACC-BLD-C-SW8",
+        "name": "Access Switch BLD-C #8",
+        "role": "access-switch",
+        "siteId": "BLD-C",
+        "portCount": 48,
+        "poe": true
+      },
+      {
+        "id": "ACC-BLD-C-SW9",
+        "name": "Access Switch BLD-C #9",
+        "role": "access-switch",
+        "siteId": "BLD-C",
+        "portCount": 48,
+        "poe": true
+      },
+      {
+        "id": "ACC-BLD-C-SW10",
+        "name": "Access Switch BLD-C #10",
+        "role": "access-switch",
+        "siteId": "BLD-C",
+        "portCount": 48,
+        "poe": true
+      },
+      {
+        "id": "ACC-BLD-C-SW11",
+        "name": "Access Switch BLD-C #11",
+        "role": "access-switch",
+        "siteId": "BLD-C",
+        "portCount": 48,
+        "poe": true
+      }
+    ],
+    "links": [
+      {
+        "id": "LINK-CORE-INTERCONNECT",
+        "aDeviceId": "CORE-01",
+        "bDeviceId": "CORE-02",
+        "kind": "physical",
+        "bandwidthMbps": 10000,
+        "phys": {
+          "runMeters": 5,
+          "spec": {
+            "id": "cat6a-10gt",
+            "label": "1000BASE/10G-T RJ45",
+            "medium": "cat6a",
+            "standard": "10GBASE-T",
+            "wavelengthNm": 0,
+            "maxReachMeters": 100,
+            "finePrint": "IEEE 802.3an: 10GBASE-T over Cat6a is capped at 100 m (inclusive). Copper runs beyond 100 m are a PhysicalDistanceViolationError by assignment mandate."
+          },
+          "standard": "10GBASE-T"
+        }
+      },
+      {
+        "id": "LINK-DIST-BLD-A-CORE-01",
+        "aDeviceId": "DIST-BLD-A",
+        "bDeviceId": "CORE-01",
+        "kind": "physical",
+        "bandwidthMbps": 10000,
+        "phys": {
+          "runMeters": 85,
+          "spec": {
+            "id": "cat6a-10gt",
+            "label": "1000BASE/10G-T RJ45",
+            "medium": "cat6a",
+            "standard": "10GBASE-T",
+            "wavelengthNm": 0,
+            "maxReachMeters": 100,
+            "finePrint": "IEEE 802.3an: 10GBASE-T over Cat6a is capped at 100 m (inclusive). Copper runs beyond 100 m are a PhysicalDistanceViolationError by assignment mandate."
+          },
+          "standard": "10GBASE-T"
+        }
+      },
+      {
+        "id": "LINK-DIST-BLD-A-CORE-02",
+        "aDeviceId": "DIST-BLD-A",
+        "bDeviceId": "CORE-02",
+        "kind": "physical",
+        "bandwidthMbps": 10000,
+        "phys": {
+          "runMeters": 85,
+          "spec": {
+            "id": "cat6a-10gt",
+            "label": "1000BASE/10G-T RJ45",
+            "medium": "cat6a",
+            "standard": "10GBASE-T",
+            "wavelengthNm": 0,
+            "maxReachMeters": 100,
+            "finePrint": "IEEE 802.3an: 10GBASE-T over Cat6a is capped at 100 m (inclusive). Copper runs beyond 100 m are a PhysicalDistanceViolationError by assignment mandate."
+          },
+          "standard": "10GBASE-T"
+        }
+      },
+      {
+        "id": "LINK-ACC-BLD-A-SW1-DIST-BLD-A",
+        "aDeviceId": "ACC-BLD-A-SW1",
+        "bDeviceId": "DIST-BLD-A",
+        "kind": "physical",
+        "bandwidthMbps": 1000,
+        "phys": {
+          "runMeters": 90,
+          "spec": {
+            "id": "cat6a-10gt",
+            "label": "1000BASE/10G-T RJ45",
+            "medium": "cat6a",
+            "standard": "10GBASE-T",
+            "wavelengthNm": 0,
+            "maxReachMeters": 100,
+            "finePrint": "IEEE 802.3an: 10GBASE-T over Cat6a is capped at 100 m (inclusive). Copper runs beyond 100 m are a PhysicalDistanceViolationError by assignment mandate."
+          },
+          "standard": "10GBASE-T"
+        }
+      },
+      {
+        "id": "LINK-ACC-BLD-A-SW2-DIST-BLD-A",
+        "aDeviceId": "ACC-BLD-A-SW2",
+        "bDeviceId": "DIST-BLD-A",
+        "kind": "physical",
+        "bandwidthMbps": 1000,
+        "phys": {
+          "runMeters": 90,
+          "spec": {
+            "id": "cat6a-10gt",
+            "label": "1000BASE/10G-T RJ45",
+            "medium": "cat6a",
+            "standard": "10GBASE-T",
+            "wavelengthNm": 0,
+            "maxReachMeters": 100,
+            "finePrint": "IEEE 802.3an: 10GBASE-T over Cat6a is capped at 100 m (inclusive). Copper runs beyond 100 m are a PhysicalDistanceViolationError by assignment mandate."
+          },
+          "standard": "10GBASE-T"
+        }
+      },
+      {
+        "id": "LINK-ACC-BLD-A-SW3-DIST-BLD-A",
+        "aDeviceId": "ACC-BLD-A-SW3",
+        "bDeviceId": "DIST-BLD-A",
+        "kind": "physical",
+        "bandwidthMbps": 1000,
+        "phys": {
+          "runMeters": 90,
+          "spec": {
+            "id": "cat6a-10gt",
+            "label": "1000BASE/10G-T RJ45",
+            "medium": "cat6a",
+            "standard": "10GBASE-T",
+            "wavelengthNm": 0,
+            "maxReachMeters": 100,
+            "finePrint": "IEEE 802.3an: 10GBASE-T over Cat6a is capped at 100 m (inclusive). Copper runs beyond 100 m are a PhysicalDistanceViolationError by assignment mandate."
+          },
+          "standard": "10GBASE-T"
+        }
+      },
+      {
+        "id": "LINK-ACC-BLD-A-SW4-DIST-BLD-A",
+        "aDeviceId": "ACC-BLD-A-SW4",
+        "bDeviceId": "DIST-BLD-A",
+        "kind": "physical",
+        "bandwidthMbps": 1000,
+        "phys": {
+          "runMeters": 90,
+          "spec": {
+            "id": "cat6a-10gt",
+            "label": "1000BASE/10G-T RJ45",
+            "medium": "cat6a",
+            "standard": "10GBASE-T",
+            "wavelengthNm": 0,
+            "maxReachMeters": 100,
+            "finePrint": "IEEE 802.3an: 10GBASE-T over Cat6a is capped at 100 m (inclusive). Copper runs beyond 100 m are a PhysicalDistanceViolationError by assignment mandate."
+          },
+          "standard": "10GBASE-T"
+        }
+      },
+      {
+        "id": "LINK-ACC-BLD-A-SW5-DIST-BLD-A",
+        "aDeviceId": "ACC-BLD-A-SW5",
+        "bDeviceId": "DIST-BLD-A",
+        "kind": "physical",
+        "bandwidthMbps": 1000,
+        "phys": {
+          "runMeters": 90,
+          "spec": {
+            "id": "cat6a-10gt",
+            "label": "1000BASE/10G-T RJ45",
+            "medium": "cat6a",
+            "standard": "10GBASE-T",
+            "wavelengthNm": 0,
+            "maxReachMeters": 100,
+            "finePrint": "IEEE 802.3an: 10GBASE-T over Cat6a is capped at 100 m (inclusive). Copper runs beyond 100 m are a PhysicalDistanceViolationError by assignment mandate."
+          },
+          "standard": "10GBASE-T"
+        }
+      },
+      {
+        "id": "LINK-ACC-BLD-A-SW6-DIST-BLD-A",
+        "aDeviceId": "ACC-BLD-A-SW6",
+        "bDeviceId": "DIST-BLD-A",
+        "kind": "physical",
+        "bandwidthMbps": 1000,
+        "phys": {
+          "runMeters": 90,
+          "spec": {
+            "id": "cat6a-10gt",
+            "label": "1000BASE/10G-T RJ45",
+            "medium": "cat6a",
+            "standard": "10GBASE-T",
+            "wavelengthNm": 0,
+            "maxReachMeters": 100,
+            "finePrint": "IEEE 802.3an: 10GBASE-T over Cat6a is capped at 100 m (inclusive). Copper runs beyond 100 m are a PhysicalDistanceViolationError by assignment mandate."
+          },
+          "standard": "10GBASE-T"
+        }
+      },
+      {
+        "id": "LINK-ACC-BLD-A-SW7-DIST-BLD-A",
+        "aDeviceId": "ACC-BLD-A-SW7",
+        "bDeviceId": "DIST-BLD-A",
+        "kind": "physical",
+        "bandwidthMbps": 1000,
+        "phys": {
+          "runMeters": 90,
+          "spec": {
+            "id": "cat6a-10gt",
+            "label": "1000BASE/10G-T RJ45",
+            "medium": "cat6a",
+            "standard": "10GBASE-T",
+            "wavelengthNm": 0,
+            "maxReachMeters": 100,
+            "finePrint": "IEEE 802.3an: 10GBASE-T over Cat6a is capped at 100 m (inclusive). Copper runs beyond 100 m are a PhysicalDistanceViolationError by assignment mandate."
+          },
+          "standard": "10GBASE-T"
+        }
+      },
+      {
+        "id": "LINK-ACC-BLD-A-SW8-DIST-BLD-A",
+        "aDeviceId": "ACC-BLD-A-SW8",
+        "bDeviceId": "DIST-BLD-A",
+        "kind": "physical",
+        "bandwidthMbps": 1000,
+        "phys": {
+          "runMeters": 90,
+          "spec": {
+            "id": "cat6a-10gt",
+            "label": "1000BASE/10G-T RJ45",
+            "medium": "cat6a",
+            "standard": "10GBASE-T",
+            "wavelengthNm": 0,
+            "maxReachMeters": 100,
+            "finePrint": "IEEE 802.3an: 10GBASE-T over Cat6a is capped at 100 m (inclusive). Copper runs beyond 100 m are a PhysicalDistanceViolationError by assignment mandate."
+          },
+          "standard": "10GBASE-T"
+        }
+      },
+      {
+        "id": "LINK-ACC-BLD-A-SW9-DIST-BLD-A",
+        "aDeviceId": "ACC-BLD-A-SW9",
+        "bDeviceId": "DIST-BLD-A",
+        "kind": "physical",
+        "bandwidthMbps": 1000,
+        "phys": {
+          "runMeters": 90,
+          "spec": {
+            "id": "cat6a-10gt",
+            "label": "1000BASE/10G-T RJ45",
+            "medium": "cat6a",
+            "standard": "10GBASE-T",
+            "wavelengthNm": 0,
+            "maxReachMeters": 100,
+            "finePrint": "IEEE 802.3an: 10GBASE-T over Cat6a is capped at 100 m (inclusive). Copper runs beyond 100 m are a PhysicalDistanceViolationError by assignment mandate."
+          },
+          "standard": "10GBASE-T"
+        }
+      },
+      {
+        "id": "LINK-ACC-BLD-A-SW10-DIST-BLD-A",
+        "aDeviceId": "ACC-BLD-A-SW10",
+        "bDeviceId": "DIST-BLD-A",
+        "kind": "physical",
+        "bandwidthMbps": 1000,
+        "phys": {
+          "runMeters": 90,
+          "spec": {
+            "id": "cat6a-10gt",
+            "label": "1000BASE/10G-T RJ45",
+            "medium": "cat6a",
+            "standard": "10GBASE-T",
+            "wavelengthNm": 0,
+            "maxReachMeters": 100,
+            "finePrint": "IEEE 802.3an: 10GBASE-T over Cat6a is capped at 100 m (inclusive). Copper runs beyond 100 m are a PhysicalDistanceViolationError by assignment mandate."
+          },
+          "standard": "10GBASE-T"
+        }
+      },
+      {
+        "id": "LINK-ACC-BLD-A-SW11-DIST-BLD-A",
+        "aDeviceId": "ACC-BLD-A-SW11",
+        "bDeviceId": "DIST-BLD-A",
+        "kind": "physical",
+        "bandwidthMbps": 1000,
+        "phys": {
+          "runMeters": 90,
+          "spec": {
+            "id": "cat6a-10gt",
+            "label": "1000BASE/10G-T RJ45",
+            "medium": "cat6a",
+            "standard": "10GBASE-T",
+            "wavelengthNm": 0,
+            "maxReachMeters": 100,
+            "finePrint": "IEEE 802.3an: 10GBASE-T over Cat6a is capped at 100 m (inclusive). Copper runs beyond 100 m are a PhysicalDistanceViolationError by assignment mandate."
+          },
+          "standard": "10GBASE-T"
+        }
+      },
+      {
+        "id": "LINK-ACC-BLD-A-SW12-DIST-BLD-A",
+        "aDeviceId": "ACC-BLD-A-SW12",
+        "bDeviceId": "DIST-BLD-A",
+        "kind": "physical",
+        "bandwidthMbps": 1000,
+        "phys": {
+          "runMeters": 90,
+          "spec": {
+            "id": "cat6a-10gt",
+            "label": "1000BASE/10G-T RJ45",
+            "medium": "cat6a",
+            "standard": "10GBASE-T",
+            "wavelengthNm": 0,
+            "maxReachMeters": 100,
+            "finePrint": "IEEE 802.3an: 10GBASE-T over Cat6a is capped at 100 m (inclusive). Copper runs beyond 100 m are a PhysicalDistanceViolationError by assignment mandate."
+          },
+          "standard": "10GBASE-T"
+        }
+      },
+      {
+        "id": "LINK-ACC-BLD-A-SW13-DIST-BLD-A",
+        "aDeviceId": "ACC-BLD-A-SW13",
+        "bDeviceId": "DIST-BLD-A",
+        "kind": "physical",
+        "bandwidthMbps": 1000,
+        "phys": {
+          "runMeters": 90,
+          "spec": {
+            "id": "cat6a-10gt",
+            "label": "1000BASE/10G-T RJ45",
+            "medium": "cat6a",
+            "standard": "10GBASE-T",
+            "wavelengthNm": 0,
+            "maxReachMeters": 100,
+            "finePrint": "IEEE 802.3an: 10GBASE-T over Cat6a is capped at 100 m (inclusive). Copper runs beyond 100 m are a PhysicalDistanceViolationError by assignment mandate."
+          },
+          "standard": "10GBASE-T"
+        }
+      },
+      {
+        "id": "LINK-ACC-BLD-A-SW14-DIST-BLD-A",
+        "aDeviceId": "ACC-BLD-A-SW14",
+        "bDeviceId": "DIST-BLD-A",
+        "kind": "physical",
+        "bandwidthMbps": 1000,
+        "phys": {
+          "runMeters": 90,
+          "spec": {
+            "id": "cat6a-10gt",
+            "label": "1000BASE/10G-T RJ45",
+            "medium": "cat6a",
+            "standard": "10GBASE-T",
+            "wavelengthNm": 0,
+            "maxReachMeters": 100,
+            "finePrint": "IEEE 802.3an: 10GBASE-T over Cat6a is capped at 100 m (inclusive). Copper runs beyond 100 m are a PhysicalDistanceViolationError by assignment mandate."
+          },
+          "standard": "10GBASE-T"
+        }
+      },
+      {
+        "id": "LINK-ACC-BLD-A-SW15-DIST-BLD-A",
+        "aDeviceId": "ACC-BLD-A-SW15",
+        "bDeviceId": "DIST-BLD-A",
+        "kind": "physical",
+        "bandwidthMbps": 1000,
+        "phys": {
+          "runMeters": 90,
+          "spec": {
+            "id": "cat6a-10gt",
+            "label": "1000BASE/10G-T RJ45",
+            "medium": "cat6a",
+            "standard": "10GBASE-T",
+            "wavelengthNm": 0,
+            "maxReachMeters": 100,
+            "finePrint": "IEEE 802.3an: 10GBASE-T over Cat6a is capped at 100 m (inclusive). Copper runs beyond 100 m are a PhysicalDistanceViolationError by assignment mandate."
+          },
+          "standard": "10GBASE-T"
+        }
+      },
+      {
+        "id": "LINK-ACC-BLD-A-SW16-DIST-BLD-A",
+        "aDeviceId": "ACC-BLD-A-SW16",
+        "bDeviceId": "DIST-BLD-A",
+        "kind": "physical",
+        "bandwidthMbps": 1000,
+        "phys": {
+          "runMeters": 90,
+          "spec": {
+            "id": "cat6a-10gt",
+            "label": "1000BASE/10G-T RJ45",
+            "medium": "cat6a",
+            "standard": "10GBASE-T",
+            "wavelengthNm": 0,
+            "maxReachMeters": 100,
+            "finePrint": "IEEE 802.3an: 10GBASE-T over Cat6a is capped at 100 m (inclusive). Copper runs beyond 100 m are a PhysicalDistanceViolationError by assignment mandate."
+          },
+          "standard": "10GBASE-T"
+        }
+      },
+      {
+        "id": "LINK-ACC-BLD-A-SW17-DIST-BLD-A",
+        "aDeviceId": "ACC-BLD-A-SW17",
+        "bDeviceId": "DIST-BLD-A",
+        "kind": "physical",
+        "bandwidthMbps": 1000,
+        "phys": {
+          "runMeters": 90,
+          "spec": {
+            "id": "cat6a-10gt",
+            "label": "1000BASE/10G-T RJ45",
+            "medium": "cat6a",
+            "standard": "10GBASE-T",
+            "wavelengthNm": 0,
+            "maxReachMeters": 100,
+            "finePrint": "IEEE 802.3an: 10GBASE-T over Cat6a is capped at 100 m (inclusive). Copper runs beyond 100 m are a PhysicalDistanceViolationError by assignment mandate."
+          },
+          "standard": "10GBASE-T"
+        }
+      },
+      {
+        "id": "LINK-DIST-BLD-B-CORE-01",
+        "aDeviceId": "DIST-BLD-B",
+        "bDeviceId": "CORE-01",
+        "kind": "physical",
+        "bandwidthMbps": 10000,
+        "phys": {
+          "runMeters": 190,
+          "spec": {
+            "id": "om4-850sr",
+            "label": "850nm-SR",
+            "medium": "om4",
+            "standard": "10GBASE-SR",
+            "wavelengthNm": 850,
+            "maxReachMeters": 400,
+            "powerBudgetDb": 7.3,
+            "finePrint": "IEEE 802.3ae: the 400 m OM4 reach is a 10GBASE-SR @ 850 nm figure. Do not reuse it at other Ethernet speeds — SR-class optics derate OM4 reach as speed rises."
+          },
+          "standard": "10GBASE-SR"
+        }
+      },
+      {
+        "id": "LINK-DIST-BLD-B-CORE-02",
+        "aDeviceId": "DIST-BLD-B",
+        "bDeviceId": "CORE-02",
+        "kind": "physical",
+        "bandwidthMbps": 10000,
+        "phys": {
+          "runMeters": 190,
+          "spec": {
+            "id": "om4-850sr",
+            "label": "850nm-SR",
+            "medium": "om4",
+            "standard": "10GBASE-SR",
+            "wavelengthNm": 850,
+            "maxReachMeters": 400,
+            "powerBudgetDb": 7.3,
+            "finePrint": "IEEE 802.3ae: the 400 m OM4 reach is a 10GBASE-SR @ 850 nm figure. Do not reuse it at other Ethernet speeds — SR-class optics derate OM4 reach as speed rises."
+          },
+          "standard": "10GBASE-SR"
+        }
+      },
+      {
+        "id": "LINK-ACC-BLD-B-SW1-DIST-BLD-B",
+        "aDeviceId": "ACC-BLD-B-SW1",
+        "bDeviceId": "DIST-BLD-B",
+        "kind": "physical",
+        "bandwidthMbps": 1000,
+        "phys": {
+          "runMeters": 90,
+          "spec": {
+            "id": "cat6a-10gt",
+            "label": "1000BASE/10G-T RJ45",
+            "medium": "cat6a",
+            "standard": "10GBASE-T",
+            "wavelengthNm": 0,
+            "maxReachMeters": 100,
+            "finePrint": "IEEE 802.3an: 10GBASE-T over Cat6a is capped at 100 m (inclusive). Copper runs beyond 100 m are a PhysicalDistanceViolationError by assignment mandate."
+          },
+          "standard": "10GBASE-T"
+        }
+      },
+      {
+        "id": "LINK-ACC-BLD-B-SW2-DIST-BLD-B",
+        "aDeviceId": "ACC-BLD-B-SW2",
+        "bDeviceId": "DIST-BLD-B",
+        "kind": "physical",
+        "bandwidthMbps": 1000,
+        "phys": {
+          "runMeters": 90,
+          "spec": {
+            "id": "cat6a-10gt",
+            "label": "1000BASE/10G-T RJ45",
+            "medium": "cat6a",
+            "standard": "10GBASE-T",
+            "wavelengthNm": 0,
+            "maxReachMeters": 100,
+            "finePrint": "IEEE 802.3an: 10GBASE-T over Cat6a is capped at 100 m (inclusive). Copper runs beyond 100 m are a PhysicalDistanceViolationError by assignment mandate."
+          },
+          "standard": "10GBASE-T"
+        }
+      },
+      {
+        "id": "LINK-ACC-BLD-B-SW3-DIST-BLD-B",
+        "aDeviceId": "ACC-BLD-B-SW3",
+        "bDeviceId": "DIST-BLD-B",
+        "kind": "physical",
+        "bandwidthMbps": 1000,
+        "phys": {
+          "runMeters": 90,
+          "spec": {
+            "id": "cat6a-10gt",
+            "label": "1000BASE/10G-T RJ45",
+            "medium": "cat6a",
+            "standard": "10GBASE-T",
+            "wavelengthNm": 0,
+            "maxReachMeters": 100,
+            "finePrint": "IEEE 802.3an: 10GBASE-T over Cat6a is capped at 100 m (inclusive). Copper runs beyond 100 m are a PhysicalDistanceViolationError by assignment mandate."
+          },
+          "standard": "10GBASE-T"
+        }
+      },
+      {
+        "id": "LINK-ACC-BLD-B-SW4-DIST-BLD-B",
+        "aDeviceId": "ACC-BLD-B-SW4",
+        "bDeviceId": "DIST-BLD-B",
+        "kind": "physical",
+        "bandwidthMbps": 1000,
+        "phys": {
+          "runMeters": 90,
+          "spec": {
+            "id": "cat6a-10gt",
+            "label": "1000BASE/10G-T RJ45",
+            "medium": "cat6a",
+            "standard": "10GBASE-T",
+            "wavelengthNm": 0,
+            "maxReachMeters": 100,
+            "finePrint": "IEEE 802.3an: 10GBASE-T over Cat6a is capped at 100 m (inclusive). Copper runs beyond 100 m are a PhysicalDistanceViolationError by assignment mandate."
+          },
+          "standard": "10GBASE-T"
+        }
+      },
+      {
+        "id": "LINK-ACC-BLD-B-SW5-DIST-BLD-B",
+        "aDeviceId": "ACC-BLD-B-SW5",
+        "bDeviceId": "DIST-BLD-B",
+        "kind": "physical",
+        "bandwidthMbps": 1000,
+        "phys": {
+          "runMeters": 90,
+          "spec": {
+            "id": "cat6a-10gt",
+            "label": "1000BASE/10G-T RJ45",
+            "medium": "cat6a",
+            "standard": "10GBASE-T",
+            "wavelengthNm": 0,
+            "maxReachMeters": 100,
+            "finePrint": "IEEE 802.3an: 10GBASE-T over Cat6a is capped at 100 m (inclusive). Copper runs beyond 100 m are a PhysicalDistanceViolationError by assignment mandate."
+          },
+          "standard": "10GBASE-T"
+        }
+      },
+      {
+        "id": "LINK-ACC-BLD-B-SW6-DIST-BLD-B",
+        "aDeviceId": "ACC-BLD-B-SW6",
+        "bDeviceId": "DIST-BLD-B",
+        "kind": "physical",
+        "bandwidthMbps": 1000,
+        "phys": {
+          "runMeters": 90,
+          "spec": {
+            "id": "cat6a-10gt",
+            "label": "1000BASE/10G-T RJ45",
+            "medium": "cat6a",
+            "standard": "10GBASE-T",
+            "wavelengthNm": 0,
+            "maxReachMeters": 100,
+            "finePrint": "IEEE 802.3an: 10GBASE-T over Cat6a is capped at 100 m (inclusive). Copper runs beyond 100 m are a PhysicalDistanceViolationError by assignment mandate."
+          },
+          "standard": "10GBASE-T"
+        }
+      },
+      {
+        "id": "LINK-ACC-BLD-B-SW7-DIST-BLD-B",
+        "aDeviceId": "ACC-BLD-B-SW7",
+        "bDeviceId": "DIST-BLD-B",
+        "kind": "physical",
+        "bandwidthMbps": 1000,
+        "phys": {
+          "runMeters": 90,
+          "spec": {
+            "id": "cat6a-10gt",
+            "label": "1000BASE/10G-T RJ45",
+            "medium": "cat6a",
+            "standard": "10GBASE-T",
+            "wavelengthNm": 0,
+            "maxReachMeters": 100,
+            "finePrint": "IEEE 802.3an: 10GBASE-T over Cat6a is capped at 100 m (inclusive). Copper runs beyond 100 m are a PhysicalDistanceViolationError by assignment mandate."
+          },
+          "standard": "10GBASE-T"
+        }
+      },
+      {
+        "id": "LINK-ACC-BLD-B-SW8-DIST-BLD-B",
+        "aDeviceId": "ACC-BLD-B-SW8",
+        "bDeviceId": "DIST-BLD-B",
+        "kind": "physical",
+        "bandwidthMbps": 1000,
+        "phys": {
+          "runMeters": 90,
+          "spec": {
+            "id": "cat6a-10gt",
+            "label": "1000BASE/10G-T RJ45",
+            "medium": "cat6a",
+            "standard": "10GBASE-T",
+            "wavelengthNm": 0,
+            "maxReachMeters": 100,
+            "finePrint": "IEEE 802.3an: 10GBASE-T over Cat6a is capped at 100 m (inclusive). Copper runs beyond 100 m are a PhysicalDistanceViolationError by assignment mandate."
+          },
+          "standard": "10GBASE-T"
+        }
+      },
+      {
+        "id": "LINK-ACC-BLD-B-SW9-DIST-BLD-B",
+        "aDeviceId": "ACC-BLD-B-SW9",
+        "bDeviceId": "DIST-BLD-B",
+        "kind": "physical",
+        "bandwidthMbps": 1000,
+        "phys": {
+          "runMeters": 90,
+          "spec": {
+            "id": "cat6a-10gt",
+            "label": "1000BASE/10G-T RJ45",
+            "medium": "cat6a",
+            "standard": "10GBASE-T",
+            "wavelengthNm": 0,
+            "maxReachMeters": 100,
+            "finePrint": "IEEE 802.3an: 10GBASE-T over Cat6a is capped at 100 m (inclusive). Copper runs beyond 100 m are a PhysicalDistanceViolationError by assignment mandate."
+          },
+          "standard": "10GBASE-T"
+        }
+      },
+      {
+        "id": "LINK-ACC-BLD-B-SW10-DIST-BLD-B",
+        "aDeviceId": "ACC-BLD-B-SW10",
+        "bDeviceId": "DIST-BLD-B",
+        "kind": "physical",
+        "bandwidthMbps": 1000,
+        "phys": {
+          "runMeters": 90,
+          "spec": {
+            "id": "cat6a-10gt",
+            "label": "1000BASE/10G-T RJ45",
+            "medium": "cat6a",
+            "standard": "10GBASE-T",
+            "wavelengthNm": 0,
+            "maxReachMeters": 100,
+            "finePrint": "IEEE 802.3an: 10GBASE-T over Cat6a is capped at 100 m (inclusive). Copper runs beyond 100 m are a PhysicalDistanceViolationError by assignment mandate."
+          },
+          "standard": "10GBASE-T"
+        }
+      },
+      {
+        "id": "LINK-ACC-BLD-B-SW11-DIST-BLD-B",
+        "aDeviceId": "ACC-BLD-B-SW11",
+        "bDeviceId": "DIST-BLD-B",
+        "kind": "physical",
+        "bandwidthMbps": 1000,
+        "phys": {
+          "runMeters": 90,
+          "spec": {
+            "id": "cat6a-10gt",
+            "label": "1000BASE/10G-T RJ45",
+            "medium": "cat6a",
+            "standard": "10GBASE-T",
+            "wavelengthNm": 0,
+            "maxReachMeters": 100,
+            "finePrint": "IEEE 802.3an: 10GBASE-T over Cat6a is capped at 100 m (inclusive). Copper runs beyond 100 m are a PhysicalDistanceViolationError by assignment mandate."
+          },
+          "standard": "10GBASE-T"
+        }
+      },
+      {
+        "id": "LINK-ACC-BLD-B-SW12-DIST-BLD-B",
+        "aDeviceId": "ACC-BLD-B-SW12",
+        "bDeviceId": "DIST-BLD-B",
+        "kind": "physical",
+        "bandwidthMbps": 1000,
+        "phys": {
+          "runMeters": 90,
+          "spec": {
+            "id": "cat6a-10gt",
+            "label": "1000BASE/10G-T RJ45",
+            "medium": "cat6a",
+            "standard": "10GBASE-T",
+            "wavelengthNm": 0,
+            "maxReachMeters": 100,
+            "finePrint": "IEEE 802.3an: 10GBASE-T over Cat6a is capped at 100 m (inclusive). Copper runs beyond 100 m are a PhysicalDistanceViolationError by assignment mandate."
+          },
+          "standard": "10GBASE-T"
+        }
+      },
+      {
+        "id": "LINK-ACC-BLD-B-SW13-DIST-BLD-B",
+        "aDeviceId": "ACC-BLD-B-SW13",
+        "bDeviceId": "DIST-BLD-B",
+        "kind": "physical",
+        "bandwidthMbps": 1000,
+        "phys": {
+          "runMeters": 90,
+          "spec": {
+            "id": "cat6a-10gt",
+            "label": "1000BASE/10G-T RJ45",
+            "medium": "cat6a",
+            "standard": "10GBASE-T",
+            "wavelengthNm": 0,
+            "maxReachMeters": 100,
+            "finePrint": "IEEE 802.3an: 10GBASE-T over Cat6a is capped at 100 m (inclusive). Copper runs beyond 100 m are a PhysicalDistanceViolationError by assignment mandate."
+          },
+          "standard": "10GBASE-T"
+        }
+      },
+      {
+        "id": "LINK-ACC-BLD-B-SW14-DIST-BLD-B",
+        "aDeviceId": "ACC-BLD-B-SW14",
+        "bDeviceId": "DIST-BLD-B",
+        "kind": "physical",
+        "bandwidthMbps": 1000,
+        "phys": {
+          "runMeters": 90,
+          "spec": {
+            "id": "cat6a-10gt",
+            "label": "1000BASE/10G-T RJ45",
+            "medium": "cat6a",
+            "standard": "10GBASE-T",
+            "wavelengthNm": 0,
+            "maxReachMeters": 100,
+            "finePrint": "IEEE 802.3an: 10GBASE-T over Cat6a is capped at 100 m (inclusive). Copper runs beyond 100 m are a PhysicalDistanceViolationError by assignment mandate."
+          },
+          "standard": "10GBASE-T"
+        }
+      },
+      {
+        "id": "LINK-ACC-BLD-B-SW15-DIST-BLD-B",
+        "aDeviceId": "ACC-BLD-B-SW15",
+        "bDeviceId": "DIST-BLD-B",
+        "kind": "physical",
+        "bandwidthMbps": 1000,
+        "phys": {
+          "runMeters": 90,
+          "spec": {
+            "id": "cat6a-10gt",
+            "label": "1000BASE/10G-T RJ45",
+            "medium": "cat6a",
+            "standard": "10GBASE-T",
+            "wavelengthNm": 0,
+            "maxReachMeters": 100,
+            "finePrint": "IEEE 802.3an: 10GBASE-T over Cat6a is capped at 100 m (inclusive). Copper runs beyond 100 m are a PhysicalDistanceViolationError by assignment mandate."
+          },
+          "standard": "10GBASE-T"
+        }
+      },
+      {
+        "id": "LINK-ACC-BLD-B-SW16-DIST-BLD-B",
+        "aDeviceId": "ACC-BLD-B-SW16",
+        "bDeviceId": "DIST-BLD-B",
+        "kind": "physical",
+        "bandwidthMbps": 1000,
+        "phys": {
+          "runMeters": 90,
+          "spec": {
+            "id": "cat6a-10gt",
+            "label": "1000BASE/10G-T RJ45",
+            "medium": "cat6a",
+            "standard": "10GBASE-T",
+            "wavelengthNm": 0,
+            "maxReachMeters": 100,
+            "finePrint": "IEEE 802.3an: 10GBASE-T over Cat6a is capped at 100 m (inclusive). Copper runs beyond 100 m are a PhysicalDistanceViolationError by assignment mandate."
+          },
+          "standard": "10GBASE-T"
+        }
+      },
+      {
+        "id": "LINK-DIST-BLD-C-CORE-01",
+        "aDeviceId": "DIST-BLD-C",
+        "bDeviceId": "CORE-01",
+        "kind": "physical",
+        "bandwidthMbps": 10000,
+        "phys": {
+          "runMeters": 380,
+          "spec": {
+            "id": "om4-850sr",
+            "label": "850nm-SR",
+            "medium": "om4",
+            "standard": "10GBASE-SR",
+            "wavelengthNm": 850,
+            "maxReachMeters": 400,
+            "powerBudgetDb": 7.3,
+            "finePrint": "IEEE 802.3ae: the 400 m OM4 reach is a 10GBASE-SR @ 850 nm figure. Do not reuse it at other Ethernet speeds — SR-class optics derate OM4 reach as speed rises."
+          },
+          "standard": "10GBASE-SR"
+        }
+      },
+      {
+        "id": "LINK-DIST-BLD-C-CORE-02",
+        "aDeviceId": "DIST-BLD-C",
+        "bDeviceId": "CORE-02",
+        "kind": "physical",
+        "bandwidthMbps": 10000,
+        "phys": {
+          "runMeters": 380,
+          "spec": {
+            "id": "om4-850sr",
+            "label": "850nm-SR",
+            "medium": "om4",
+            "standard": "10GBASE-SR",
+            "wavelengthNm": 850,
+            "maxReachMeters": 400,
+            "powerBudgetDb": 7.3,
+            "finePrint": "IEEE 802.3ae: the 400 m OM4 reach is a 10GBASE-SR @ 850 nm figure. Do not reuse it at other Ethernet speeds — SR-class optics derate OM4 reach as speed rises."
+          },
+          "standard": "10GBASE-SR"
+        }
+      },
+      {
+        "id": "LINK-ACC-BLD-C-SW1-DIST-BLD-C",
+        "aDeviceId": "ACC-BLD-C-SW1",
+        "bDeviceId": "DIST-BLD-C",
+        "kind": "physical",
+        "bandwidthMbps": 1000,
+        "phys": {
+          "runMeters": 88,
+          "spec": {
+            "id": "cat6a-10gt",
+            "label": "1000BASE/10G-T RJ45",
+            "medium": "cat6a",
+            "standard": "10GBASE-T",
+            "wavelengthNm": 0,
+            "maxReachMeters": 100,
+            "finePrint": "IEEE 802.3an: 10GBASE-T over Cat6a is capped at 100 m (inclusive). Copper runs beyond 100 m are a PhysicalDistanceViolationError by assignment mandate."
+          },
+          "standard": "10GBASE-T"
+        }
+      },
+      {
+        "id": "LINK-ACC-BLD-C-SW2-DIST-BLD-C",
+        "aDeviceId": "ACC-BLD-C-SW2",
+        "bDeviceId": "DIST-BLD-C",
+        "kind": "physical",
+        "bandwidthMbps": 1000,
+        "phys": {
+          "runMeters": 88,
+          "spec": {
+            "id": "cat6a-10gt",
+            "label": "1000BASE/10G-T RJ45",
+            "medium": "cat6a",
+            "standard": "10GBASE-T",
+            "wavelengthNm": 0,
+            "maxReachMeters": 100,
+            "finePrint": "IEEE 802.3an: 10GBASE-T over Cat6a is capped at 100 m (inclusive). Copper runs beyond 100 m are a PhysicalDistanceViolationError by assignment mandate."
+          },
+          "standard": "10GBASE-T"
+        }
+      },
+      {
+        "id": "LINK-ACC-BLD-C-SW3-DIST-BLD-C",
+        "aDeviceId": "ACC-BLD-C-SW3",
+        "bDeviceId": "DIST-BLD-C",
+        "kind": "physical",
+        "bandwidthMbps": 1000,
+        "phys": {
+          "runMeters": 88,
+          "spec": {
+            "id": "cat6a-10gt",
+            "label": "1000BASE/10G-T RJ45",
+            "medium": "cat6a",
+            "standard": "10GBASE-T",
+            "wavelengthNm": 0,
+            "maxReachMeters": 100,
+            "finePrint": "IEEE 802.3an: 10GBASE-T over Cat6a is capped at 100 m (inclusive). Copper runs beyond 100 m are a PhysicalDistanceViolationError by assignment mandate."
+          },
+          "standard": "10GBASE-T"
+        }
+      },
+      {
+        "id": "LINK-ACC-BLD-C-SW4-DIST-BLD-C",
+        "aDeviceId": "ACC-BLD-C-SW4",
+        "bDeviceId": "DIST-BLD-C",
+        "kind": "physical",
+        "bandwidthMbps": 1000,
+        "phys": {
+          "runMeters": 88,
+          "spec": {
+            "id": "cat6a-10gt",
+            "label": "1000BASE/10G-T RJ45",
+            "medium": "cat6a",
+            "standard": "10GBASE-T",
+            "wavelengthNm": 0,
+            "maxReachMeters": 100,
+            "finePrint": "IEEE 802.3an: 10GBASE-T over Cat6a is capped at 100 m (inclusive). Copper runs beyond 100 m are a PhysicalDistanceViolationError by assignment mandate."
+          },
+          "standard": "10GBASE-T"
+        }
+      },
+      {
+        "id": "LINK-ACC-BLD-C-SW5-DIST-BLD-C",
+        "aDeviceId": "ACC-BLD-C-SW5",
+        "bDeviceId": "DIST-BLD-C",
+        "kind": "physical",
+        "bandwidthMbps": 1000,
+        "phys": {
+          "runMeters": 88,
+          "spec": {
+            "id": "cat6a-10gt",
+            "label": "1000BASE/10G-T RJ45",
+            "medium": "cat6a",
+            "standard": "10GBASE-T",
+            "wavelengthNm": 0,
+            "maxReachMeters": 100,
+            "finePrint": "IEEE 802.3an: 10GBASE-T over Cat6a is capped at 100 m (inclusive). Copper runs beyond 100 m are a PhysicalDistanceViolationError by assignment mandate."
+          },
+          "standard": "10GBASE-T"
+        }
+      },
+      {
+        "id": "LINK-ACC-BLD-C-SW6-DIST-BLD-C",
+        "aDeviceId": "ACC-BLD-C-SW6",
+        "bDeviceId": "DIST-BLD-C",
+        "kind": "physical",
+        "bandwidthMbps": 1000,
+        "phys": {
+          "runMeters": 88,
+          "spec": {
+            "id": "cat6a-10gt",
+            "label": "1000BASE/10G-T RJ45",
+            "medium": "cat6a",
+            "standard": "10GBASE-T",
+            "wavelengthNm": 0,
+            "maxReachMeters": 100,
+            "finePrint": "IEEE 802.3an: 10GBASE-T over Cat6a is capped at 100 m (inclusive). Copper runs beyond 100 m are a PhysicalDistanceViolationError by assignment mandate."
+          },
+          "standard": "10GBASE-T"
+        }
+      },
+      {
+        "id": "LINK-ACC-BLD-C-SW7-DIST-BLD-C",
+        "aDeviceId": "ACC-BLD-C-SW7",
+        "bDeviceId": "DIST-BLD-C",
+        "kind": "physical",
+        "bandwidthMbps": 1000,
+        "phys": {
+          "runMeters": 88,
+          "spec": {
+            "id": "cat6a-10gt",
+            "label": "1000BASE/10G-T RJ45",
+            "medium": "cat6a",
+            "standard": "10GBASE-T",
+            "wavelengthNm": 0,
+            "maxReachMeters": 100,
+            "finePrint": "IEEE 802.3an: 10GBASE-T over Cat6a is capped at 100 m (inclusive). Copper runs beyond 100 m are a PhysicalDistanceViolationError by assignment mandate."
+          },
+          "standard": "10GBASE-T"
+        }
+      },
+      {
+        "id": "LINK-ACC-BLD-C-SW8-DIST-BLD-C",
+        "aDeviceId": "ACC-BLD-C-SW8",
+        "bDeviceId": "DIST-BLD-C",
+        "kind": "physical",
+        "bandwidthMbps": 1000,
+        "phys": {
+          "runMeters": 88,
+          "spec": {
+            "id": "cat6a-10gt",
+            "label": "1000BASE/10G-T RJ45",
+            "medium": "cat6a",
+            "standard": "10GBASE-T",
+            "wavelengthNm": 0,
+            "maxReachMeters": 100,
+            "finePrint": "IEEE 802.3an: 10GBASE-T over Cat6a is capped at 100 m (inclusive). Copper runs beyond 100 m are a PhysicalDistanceViolationError by assignment mandate."
+          },
+          "standard": "10GBASE-T"
+        }
+      },
+      {
+        "id": "LINK-ACC-BLD-C-SW9-DIST-BLD-C",
+        "aDeviceId": "ACC-BLD-C-SW9",
+        "bDeviceId": "DIST-BLD-C",
+        "kind": "physical",
+        "bandwidthMbps": 1000,
+        "phys": {
+          "runMeters": 88,
+          "spec": {
+            "id": "cat6a-10gt",
+            "label": "1000BASE/10G-T RJ45",
+            "medium": "cat6a",
+            "standard": "10GBASE-T",
+            "wavelengthNm": 0,
+            "maxReachMeters": 100,
+            "finePrint": "IEEE 802.3an: 10GBASE-T over Cat6a is capped at 100 m (inclusive). Copper runs beyond 100 m are a PhysicalDistanceViolationError by assignment mandate."
+          },
+          "standard": "10GBASE-T"
+        }
+      },
+      {
+        "id": "LINK-ACC-BLD-C-SW10-DIST-BLD-C",
+        "aDeviceId": "ACC-BLD-C-SW10",
+        "bDeviceId": "DIST-BLD-C",
+        "kind": "physical",
+        "bandwidthMbps": 1000,
+        "phys": {
+          "runMeters": 88,
+          "spec": {
+            "id": "cat6a-10gt",
+            "label": "1000BASE/10G-T RJ45",
+            "medium": "cat6a",
+            "standard": "10GBASE-T",
+            "wavelengthNm": 0,
+            "maxReachMeters": 100,
+            "finePrint": "IEEE 802.3an: 10GBASE-T over Cat6a is capped at 100 m (inclusive). Copper runs beyond 100 m are a PhysicalDistanceViolationError by assignment mandate."
+          },
+          "standard": "10GBASE-T"
+        }
+      },
+      {
+        "id": "LINK-ACC-BLD-C-SW11-DIST-BLD-C",
+        "aDeviceId": "ACC-BLD-C-SW11",
+        "bDeviceId": "DIST-BLD-C",
+        "kind": "physical",
+        "bandwidthMbps": 1000,
+        "phys": {
+          "runMeters": 88,
+          "spec": {
+            "id": "cat6a-10gt",
+            "label": "1000BASE/10G-T RJ45",
+            "medium": "cat6a",
+            "standard": "10GBASE-T",
+            "wavelengthNm": 0,
+            "maxReachMeters": 100,
+            "finePrint": "IEEE 802.3an: 10GBASE-T over Cat6a is capped at 100 m (inclusive). Copper runs beyond 100 m are a PhysicalDistanceViolationError by assignment mandate."
+          },
+          "standard": "10GBASE-T"
+        }
+      }
+    ],
+    "explanations": [
+      {
+        "id": "TOPO.CAMPUS-COLLAPSED-CORE",
+        "module": "topology",
+        "rule": "TOPO.01",
+        "decision": "Deployed 2 redundant L3 Core switches in collapsed-core topology",
+        "rationale": "Collapsed-core topology combines core and distribution functions for campuses < 5,000 endpoints, providing high availability with lower operational complexity.",
+        "inputs": {
+          "buildingsCount": 3,
+          "coreSwitches": 2
+        },
+        "references": [
+          "Cisco Campus LAN Design Guide",
+          "IEEE 802.1D RSTP"
+        ]
+      },
+      {
+        "id": "TOPO.BUILDING-PLAN.BLD-A",
+        "module": "topology",
+        "rule": "TOPO.02",
+        "decision": "Sized 17 access switches and 1 distribution switch for BLD-A",
+        "rationale": "Building Building A (Engineering) (BLD-A): 620 endpoints with 20% growth buffer require 744 active drops. Using 48-port switches with 4 reserved uplink ports yields 44 usable access ports per switch. Allocated 17 access switch(es) providing 748 total access ports (4 spare ports). Calculated 26 PoE+ wireless access points (24 endpoints per AP). Allocated 1 distribution switch/stack for building aggregation.",
+        "inputs": {
+          "endpoints": 620,
+          "accessSwitches": 17,
+          "apCount": 26
+        },
+        "references": [
+          "IEEE 802.3at PoE+",
+          "ANSI/TIA-568.0-D"
+        ]
+      },
+      {
+        "id": "TOPO.BUILDING-PLAN.BLD-B",
+        "module": "topology",
+        "rule": "TOPO.02",
+        "decision": "Sized 16 access switches and 1 distribution switch for BLD-B",
+        "rationale": "Building Building B (Library) (BLD-B): 580 endpoints with 20% growth buffer require 696 active drops. Using 48-port switches with 4 reserved uplink ports yields 44 usable access ports per switch. Allocated 16 access switch(es) providing 704 total access ports (8 spare ports). Calculated 25 PoE+ wireless access points (24 endpoints per AP). Allocated 1 distribution switch/stack for building aggregation.",
+        "inputs": {
+          "endpoints": 580,
+          "accessSwitches": 16,
+          "apCount": 25
+        },
+        "references": [
+          "IEEE 802.3at PoE+",
+          "ANSI/TIA-568.0-D"
+        ]
+      },
+      {
+        "id": "TOPO.BUILDING-PLAN.BLD-C",
+        "module": "topology",
+        "rule": "TOPO.02",
+        "decision": "Sized 11 access switches and 1 distribution switch for BLD-C",
+        "rationale": "Building Building C (Admin) (BLD-C): 400 endpoints with 20% growth buffer require 480 active drops. Using 48-port switches with 4 reserved uplink ports yields 44 usable access ports per switch. Allocated 11 access switch(es) providing 484 total access ports (4 spare ports). Calculated 17 PoE+ wireless access points (24 endpoints per AP). Allocated 1 distribution switch/stack for building aggregation.",
+        "inputs": {
+          "endpoints": 400,
+          "accessSwitches": 11,
+          "apCount": 17
+        },
+        "references": [
+          "IEEE 802.3at PoE+",
+          "ANSI/TIA-568.0-D"
+        ]
+      }
+    ]
+  },
+  "vlans": {
+    "items": [
+      {
+        "vlanId": 10,
+        "name": "MGMT",
+        "purpose": "management",
+        "subnetName": "MGMT-NET"
+      },
+      {
+        "vlanId": 20,
+        "name": "STAFF",
+        "purpose": "staff",
+        "subnetName": "STAFF-NET"
+      },
+      {
+        "vlanId": 30,
+        "name": "STUDENTS",
+        "purpose": "students",
+        "subnetName": "STUDENTS-NET"
+      },
+      {
+        "vlanId": 40,
+        "name": "SERVERS",
+        "purpose": "servers",
+        "subnetName": "SERVERS-NET"
+      },
+      {
+        "vlanId": 50,
+        "name": "PRINTERS",
+        "purpose": "iot",
+        "subnetName": "PRINTERS-NET"
+      }
+    ],
+    "trunks": [
+      {
+        "linkId": "LINK-CORE-INTERCONNECT",
+        "allowedVlanIds": [
+          10,
+          20,
+          30,
+          40,
+          50
+        ],
+        "nativeVlanId": 99
+      },
+      {
+        "linkId": "LINK-DIST-BLD-A-CORE-01",
+        "allowedVlanIds": [
+          10,
+          20,
+          30,
+          40,
+          50
+        ],
+        "nativeVlanId": 99
+      },
+      {
+        "linkId": "LINK-DIST-BLD-A-CORE-02",
+        "allowedVlanIds": [
+          10,
+          20,
+          30,
+          40,
+          50
+        ],
+        "nativeVlanId": 99
+      },
+      {
+        "linkId": "LINK-ACC-BLD-A-SW1-DIST-BLD-A",
+        "allowedVlanIds": [
+          10,
+          20,
+          30,
+          40,
+          50
+        ],
+        "nativeVlanId": 99
+      },
+      {
+        "linkId": "LINK-ACC-BLD-A-SW2-DIST-BLD-A",
+        "allowedVlanIds": [
+          10,
+          20,
+          30,
+          40,
+          50
+        ],
+        "nativeVlanId": 99
+      },
+      {
+        "linkId": "LINK-ACC-BLD-A-SW3-DIST-BLD-A",
+        "allowedVlanIds": [
+          10,
+          20,
+          30,
+          40,
+          50
+        ],
+        "nativeVlanId": 99
+      },
+      {
+        "linkId": "LINK-ACC-BLD-A-SW4-DIST-BLD-A",
+        "allowedVlanIds": [
+          10,
+          20,
+          30,
+          40,
+          50
+        ],
+        "nativeVlanId": 99
+      },
+      {
+        "linkId": "LINK-ACC-BLD-A-SW5-DIST-BLD-A",
+        "allowedVlanIds": [
+          10,
+          20,
+          30,
+          40,
+          50
+        ],
+        "nativeVlanId": 99
+      },
+      {
+        "linkId": "LINK-ACC-BLD-A-SW6-DIST-BLD-A",
+        "allowedVlanIds": [
+          10,
+          20,
+          30,
+          40,
+          50
+        ],
+        "nativeVlanId": 99
+      },
+      {
+        "linkId": "LINK-ACC-BLD-A-SW7-DIST-BLD-A",
+        "allowedVlanIds": [
+          10,
+          20,
+          30,
+          40,
+          50
+        ],
+        "nativeVlanId": 99
+      },
+      {
+        "linkId": "LINK-ACC-BLD-A-SW8-DIST-BLD-A",
+        "allowedVlanIds": [
+          10,
+          20,
+          30,
+          40,
+          50
+        ],
+        "nativeVlanId": 99
+      },
+      {
+        "linkId": "LINK-ACC-BLD-A-SW9-DIST-BLD-A",
+        "allowedVlanIds": [
+          10,
+          20,
+          30,
+          40,
+          50
+        ],
+        "nativeVlanId": 99
+      },
+      {
+        "linkId": "LINK-ACC-BLD-A-SW10-DIST-BLD-A",
+        "allowedVlanIds": [
+          10,
+          20,
+          30,
+          40,
+          50
+        ],
+        "nativeVlanId": 99
+      },
+      {
+        "linkId": "LINK-ACC-BLD-A-SW11-DIST-BLD-A",
+        "allowedVlanIds": [
+          10,
+          20,
+          30,
+          40,
+          50
+        ],
+        "nativeVlanId": 99
+      },
+      {
+        "linkId": "LINK-ACC-BLD-A-SW12-DIST-BLD-A",
+        "allowedVlanIds": [
+          10,
+          20,
+          30,
+          40,
+          50
+        ],
+        "nativeVlanId": 99
+      },
+      {
+        "linkId": "LINK-ACC-BLD-A-SW13-DIST-BLD-A",
+        "allowedVlanIds": [
+          10,
+          20,
+          30,
+          40,
+          50
+        ],
+        "nativeVlanId": 99
+      },
+      {
+        "linkId": "LINK-ACC-BLD-A-SW14-DIST-BLD-A",
+        "allowedVlanIds": [
+          10,
+          20,
+          30,
+          40,
+          50
+        ],
+        "nativeVlanId": 99
+      },
+      {
+        "linkId": "LINK-ACC-BLD-A-SW15-DIST-BLD-A",
+        "allowedVlanIds": [
+          10,
+          20,
+          30,
+          40,
+          50
+        ],
+        "nativeVlanId": 99
+      },
+      {
+        "linkId": "LINK-ACC-BLD-A-SW16-DIST-BLD-A",
+        "allowedVlanIds": [
+          10,
+          20,
+          30,
+          40,
+          50
+        ],
+        "nativeVlanId": 99
+      },
+      {
+        "linkId": "LINK-ACC-BLD-A-SW17-DIST-BLD-A",
+        "allowedVlanIds": [
+          10,
+          20,
+          30,
+          40,
+          50
+        ],
+        "nativeVlanId": 99
+      },
+      {
+        "linkId": "LINK-DIST-BLD-B-CORE-01",
+        "allowedVlanIds": [
+          10,
+          20,
+          30,
+          40,
+          50
+        ],
+        "nativeVlanId": 99
+      },
+      {
+        "linkId": "LINK-DIST-BLD-B-CORE-02",
+        "allowedVlanIds": [
+          10,
+          20,
+          30,
+          40,
+          50
+        ],
+        "nativeVlanId": 99
+      },
+      {
+        "linkId": "LINK-ACC-BLD-B-SW1-DIST-BLD-B",
+        "allowedVlanIds": [
+          10,
+          20,
+          30,
+          40,
+          50
+        ],
+        "nativeVlanId": 99
+      },
+      {
+        "linkId": "LINK-ACC-BLD-B-SW2-DIST-BLD-B",
+        "allowedVlanIds": [
+          10,
+          20,
+          30,
+          40,
+          50
+        ],
+        "nativeVlanId": 99
+      },
+      {
+        "linkId": "LINK-ACC-BLD-B-SW3-DIST-BLD-B",
+        "allowedVlanIds": [
+          10,
+          20,
+          30,
+          40,
+          50
+        ],
+        "nativeVlanId": 99
+      },
+      {
+        "linkId": "LINK-ACC-BLD-B-SW4-DIST-BLD-B",
+        "allowedVlanIds": [
+          10,
+          20,
+          30,
+          40,
+          50
+        ],
+        "nativeVlanId": 99
+      },
+      {
+        "linkId": "LINK-ACC-BLD-B-SW5-DIST-BLD-B",
+        "allowedVlanIds": [
+          10,
+          20,
+          30,
+          40,
+          50
+        ],
+        "nativeVlanId": 99
+      },
+      {
+        "linkId": "LINK-ACC-BLD-B-SW6-DIST-BLD-B",
+        "allowedVlanIds": [
+          10,
+          20,
+          30,
+          40,
+          50
+        ],
+        "nativeVlanId": 99
+      },
+      {
+        "linkId": "LINK-ACC-BLD-B-SW7-DIST-BLD-B",
+        "allowedVlanIds": [
+          10,
+          20,
+          30,
+          40,
+          50
+        ],
+        "nativeVlanId": 99
+      },
+      {
+        "linkId": "LINK-ACC-BLD-B-SW8-DIST-BLD-B",
+        "allowedVlanIds": [
+          10,
+          20,
+          30,
+          40,
+          50
+        ],
+        "nativeVlanId": 99
+      },
+      {
+        "linkId": "LINK-ACC-BLD-B-SW9-DIST-BLD-B",
+        "allowedVlanIds": [
+          10,
+          20,
+          30,
+          40,
+          50
+        ],
+        "nativeVlanId": 99
+      },
+      {
+        "linkId": "LINK-ACC-BLD-B-SW10-DIST-BLD-B",
+        "allowedVlanIds": [
+          10,
+          20,
+          30,
+          40,
+          50
+        ],
+        "nativeVlanId": 99
+      },
+      {
+        "linkId": "LINK-ACC-BLD-B-SW11-DIST-BLD-B",
+        "allowedVlanIds": [
+          10,
+          20,
+          30,
+          40,
+          50
+        ],
+        "nativeVlanId": 99
+      },
+      {
+        "linkId": "LINK-ACC-BLD-B-SW12-DIST-BLD-B",
+        "allowedVlanIds": [
+          10,
+          20,
+          30,
+          40,
+          50
+        ],
+        "nativeVlanId": 99
+      },
+      {
+        "linkId": "LINK-ACC-BLD-B-SW13-DIST-BLD-B",
+        "allowedVlanIds": [
+          10,
+          20,
+          30,
+          40,
+          50
+        ],
+        "nativeVlanId": 99
+      },
+      {
+        "linkId": "LINK-ACC-BLD-B-SW14-DIST-BLD-B",
+        "allowedVlanIds": [
+          10,
+          20,
+          30,
+          40,
+          50
+        ],
+        "nativeVlanId": 99
+      },
+      {
+        "linkId": "LINK-ACC-BLD-B-SW15-DIST-BLD-B",
+        "allowedVlanIds": [
+          10,
+          20,
+          30,
+          40,
+          50
+        ],
+        "nativeVlanId": 99
+      },
+      {
+        "linkId": "LINK-ACC-BLD-B-SW16-DIST-BLD-B",
+        "allowedVlanIds": [
+          10,
+          20,
+          30,
+          40,
+          50
+        ],
+        "nativeVlanId": 99
+      },
+      {
+        "linkId": "LINK-DIST-BLD-C-CORE-01",
+        "allowedVlanIds": [
+          10,
+          20,
+          30,
+          40,
+          50
+        ],
+        "nativeVlanId": 99
+      },
+      {
+        "linkId": "LINK-DIST-BLD-C-CORE-02",
+        "allowedVlanIds": [
+          10,
+          20,
+          30,
+          40,
+          50
+        ],
+        "nativeVlanId": 99
+      },
+      {
+        "linkId": "LINK-ACC-BLD-C-SW1-DIST-BLD-C",
+        "allowedVlanIds": [
+          10,
+          20,
+          30,
+          40,
+          50
+        ],
+        "nativeVlanId": 99
+      },
+      {
+        "linkId": "LINK-ACC-BLD-C-SW2-DIST-BLD-C",
+        "allowedVlanIds": [
+          10,
+          20,
+          30,
+          40,
+          50
+        ],
+        "nativeVlanId": 99
+      },
+      {
+        "linkId": "LINK-ACC-BLD-C-SW3-DIST-BLD-C",
+        "allowedVlanIds": [
+          10,
+          20,
+          30,
+          40,
+          50
+        ],
+        "nativeVlanId": 99
+      },
+      {
+        "linkId": "LINK-ACC-BLD-C-SW4-DIST-BLD-C",
+        "allowedVlanIds": [
+          10,
+          20,
+          30,
+          40,
+          50
+        ],
+        "nativeVlanId": 99
+      },
+      {
+        "linkId": "LINK-ACC-BLD-C-SW5-DIST-BLD-C",
+        "allowedVlanIds": [
+          10,
+          20,
+          30,
+          40,
+          50
+        ],
+        "nativeVlanId": 99
+      },
+      {
+        "linkId": "LINK-ACC-BLD-C-SW6-DIST-BLD-C",
+        "allowedVlanIds": [
+          10,
+          20,
+          30,
+          40,
+          50
+        ],
+        "nativeVlanId": 99
+      },
+      {
+        "linkId": "LINK-ACC-BLD-C-SW7-DIST-BLD-C",
+        "allowedVlanIds": [
+          10,
+          20,
+          30,
+          40,
+          50
+        ],
+        "nativeVlanId": 99
+      },
+      {
+        "linkId": "LINK-ACC-BLD-C-SW8-DIST-BLD-C",
+        "allowedVlanIds": [
+          10,
+          20,
+          30,
+          40,
+          50
+        ],
+        "nativeVlanId": 99
+      },
+      {
+        "linkId": "LINK-ACC-BLD-C-SW9-DIST-BLD-C",
+        "allowedVlanIds": [
+          10,
+          20,
+          30,
+          40,
+          50
+        ],
+        "nativeVlanId": 99
+      },
+      {
+        "linkId": "LINK-ACC-BLD-C-SW10-DIST-BLD-C",
+        "allowedVlanIds": [
+          10,
+          20,
+          30,
+          40,
+          50
+        ],
+        "nativeVlanId": 99
+      },
+      {
+        "linkId": "LINK-ACC-BLD-C-SW11-DIST-BLD-C",
+        "allowedVlanIds": [
+          10,
+          20,
+          30,
+          40,
+          50
+        ],
+        "nativeVlanId": 99
+      }
+    ],
+    "svis": [
+      {
+        "deviceId": "CORE-01",
+        "vlanId": 10,
+        "ipCidr": "TBD"
+      },
+      {
+        "deviceId": "CORE-01",
+        "vlanId": 20,
+        "ipCidr": "TBD"
+      },
+      {
+        "deviceId": "CORE-01",
+        "vlanId": 30,
+        "ipCidr": "TBD"
+      },
+      {
+        "deviceId": "CORE-01",
+        "vlanId": 40,
+        "ipCidr": "TBD"
+      },
+      {
+        "deviceId": "CORE-01",
+        "vlanId": 50,
+        "ipCidr": "TBD"
+      },
+      {
+        "deviceId": "CORE-02",
+        "vlanId": 10,
+        "ipCidr": "TBD"
+      },
+      {
+        "deviceId": "CORE-02",
+        "vlanId": 20,
+        "ipCidr": "TBD"
+      },
+      {
+        "deviceId": "CORE-02",
+        "vlanId": 30,
+        "ipCidr": "TBD"
+      },
+      {
+        "deviceId": "CORE-02",
+        "vlanId": 40,
+        "ipCidr": "TBD"
+      },
+      {
+        "deviceId": "CORE-02",
+        "vlanId": 50,
+        "ipCidr": "TBD"
+      }
+    ],
+    "explanations": [
+      {
+        "id": "VLAN.DETERMINISTIC-TAGS",
+        "module": "vlan",
+        "rule": "VLAN.01",
+        "decision": "Assigned deterministic 802.1Q tags starting at 10 (+10)",
+        "rationale": "Standardized VLAN numbering ensures uniform broadcast domain mapping across campus switches and prevents conflicting PVIDs.",
+        "inputs": {
+          "totalVlans": 5,
+          "startId": 10,
+          "increment": 10
+        },
+        "references": [
+          "IEEE 802.1Q",
+          "Cisco Campus LAN Best Practices"
+        ]
+      },
+      {
+        "id": "VLAN.NATIVE-HARDENING",
+        "module": "vlan",
+        "rule": "VLAN.02",
+        "decision": "Configured Native VLAN 99 as untagged and unused on all trunks",
+        "rationale": "Setting the native VLAN to an unused ID (VLAN 99) and disallowing default VLAN 1 mitigates 802.1Q double-tagging and VLAN hopping security vulnerabilities.",
+        "inputs": {
+          "nativeVlanId": 99,
+          "defaultVlanDisabled": 1
+        },
+        "references": [
+          "NIST SP 800-115",
+          "DISA Network Infrastructure STIG"
+        ]
+      },
+      {
+        "id": "VLAN.TRUNK-PRUNING",
+        "module": "vlan",
+        "rule": "VLAN.03",
+        "decision": "Restricted trunk links to explicitly allowed VLAN list [10,20,30,40,50]",
+        "rationale": "Explicit allowed-VLAN pruning confines broadcast/multicast traffic strictly to authorized switches, conserving backplane bandwidth.",
+        "inputs": {
+          "allowedVlanIds": [
+            10,
+            20,
+            30,
+            40,
+            50
+          ]
+        },
+        "references": [
+          "IEEE 802.1Q Clause 9",
+          "RFC 3069"
+        ]
+      }
+    ]
+  },
+  "subnets": [
+    {
+      "name": "STAFF-NET",
+      "index": 0,
+      "network": "10.20.0.0",
+      "prefix": 22,
+      "mask": "255.255.252.0",
+      "wildcard": "0.0.3.255",
+      "broadcast": "10.20.3.255",
+      "firstHost": "10.20.0.1",
+      "lastHost": "10.20.3.254",
+      "gateway": "10.20.0.1",
+      "totalAddresses": 1024,
+      "requestedHosts": 650,
+      "capacity": 1022,
+      "utilization": 0.636
+    },
+    {
+      "name": "STUDENTS-NET",
+      "index": 1,
+      "network": "10.20.4.0",
+      "prefix": 22,
+      "mask": "255.255.252.0",
+      "wildcard": "0.0.3.255",
+      "broadcast": "10.20.7.255",
+      "firstHost": "10.20.4.1",
+      "lastHost": "10.20.7.254",
+      "gateway": "10.20.4.1",
+      "totalAddresses": 1024,
+      "requestedHosts": 850,
+      "capacity": 1022,
+      "utilization": 0.8317
+    },
+    {
+      "name": "SERVERS-NET",
+      "index": 2,
+      "network": "10.20.8.0",
+      "prefix": 26,
+      "mask": "255.255.255.192",
+      "wildcard": "0.0.0.63",
+      "broadcast": "10.20.8.63",
+      "firstHost": "10.20.8.1",
+      "lastHost": "10.20.8.62",
+      "gateway": "10.20.8.1",
+      "totalAddresses": 64,
+      "requestedHosts": 60,
+      "capacity": 62,
+      "utilization": 0.9677
+    },
+    {
+      "name": "MGMT-NET",
+      "index": 3,
+      "network": "10.20.8.64",
+      "prefix": 27,
+      "mask": "255.255.255.224",
+      "wildcard": "0.0.0.31",
+      "broadcast": "10.20.8.95",
+      "firstHost": "10.20.8.65",
+      "lastHost": "10.20.8.94",
+      "gateway": "10.20.8.65",
+      "totalAddresses": 32,
+      "requestedHosts": 20,
+      "capacity": 30,
+      "utilization": 0.6667
+    },
+    {
+      "name": "PRINTERS-NET",
+      "index": 4,
+      "network": "10.20.8.96",
+      "prefix": 27,
+      "mask": "255.255.255.224",
+      "wildcard": "0.0.0.31",
+      "broadcast": "10.20.8.127",
+      "firstHost": "10.20.8.97",
+      "lastHost": "10.20.8.126",
+      "gateway": "10.20.8.97",
+      "totalAddresses": 32,
+      "requestedHosts": 20,
+      "capacity": 30,
+      "utilization": 0.6667
+    }
+  ],
+  "routing": {
+    "asNumber": 65001,
+    "protocol": "single-area-ospf",
+    "areas": [
+      {
+        "areaId": 0,
+        "label": "Backbone Area 0",
+        "siteIds": [
+          "SITE-CORE",
+          "BLD-A",
+          "BLD-B",
+          "BLD-C"
+        ],
+        "networks": [
+          {
+            "cidr": "10.20.0.0/22",
+            "wildcard": "0.0.3.255"
+          },
+          {
+            "cidr": "10.20.4.0/22",
+            "wildcard": "0.0.3.255"
+          },
+          {
+            "cidr": "10.20.8.0/26",
+            "wildcard": "0.0.0.63"
+          },
+          {
+            "cidr": "10.20.8.64/27",
+            "wildcard": "0.0.0.31"
+          },
+          {
+            "cidr": "10.20.8.96/27",
+            "wildcard": "0.0.0.31"
+          }
+        ]
+      }
+    ],
+    "bgp": [],
+    "vpnTunnels": [],
+    "explanations": [
+      {
+        "id": "ROUTING.PROTOCOL.SINGLE-AREA-OSPF",
+        "module": "routing",
+        "rule": "ROUTING.01",
+        "decision": "Selected Single-Area OSPF (Area 0) for Campus LAN",
+        "rationale": "Campus LAN operates within a single autonomous system with 5 subnets (less than the 50-subnet threshold). OSPF Area 0 provides fast link-state SPF convergence without multi-area ABR summarization complexity.",
+        "inputs": {
+          "asNumber": 65001,
+          "subnetCount": 5,
+          "threshold": 50
+        },
+        "references": [
+          "RFC 2328 OSPFv2 Section 3.1",
+          "Cisco Campus Network Design Guide"
+        ]
+      },
+      {
+        "id": "ROUTING.OSPF.AREAS",
+        "module": "routing",
+        "rule": "ROUTING.04",
+        "decision": "Configured 1 OSPF area(s) with 5 network statements",
+        "rationale": "Network statements map exact network-aligned CIDRs and inverse wildcard masks directly from the VLSM plan, ensuring flawless LSDB population.",
+        "inputs": {
+          "areasCount": 1,
+          "totalNetworks": 5
+        },
+        "references": [
+          "RFC 2328 Section 3.1",
+          "RFC 1878"
+        ]
+      }
+    ]
+  },
+  "verification": {
+    "passed": true,
+    "checks": [
+      {
+        "id": "V-01",
+        "name": "Bitwise Zero-Overlap Invariant",
+        "category": "vlsm",
+        "passed": true,
+        "detail": "All allocated subnets are strictly disjoint (zero overlap)."
+      },
+      {
+        "id": "V-02",
+        "name": "Root Network Containment Check",
+        "category": "vlsm",
+        "passed": true,
+        "detail": "All subnets are contained within root block 10.20.0.0/16."
+      },
+      {
+        "id": "V-03",
+        "name": "Gateway Subnet Belonging Check",
+        "category": "vlsm",
+        "passed": true,
+        "detail": "All gateway IP addresses belong to their respective subnet address blocks."
+      },
+      {
+        "id": "V-04",
+        "name": "Wildcard Mask Inversion Check",
+        "category": "routing",
+        "passed": true,
+        "detail": "All wildcard masks independently verified against bitwise complement (~netmask)."
+      },
+      {
+        "id": "V-05",
+        "name": "Host Capacity Sufficiency Check",
+        "category": "vlsm",
+        "passed": true,
+        "detail": "All carved subnets provide usable host capacity >= requested demand."
+      },
+      {
+        "id": "V-06",
+        "name": "VLAN Safety & Native Hardening Check",
+        "category": "vlan",
+        "passed": true,
+        "detail": "VLAN IDs are unique, within range 1..4094, and native VLAN 99 is unused for access."
+      },
+      {
+        "id": "V-07",
+        "name": "Link Endpoint Existence Check",
+        "category": "config",
+        "passed": true,
+        "detail": "All physical and logical links terminate on valid, known devices."
+      },
+      {
+        "id": "V-08",
+        "name": "Physical Media Feasibility Check",
+        "category": "media",
+        "passed": true,
+        "detail": "All physical link runs strictly obey IEEE 802.3 transceiver reach limits."
+      },
+      {
+        "id": "V-09",
+        "name": "Routing Advertisement Consistency Check",
+        "category": "routing",
+        "passed": true,
+        "detail": "All OSPF network statements map directly to allocated VLSM subnets."
+      }
+    ],
+    "advisories": []
+  }
+}

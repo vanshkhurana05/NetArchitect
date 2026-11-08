@@ -1,0 +1,521 @@
+{
+  "profile": "metro-man",
+  "source": "custom",
+  "topology": {
+    "tier": "collapsed-core",
+    "sites": [
+      {
+        "id": "HQ",
+        "label": "HQ Node",
+        "kind": "man-site",
+        "deviceIds": [
+          "HQ-RTR-01",
+          "HQ-SW-01"
+        ]
+      },
+      {
+        "id": "REMOTE-1",
+        "label": "Remote One",
+        "kind": "man-site",
+        "deviceIds": [
+          "RTR-REMOTE-1",
+          "SW-REMOTE-1"
+        ]
+      },
+      {
+        "id": "REMOTE-2",
+        "label": "Remote Two",
+        "kind": "man-site",
+        "deviceIds": [
+          "RTR-REMOTE-2",
+          "SW-REMOTE-2"
+        ]
+      }
+    ],
+    "devices": [
+      {
+        "id": "HQ-RTR-01",
+        "name": "HQ Edge Router (HQ Node)",
+        "role": "edge-router",
+        "siteId": "HQ",
+        "mgmtIp": "10.0.0.1",
+        "portCount": 16
+      },
+      {
+        "id": "HQ-SW-01",
+        "name": "HQ Core Switch (HQ Node)",
+        "role": "core-switch",
+        "siteId": "HQ",
+        "mgmtIp": "10.0.0.2",
+        "portCount": 24
+      },
+      {
+        "id": "RTR-REMOTE-1",
+        "name": "Edge Router Remote One",
+        "role": "edge-router",
+        "siteId": "REMOTE-1",
+        "mgmtIp": "10.0.1.1",
+        "portCount": 8
+      },
+      {
+        "id": "SW-REMOTE-1",
+        "name": "Access Switch Remote One",
+        "role": "access-switch",
+        "siteId": "REMOTE-1",
+        "portCount": 24
+      },
+      {
+        "id": "RTR-REMOTE-2",
+        "name": "Edge Router Remote Two",
+        "role": "edge-router",
+        "siteId": "REMOTE-2",
+        "mgmtIp": "10.0.2.1",
+        "portCount": 8
+      },
+      {
+        "id": "SW-REMOTE-2",
+        "name": "Access Switch Remote Two",
+        "role": "access-switch",
+        "siteId": "REMOTE-2",
+        "portCount": 24
+      }
+    ],
+    "links": [
+      {
+        "id": "LINK-HQ-ROUTER-SWITCH",
+        "aDeviceId": "HQ-RTR-01",
+        "bDeviceId": "HQ-SW-01",
+        "kind": "physical",
+        "bandwidthMbps": 1000
+      },
+      {
+        "id": "LINK-RTR-REMOTE-1-SW-REMOTE-1",
+        "aDeviceId": "RTR-REMOTE-1",
+        "bDeviceId": "SW-REMOTE-1",
+        "kind": "physical",
+        "bandwidthMbps": 1000
+      },
+      {
+        "id": "LINK-EVPL-REMOTE-1-HQ-PRI",
+        "aDeviceId": "RTR-REMOTE-1",
+        "bDeviceId": "HQ-RTR-01",
+        "kind": "evpl",
+        "bandwidthMbps": 200,
+        "phys": {
+          "runMeters": 25000,
+          "spec": {
+            "id": "os2-1550er",
+            "label": "1550nm-ER",
+            "medium": "os2",
+            "standard": "10GBASE-ER",
+            "wavelengthNm": 1550,
+            "maxReachMeters": 40000,
+            "powerBudgetDb": 15,
+            "finePrint": "IEEE 802.3ae: 10GBASE-ER over OS2 SMF reaches 40 km at 1550 nm for long-haul runs."
+          },
+          "standard": "10GBASE-ER"
+        },
+        "latencyMs": 0.225,
+        "betweenSites": [
+          "REMOTE-1",
+          "HQ"
+        ]
+      },
+      {
+        "id": "LINK-RTR-REMOTE-2-SW-REMOTE-2",
+        "aDeviceId": "RTR-REMOTE-2",
+        "bDeviceId": "SW-REMOTE-2",
+        "kind": "physical",
+        "bandwidthMbps": 1000
+      },
+      {
+        "id": "LINK-EVPL-REMOTE-2-HQ-PRI",
+        "aDeviceId": "RTR-REMOTE-2",
+        "bDeviceId": "HQ-RTR-01",
+        "kind": "evpl",
+        "bandwidthMbps": 200,
+        "phys": {
+          "runMeters": 30000,
+          "spec": {
+            "id": "os2-1550er",
+            "label": "1550nm-ER",
+            "medium": "os2",
+            "standard": "10GBASE-ER",
+            "wavelengthNm": 1550,
+            "maxReachMeters": 40000,
+            "powerBudgetDb": 15,
+            "finePrint": "IEEE 802.3ae: 10GBASE-ER over OS2 SMF reaches 40 km at 1550 nm for long-haul runs."
+          },
+          "standard": "10GBASE-ER"
+        },
+        "latencyMs": 0.25,
+        "betweenSites": [
+          "REMOTE-2",
+          "HQ"
+        ]
+      }
+    ],
+    "explanations": [
+      {
+        "id": "TOPO.METRO-EVPL-DUALHOMED",
+        "module": "topology",
+        "rule": "TOPO.03",
+        "decision": "Configured dual-homed EVPL connections with primary and backup paths",
+        "rationale": "Dual-homing remote edge routers to distinct HQ provider interfaces satisfies high-availability SLAs and sub-5ms failover guarantees.",
+        "inputs": {
+          "remoteSitesCount": 2,
+          "dualHomedFailover": false,
+          "evplBandwidthMbps": 200
+        },
+        "references": [
+          "MEF 6.2 EVPL Specification",
+          "IEEE 802.3ae 10GBASE-ER"
+        ]
+      }
+    ]
+  },
+  "vlans": {
+    "items": [
+      {
+        "vlanId": 10,
+        "name": "MGMT",
+        "purpose": "management",
+        "subnetName": "MGMT-NET"
+      },
+      {
+        "vlanId": 20,
+        "name": "USERS",
+        "purpose": "staff",
+        "subnetName": "USERS-NET"
+      }
+    ],
+    "trunks": [
+      {
+        "linkId": "LINK-HQ-ROUTER-SWITCH",
+        "allowedVlanIds": [
+          10,
+          20
+        ],
+        "nativeVlanId": 99
+      },
+      {
+        "linkId": "LINK-RTR-REMOTE-1-SW-REMOTE-1",
+        "allowedVlanIds": [
+          10,
+          20
+        ],
+        "nativeVlanId": 99
+      },
+      {
+        "linkId": "LINK-RTR-REMOTE-2-SW-REMOTE-2",
+        "allowedVlanIds": [
+          10,
+          20
+        ],
+        "nativeVlanId": 99
+      }
+    ],
+    "svis": [
+      {
+        "deviceId": "HQ-RTR-01",
+        "vlanId": 10,
+        "ipCidr": "TBD"
+      },
+      {
+        "deviceId": "HQ-RTR-01",
+        "vlanId": 20,
+        "ipCidr": "TBD"
+      },
+      {
+        "deviceId": "HQ-SW-01",
+        "vlanId": 10,
+        "ipCidr": "TBD"
+      },
+      {
+        "deviceId": "HQ-SW-01",
+        "vlanId": 20,
+        "ipCidr": "TBD"
+      },
+      {
+        "deviceId": "RTR-REMOTE-1",
+        "vlanId": 10,
+        "ipCidr": "TBD"
+      },
+      {
+        "deviceId": "RTR-REMOTE-1",
+        "vlanId": 20,
+        "ipCidr": "TBD"
+      },
+      {
+        "deviceId": "RTR-REMOTE-2",
+        "vlanId": 10,
+        "ipCidr": "TBD"
+      },
+      {
+        "deviceId": "RTR-REMOTE-2",
+        "vlanId": 20,
+        "ipCidr": "TBD"
+      }
+    ],
+    "explanations": [
+      {
+        "id": "VLAN.DETERMINISTIC-TAGS",
+        "module": "vlan",
+        "rule": "VLAN.01",
+        "decision": "Assigned deterministic 802.1Q tags starting at 10 (+10)",
+        "rationale": "Standardized VLAN numbering ensures uniform broadcast domain mapping across campus switches and prevents conflicting PVIDs.",
+        "inputs": {
+          "totalVlans": 2,
+          "startId": 10,
+          "increment": 10
+        },
+        "references": [
+          "IEEE 802.1Q",
+          "Cisco Campus LAN Best Practices"
+        ]
+      },
+      {
+        "id": "VLAN.NATIVE-HARDENING",
+        "module": "vlan",
+        "rule": "VLAN.02",
+        "decision": "Configured Native VLAN 99 as untagged and unused on all trunks",
+        "rationale": "Setting the native VLAN to an unused ID (VLAN 99) and disallowing default VLAN 1 mitigates 802.1Q double-tagging and VLAN hopping security vulnerabilities.",
+        "inputs": {
+          "nativeVlanId": 99,
+          "defaultVlanDisabled": 1
+        },
+        "references": [
+          "NIST SP 800-115",
+          "DISA Network Infrastructure STIG"
+        ]
+      },
+      {
+        "id": "VLAN.TRUNK-PRUNING",
+        "module": "vlan",
+        "rule": "VLAN.03",
+        "decision": "Restricted trunk links to explicitly allowed VLAN list [10,20]",
+        "rationale": "Explicit allowed-VLAN pruning confines broadcast/multicast traffic strictly to authorized switches, conserving backplane bandwidth.",
+        "inputs": {
+          "allowedVlanIds": [
+            10,
+            20
+          ]
+        },
+        "references": [
+          "IEEE 802.1Q Clause 9",
+          "RFC 3069"
+        ]
+      }
+    ]
+  },
+  "subnets": [
+    {
+      "name": "USERS-NET",
+      "index": 0,
+      "network": "10.60.0.0",
+      "prefix": 23,
+      "mask": "255.255.254.0",
+      "wildcard": "0.0.1.255",
+      "broadcast": "10.60.1.255",
+      "firstHost": "10.60.0.1",
+      "lastHost": "10.60.1.254",
+      "gateway": "10.60.0.1",
+      "totalAddresses": 512,
+      "requestedHosts": 260,
+      "capacity": 510,
+      "utilization": 0.5098
+    },
+    {
+      "name": "MGMT-NET",
+      "index": 1,
+      "network": "10.60.2.0",
+      "prefix": 28,
+      "mask": "255.255.255.240",
+      "wildcard": "0.0.0.15",
+      "broadcast": "10.60.2.15",
+      "firstHost": "10.60.2.1",
+      "lastHost": "10.60.2.14",
+      "gateway": "10.60.2.1",
+      "totalAddresses": 16,
+      "requestedHosts": 10,
+      "capacity": 14,
+      "utilization": 0.7143
+    }
+  ],
+  "routing": {
+    "asNumber": 65001,
+    "protocol": "multi-area-ospf",
+    "areas": [
+      {
+        "areaId": 0,
+        "label": "Backbone Area 0 (HQ Node)",
+        "siteIds": [
+          "HQ"
+        ],
+        "networks": [
+          {
+            "cidr": "10.60.0.0/23",
+            "wildcard": "0.0.1.255"
+          },
+          {
+            "cidr": "10.60.2.0/28",
+            "wildcard": "0.0.0.15"
+          }
+        ]
+      }
+    ],
+    "bgp": [],
+    "vpnTunnels": [],
+    "explanations": [
+      {
+        "id": "ROUTING.PROTOCOL.MULTI-AREA-OSPF",
+        "module": "routing",
+        "rule": "ROUTING.02",
+        "decision": "Selected Multi-Area OSPF architecture with Area 0 backbone",
+        "rationale": "Multi-site topology (3 sites) requires routing-domain isolation. Hierarchical area design isolates LSA flooding, reduces SPF recalculation frequency, and enforces area boundary summarization.",
+        "inputs": {
+          "asNumber": 65001,
+          "subnetCount": 2,
+          "threshold": 50,
+          "sitesCount": 3
+        },
+        "references": [
+          "RFC 2328 OSPFv2 Section 3.2",
+          "RFC 3509 Alternative OSPF ABR Implementations"
+        ]
+      },
+      {
+        "id": "ROUTING.OSPF.AREAS",
+        "module": "routing",
+        "rule": "ROUTING.04",
+        "decision": "Configured 1 OSPF area(s) with 2 network statements",
+        "rationale": "Network statements map exact network-aligned CIDRs and inverse wildcard masks directly from the VLSM plan, ensuring flawless LSDB population.",
+        "inputs": {
+          "areasCount": 1,
+          "totalNetworks": 2
+        },
+        "references": [
+          "RFC 2328 Section 3.1",
+          "RFC 1878"
+        ]
+      },
+      {
+        "id": "ROUTING.QOS.DIFFSERV-QUEUING",
+        "module": "qos",
+        "rule": "QOS.01",
+        "decision": "Configured 4-class DiffServ QoS policy on EVPL provider circuits",
+        "rationale": "Classifies EF Voice (30% priority queue) and AF31 Transactional data (40% bandwidth queue) to guarantee sub-5ms SLA latency under congestion.",
+        "inputs": {
+          "classes": [
+            "VOICE-EF",
+            "TRANSACTIONAL-AF31",
+            "VIDEO-AF21",
+            "DEFAULT-BEST-EFFORT"
+          ]
+        },
+        "references": [
+          "RFC 4594 DiffServ Class Architecture",
+          "RFC 3246 Expedited Forwarding"
+        ]
+      }
+    ],
+    "qos": [
+      {
+        "className": "VOICE-EF",
+        "dscp": "ef",
+        "bandwidthPct": 30
+      },
+      {
+        "className": "TRANSACTIONAL-AF31",
+        "dscp": "af31",
+        "bandwidthPct": 40
+      },
+      {
+        "className": "VIDEO-AF21",
+        "dscp": "af21",
+        "bandwidthPct": 20
+      },
+      {
+        "className": "DEFAULT-BEST-EFFORT",
+        "dscp": "default",
+        "bandwidthPct": 10
+      }
+    ]
+  },
+  "verification": {
+    "passed": true,
+    "checks": [
+      {
+        "id": "V-01",
+        "name": "Bitwise Zero-Overlap Invariant",
+        "category": "vlsm",
+        "passed": true,
+        "detail": "All allocated subnets are strictly disjoint (zero overlap)."
+      },
+      {
+        "id": "V-02",
+        "name": "Root Network Containment Check",
+        "category": "vlsm",
+        "passed": true,
+        "detail": "All subnets are contained within root block 10.60.0.0/16."
+      },
+      {
+        "id": "V-03",
+        "name": "Gateway Subnet Belonging Check",
+        "category": "vlsm",
+        "passed": true,
+        "detail": "All gateway IP addresses belong to their respective subnet address blocks."
+      },
+      {
+        "id": "V-04",
+        "name": "Wildcard Mask Inversion Check",
+        "category": "routing",
+        "passed": true,
+        "detail": "All wildcard masks independently verified against bitwise complement (~netmask)."
+      },
+      {
+        "id": "V-05",
+        "name": "Host Capacity Sufficiency Check",
+        "category": "vlsm",
+        "passed": true,
+        "detail": "All carved subnets provide usable host capacity >= requested demand."
+      },
+      {
+        "id": "V-06",
+        "name": "VLAN Safety & Native Hardening Check",
+        "category": "vlan",
+        "passed": true,
+        "detail": "VLAN IDs are unique, within range 1..4094, and native VLAN 99 is unused for access."
+      },
+      {
+        "id": "V-07",
+        "name": "Link Endpoint Existence Check",
+        "category": "config",
+        "passed": true,
+        "detail": "All physical and logical links terminate on valid, known devices."
+      },
+      {
+        "id": "V-08",
+        "name": "Physical Media Feasibility Check",
+        "category": "media",
+        "passed": true,
+        "detail": "All physical link runs strictly obey IEEE 802.3 transceiver reach limits."
+      },
+      {
+        "id": "V-09",
+        "name": "Routing Advertisement Consistency Check",
+        "category": "routing",
+        "passed": true,
+        "detail": "All OSPF network statements map directly to allocated VLSM subnets."
+      },
+      {
+        "id": "V-10",
+        "name": "Metro SLA Latency Compliance Check",
+        "category": "latency",
+        "passed": true,
+        "detail": "All circuit latency values meet the 5 ms SLA target."
+      }
+    ],
+    "advisories": []
+  }
+}
