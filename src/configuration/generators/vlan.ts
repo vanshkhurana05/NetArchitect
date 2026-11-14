@@ -1,7 +1,6 @@
 /**
  * VLAN Configuration Generator.
  * Maps 802.1Q VLAN plans and SVIs into intermediate models.
- * OWNER: Configuration Generator Agent (src/configuration/).
  */
 import type { VlanPlan } from "../../contracts/vlan.js";
 import type { SubnetPlanItem } from "../../contracts/vlsm.js";

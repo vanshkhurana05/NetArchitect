@@ -1,7 +1,6 @@
 /**
  * Verification engine contracts — programmatic boundary checks that must
  * pass before the export manager is allowed to emit artifacts.
- * OWNER: verification specialist agent (implementation in src/verify/).
  */
 import type { Link } from "./topology.js";
 import type { SubnetPlanItem } from "./vlsm.js";
@@ -31,7 +30,7 @@ export interface VerificationReport {
 }
 
 /**
- * Amendment A+10 (architect): optional latencyTargetMs and rootBlockCidr added
+ * optional latencyTargetMs and rootBlockCidr added
  * to VerificationInput to support V-07 (latency verification) and V-01 (root containment).
  */
 export interface VerificationInput {

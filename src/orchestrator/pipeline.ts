@@ -2,7 +2,6 @@
  * Master Application Pipeline & Orchestrator.
  * Wires the 10 processing engines in strict dependency order without circular coupling.
  * Enforces fail-closed verification gating before filesystem export.
- * OWNER: Lead Architect / Release Agent (src/orchestrator/).
  */
 import type { ValidatedRun } from "../contracts/input.js";
 import type { RunReport, RunOptions, PipelineStage } from "../contracts/orchestrator.js";
@@ -18,7 +17,8 @@ import { generateMarkdownReport } from "../exporters/report.exporter.js";
 import { exportDesignArtifacts } from "../exporters/artifact.exporter.js";
 
 /** Map full profile name to directory key */
-function toScenarioKey(profile: string): "campus" | "metro" | "global" | string {
+function toScenarioKey(profile: string, source?: string): "campus" | "metro" | "global" | string {
+  if (source === "custom") return "custom";
   if (profile === "campus-lan") return "campus";
   if (profile === "metro-man") return "metro";
   if (profile === "global-wan") return "global";
@@ -34,7 +34,7 @@ export async function runNetArch(
 ): Promise<RunReport> {
   const rawInput = runInput.input as any;
   const profile = rawInput.profile;
-  const scenarioKey = toScenarioKey(profile);
+  const scenarioKey = toScenarioKey(profile, runInput.source);
   const outDir = opts?.outDir ?? "outputs";
 
   const stages: PipelineStage[] = [];
@@ -81,13 +81,19 @@ export async function runNetArch(
       const topoRequest: TopologyRequest = {
         profileShape: {
           profile,
-          ...(profile === "campus-lan" && { buildings: rawInput.buildings, collapsedCore: rawInput.collapsedCore }),
+          ...(profile === "campus-lan" && {
+            buildings: rawInput.buildings,
+            collapsedCore: rawInput.collapsedCore,
+            representativeAccess: opts?.representative ?? rawInput.representativeAccess,
+          }),
           ...(profile === "metro-man" && { sites: rawInput.sites, dualHomedFailover: rawInput.dualHomedFailover, evplBandwidthMbps: rawInput.evplBandwidthMbps }),
           ...(profile === "global-wan" && { cities: rawInput.cities, cloudVpc: rawInput.cloudVpc }),
         } as any,
         mediaByRole: new Map(),
       };
-      const builtTopo = buildTopology(topoRequest);
+      const builtTopo = buildTopology(topoRequest, {
+        representativeAccess: opts?.representative ?? rawInput.representativeAccess,
+      });
       collector.ingestExplainRecords(builtTopo.explanations);
       return builtTopo;
     });

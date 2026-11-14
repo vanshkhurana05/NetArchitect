@@ -1,12 +1,12 @@
 {
   "profile": "metro-man",
-  "source": "custom",
+  "source": "preset",
   "topology": {
     "tier": "collapsed-core",
     "sites": [
       {
         "id": "HQ",
-        "label": "HQ Node",
+        "label": "FinTech HQ (Colo-A)",
         "kind": "man-site",
         "deviceIds": [
           "HQ-RTR-01",
@@ -15,7 +15,7 @@
       },
       {
         "id": "REMOTE-1",
-        "label": "Remote One",
+        "label": "Branch Colombo East",
         "kind": "man-site",
         "deviceIds": [
           "RTR-REMOTE-1",
@@ -24,7 +24,7 @@
       },
       {
         "id": "REMOTE-2",
-        "label": "Remote Two",
+        "label": "Branch Harbour Front",
         "kind": "man-site",
         "deviceIds": [
           "RTR-REMOTE-2",
@@ -35,7 +35,7 @@
     "devices": [
       {
         "id": "HQ-RTR-01",
-        "name": "HQ Edge Router (HQ Node)",
+        "name": "HQ Edge Router (FinTech HQ (Colo-A))",
         "role": "edge-router",
         "siteId": "HQ",
         "mgmtIp": "10.0.0.1",
@@ -43,7 +43,7 @@
       },
       {
         "id": "HQ-SW-01",
-        "name": "HQ Core Switch (HQ Node)",
+        "name": "HQ Core Switch (FinTech HQ (Colo-A))",
         "role": "core-switch",
         "siteId": "HQ",
         "mgmtIp": "10.0.0.2",
@@ -51,7 +51,7 @@
       },
       {
         "id": "RTR-REMOTE-1",
-        "name": "Edge Router Remote One",
+        "name": "Edge Router Branch Colombo East",
         "role": "edge-router",
         "siteId": "REMOTE-1",
         "mgmtIp": "10.0.1.1",
@@ -59,14 +59,14 @@
       },
       {
         "id": "SW-REMOTE-1",
-        "name": "Access Switch Remote One",
+        "name": "Access Switch Branch Colombo East",
         "role": "access-switch",
         "siteId": "REMOTE-1",
         "portCount": 24
       },
       {
         "id": "RTR-REMOTE-2",
-        "name": "Edge Router Remote Two",
+        "name": "Edge Router Branch Harbour Front",
         "role": "edge-router",
         "siteId": "REMOTE-2",
         "mgmtIp": "10.0.2.1",
@@ -74,7 +74,7 @@
       },
       {
         "id": "SW-REMOTE-2",
-        "name": "Access Switch Remote Two",
+        "name": "Access Switch Branch Harbour Front",
         "role": "access-switch",
         "siteId": "REMOTE-2",
         "portCount": 24
@@ -102,7 +102,7 @@
         "kind": "evpl",
         "bandwidthMbps": 200,
         "phys": {
-          "runMeters": 25000,
+          "runMeters": 27000,
           "spec": {
             "id": "os2-1550er",
             "label": "1550nm-ER",
@@ -115,7 +115,33 @@
           },
           "standard": "10GBASE-ER"
         },
-        "latencyMs": 0.225,
+        "latencyMs": 0.235,
+        "betweenSites": [
+          "REMOTE-1",
+          "HQ"
+        ]
+      },
+      {
+        "id": "LINK-EVPL-REMOTE-1-HQ-SEC",
+        "aDeviceId": "RTR-REMOTE-1",
+        "bDeviceId": "HQ-RTR-01",
+        "kind": "evpl",
+        "bandwidthMbps": 200,
+        "phys": {
+          "runMeters": 27000,
+          "spec": {
+            "id": "os2-1550er",
+            "label": "1550nm-ER",
+            "medium": "os2",
+            "standard": "10GBASE-ER",
+            "wavelengthNm": 1550,
+            "maxReachMeters": 40000,
+            "powerBudgetDb": 15,
+            "finePrint": "IEEE 802.3ae: 10GBASE-ER over OS2 SMF reaches 40 km at 1550 nm for long-haul runs."
+          },
+          "standard": "10GBASE-ER"
+        },
+        "latencyMs": 0.235,
         "betweenSites": [
           "REMOTE-1",
           "HQ"
@@ -135,7 +161,7 @@
         "kind": "evpl",
         "bandwidthMbps": 200,
         "phys": {
-          "runMeters": 30000,
+          "runMeters": 34000,
           "spec": {
             "id": "os2-1550er",
             "label": "1550nm-ER",
@@ -148,7 +174,33 @@
           },
           "standard": "10GBASE-ER"
         },
-        "latencyMs": 0.25,
+        "latencyMs": 0.27,
+        "betweenSites": [
+          "REMOTE-2",
+          "HQ"
+        ]
+      },
+      {
+        "id": "LINK-EVPL-REMOTE-2-HQ-SEC",
+        "aDeviceId": "RTR-REMOTE-2",
+        "bDeviceId": "HQ-RTR-01",
+        "kind": "evpl",
+        "bandwidthMbps": 200,
+        "phys": {
+          "runMeters": 34000,
+          "spec": {
+            "id": "os2-1550er",
+            "label": "1550nm-ER",
+            "medium": "os2",
+            "standard": "10GBASE-ER",
+            "wavelengthNm": 1550,
+            "maxReachMeters": 40000,
+            "powerBudgetDb": 15,
+            "finePrint": "IEEE 802.3ae: 10GBASE-ER over OS2 SMF reaches 40 km at 1550 nm for long-haul runs."
+          },
+          "standard": "10GBASE-ER"
+        },
+        "latencyMs": 0.27,
         "betweenSites": [
           "REMOTE-2",
           "HQ"
@@ -164,7 +216,7 @@
         "rationale": "Dual-homing remote edge routers to distinct HQ provider interfaces satisfies high-availability SLAs and sub-5ms failover guarantees.",
         "inputs": {
           "remoteSitesCount": 2,
-          "dualHomedFailover": false,
+          "dualHomedFailover": true,
           "evplBandwidthMbps": 200
         },
         "references": [
@@ -187,6 +239,18 @@
         "name": "USERS",
         "purpose": "staff",
         "subnetName": "USERS-NET"
+      },
+      {
+        "vlanId": 30,
+        "name": "TXN-SERVERS",
+        "purpose": "servers",
+        "subnetName": "TXN-SERVERS-NET"
+      },
+      {
+        "vlanId": 40,
+        "name": "BRANCH-X",
+        "purpose": "students",
+        "subnetName": "BRANCH-X-NET"
       }
     ],
     "trunks": [
@@ -194,7 +258,9 @@
         "linkId": "LINK-HQ-ROUTER-SWITCH",
         "allowedVlanIds": [
           10,
-          20
+          20,
+          30,
+          40
         ],
         "nativeVlanId": 99
       },
@@ -202,7 +268,9 @@
         "linkId": "LINK-RTR-REMOTE-1-SW-REMOTE-1",
         "allowedVlanIds": [
           10,
-          20
+          20,
+          30,
+          40
         ],
         "nativeVlanId": 99
       },
@@ -210,7 +278,9 @@
         "linkId": "LINK-RTR-REMOTE-2-SW-REMOTE-2",
         "allowedVlanIds": [
           10,
-          20
+          20,
+          30,
+          40
         ],
         "nativeVlanId": 99
       }
@@ -227,6 +297,16 @@
         "ipCidr": "TBD"
       },
       {
+        "deviceId": "HQ-RTR-01",
+        "vlanId": 30,
+        "ipCidr": "TBD"
+      },
+      {
+        "deviceId": "HQ-RTR-01",
+        "vlanId": 40,
+        "ipCidr": "TBD"
+      },
+      {
         "deviceId": "HQ-SW-01",
         "vlanId": 10,
         "ipCidr": "TBD"
@@ -234,6 +314,16 @@
       {
         "deviceId": "HQ-SW-01",
         "vlanId": 20,
+        "ipCidr": "TBD"
+      },
+      {
+        "deviceId": "HQ-SW-01",
+        "vlanId": 30,
+        "ipCidr": "TBD"
+      },
+      {
+        "deviceId": "HQ-SW-01",
+        "vlanId": 40,
         "ipCidr": "TBD"
       },
       {
@@ -247,6 +337,16 @@
         "ipCidr": "TBD"
       },
       {
+        "deviceId": "RTR-REMOTE-1",
+        "vlanId": 30,
+        "ipCidr": "TBD"
+      },
+      {
+        "deviceId": "RTR-REMOTE-1",
+        "vlanId": 40,
+        "ipCidr": "TBD"
+      },
+      {
         "deviceId": "RTR-REMOTE-2",
         "vlanId": 10,
         "ipCidr": "TBD"
@@ -254,6 +354,16 @@
       {
         "deviceId": "RTR-REMOTE-2",
         "vlanId": 20,
+        "ipCidr": "TBD"
+      },
+      {
+        "deviceId": "RTR-REMOTE-2",
+        "vlanId": 30,
+        "ipCidr": "TBD"
+      },
+      {
+        "deviceId": "RTR-REMOTE-2",
+        "vlanId": 40,
         "ipCidr": "TBD"
       }
     ],
@@ -265,7 +375,7 @@
         "decision": "Assigned deterministic 802.1Q tags starting at 10 (+10)",
         "rationale": "Standardized VLAN numbering ensures uniform broadcast domain mapping across campus switches and prevents conflicting PVIDs.",
         "inputs": {
-          "totalVlans": 2,
+          "totalVlans": 4,
           "startId": 10,
           "increment": 10
         },
@@ -293,12 +403,14 @@
         "id": "VLAN.TRUNK-PRUNING",
         "module": "vlan",
         "rule": "VLAN.03",
-        "decision": "Restricted trunk links to explicitly allowed VLAN list [10,20]",
+        "decision": "Restricted trunk links to explicitly allowed VLAN list [10,20,30,40]",
         "rationale": "Explicit allowed-VLAN pruning confines broadcast/multicast traffic strictly to authorized switches, conserving backplane bandwidth.",
         "inputs": {
           "allowedVlanIds": [
             10,
-            20
+            20,
+            30,
+            40
           ]
         },
         "references": [
@@ -312,30 +424,62 @@
     {
       "name": "USERS-NET",
       "index": 0,
-      "network": "10.60.0.0",
+      "network": "10.30.0.0",
       "prefix": 23,
       "mask": "255.255.254.0",
       "wildcard": "0.0.1.255",
-      "broadcast": "10.60.1.255",
-      "firstHost": "10.60.0.1",
-      "lastHost": "10.60.1.254",
-      "gateway": "10.60.0.1",
+      "broadcast": "10.30.1.255",
+      "firstHost": "10.30.0.1",
+      "lastHost": "10.30.1.254",
+      "gateway": "10.30.0.1",
       "totalAddresses": 512,
-      "requestedHosts": 260,
+      "requestedHosts": 450,
       "capacity": 510,
-      "utilization": 0.5098
+      "utilization": 0.8824
+    },
+    {
+      "name": "BRANCH-X-NET",
+      "index": 1,
+      "network": "10.30.2.0",
+      "prefix": 24,
+      "mask": "255.255.255.0",
+      "wildcard": "0.0.0.255",
+      "broadcast": "10.30.2.255",
+      "firstHost": "10.30.2.1",
+      "lastHost": "10.30.2.254",
+      "gateway": "10.30.2.1",
+      "totalAddresses": 256,
+      "requestedHosts": 250,
+      "capacity": 254,
+      "utilization": 0.9843
+    },
+    {
+      "name": "TXN-SERVERS-NET",
+      "index": 2,
+      "network": "10.30.3.0",
+      "prefix": 26,
+      "mask": "255.255.255.192",
+      "wildcard": "0.0.0.63",
+      "broadcast": "10.30.3.63",
+      "firstHost": "10.30.3.1",
+      "lastHost": "10.30.3.62",
+      "gateway": "10.30.3.1",
+      "totalAddresses": 64,
+      "requestedHosts": 40,
+      "capacity": 62,
+      "utilization": 0.6452
     },
     {
       "name": "MGMT-NET",
-      "index": 1,
-      "network": "10.60.2.0",
+      "index": 3,
+      "network": "10.30.3.64",
       "prefix": 28,
       "mask": "255.255.255.240",
       "wildcard": "0.0.0.15",
-      "broadcast": "10.60.2.15",
-      "firstHost": "10.60.2.1",
-      "lastHost": "10.60.2.14",
-      "gateway": "10.60.2.1",
+      "broadcast": "10.30.3.79",
+      "firstHost": "10.30.3.65",
+      "lastHost": "10.30.3.78",
+      "gateway": "10.30.3.65",
       "totalAddresses": 16,
       "requestedHosts": 10,
       "capacity": 14,
@@ -348,17 +492,25 @@
     "areas": [
       {
         "areaId": 0,
-        "label": "Backbone Area 0 (HQ Node)",
+        "label": "Backbone Area 0 (FinTech HQ (Colo-A))",
         "siteIds": [
           "HQ"
         ],
         "networks": [
           {
-            "cidr": "10.60.0.0/23",
+            "cidr": "10.30.0.0/23",
             "wildcard": "0.0.1.255"
           },
           {
-            "cidr": "10.60.2.0/28",
+            "cidr": "10.30.2.0/24",
+            "wildcard": "0.0.0.255"
+          },
+          {
+            "cidr": "10.30.3.0/26",
+            "wildcard": "0.0.0.63"
+          },
+          {
+            "cidr": "10.30.3.64/28",
             "wildcard": "0.0.0.15"
           }
         ]
@@ -375,7 +527,7 @@
         "rationale": "Multi-site topology (3 sites) requires routing-domain isolation. Hierarchical area design isolates LSA flooding, reduces SPF recalculation frequency, and enforces area boundary summarization.",
         "inputs": {
           "asNumber": 65001,
-          "subnetCount": 2,
+          "subnetCount": 4,
           "threshold": 50,
           "sitesCount": 3
         },
@@ -388,11 +540,11 @@
         "id": "ROUTING.OSPF.AREAS",
         "module": "routing",
         "rule": "ROUTING.04",
-        "decision": "Configured 1 OSPF area(s) with 2 network statements",
+        "decision": "Configured 1 OSPF area(s) with 4 network statements",
         "rationale": "Network statements map exact network-aligned CIDRs and inverse wildcard masks directly from the VLSM plan, ensuring flawless LSDB population.",
         "inputs": {
           "areasCount": 1,
-          "totalNetworks": 2
+          "totalNetworks": 4
         },
         "references": [
           "RFC 2328 Section 3.1",
@@ -416,6 +568,20 @@
         "references": [
           "RFC 4594 DiffServ Class Architecture",
           "RFC 3246 Expedited Forwarding"
+        ]
+      },
+      {
+        "id": "ROUTING.FAILOVER.METRIC-STEERING",
+        "module": "routing",
+        "rule": "ROUTING.06",
+        "decision": "Planned deterministic route failover across 2 circuit pair(s)",
+        "rationale": "Primary circuits are biased with metric 10 while secondary circuits carry metric 20, guaranteeing hitless failover upon primary link flap.",
+        "inputs": {
+          "failoverPairs": 2
+        },
+        "references": [
+          "Cisco Resilient Network Design",
+          "RFC 2328 Cost Metric Semantics"
         ]
       }
     ],
@@ -457,7 +623,7 @@
         "name": "Root Network Containment Check",
         "category": "vlsm",
         "passed": true,
-        "detail": "All subnets are contained within root block 10.60.0.0/16."
+        "detail": "All subnets are contained within root block 10.30.0.0/16."
       },
       {
         "id": "V-03",

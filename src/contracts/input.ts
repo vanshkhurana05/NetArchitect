@@ -2,7 +2,6 @@
  * Input ingestion contracts — Zod schemas for the 3 preset profiles and
  * custom inputs. Custom input uses the SAME schemas as presets: users
  * fill the relevant profile shape with their own values.
- * OWNER: Lead Architect.
  */
 import { z } from "zod";
 
@@ -109,7 +108,7 @@ export const GlobalWanInput = z.object({
     vpcCidr: z.string().regex(/^(\d{1,3}\.){3}\d{1,3}\/\d{1,2}$/),
     /** S2S VPN termination endpoints inside the VPC (e.g., VGW tunnel IPs). */
     vpnPeerPublicIps: z.array(z.string().ip()).min(1).max(4),
-    /** Additive amendment A+2 (architect): IoT/scanner nodes living in the VPC. */
+    /** IoT/scanner nodes living in the VPC. */
     iotNodes: z.number().int().min(0).max(5_000).default(0),
   }),
   ikeVersion: z.literal(2).default(2),
@@ -136,7 +135,7 @@ export type NetArchInput = z.infer<typeof NetArchInput>;
 /** How the input reached the system (affects report headers only). */
 export const InputSource = z.enum(["preset", "custom"]).default("preset");
 
-/** Additive amendment A+1 (architect): paired type exports for value-only consts. */
+/** paired type exports for value-only consts. */
 export type InputSourceKind = z.infer<typeof InputSource>;
 export type QosClassKind = z.infer<typeof QosClass>;
 

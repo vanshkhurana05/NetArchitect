@@ -1,6 +1,5 @@
 /**
  * Routing Engine Exports.
- * OWNER: Routing specialist agent (src/engines/routing/).
  */
 export * from "./types.js";
 export * from "./protocol-chooser.js";

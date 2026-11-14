@@ -2,7 +2,6 @@
  * Routing Protocol Chooser.
  * Algorithmic selection between single-area OSPF, multi-area OSPF, and OSPF+eBGP.
  * Enforces the assignment rule table and strict AS boundary criteria.
- * OWNER: Routing specialist agent (src/engines/routing/).
  */
 import type { RoutingEngineInput } from "../../contracts/routing.js";
 import type { ExplainRecord } from "../../contracts/explain.js";

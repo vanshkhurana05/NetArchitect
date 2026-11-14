@@ -1,6 +1,5 @@
 /**
  * Physical media engine contracts (L1 decision engine).
- * OWNER: media specialist agent (implementation in src/media/).
  */
 import { z } from "zod";
 import type { ExplainRecord } from "./explain.js";
@@ -37,23 +36,23 @@ export interface MediaQuery {
   role: LinkRole;
   /** If the user constrains the medium; engine may still refuse and justify. */
   requestedMedium?: Medium;
-  /** Amendment A+5: link identifier, echoed into the recommendation. */
+  /** link identifier, echoed into the recommendation. */
   linkId?: string;
-  /** Amendment A+5: hard bandwidth demand in Gbps engine may validate against the catalog. Missing → warning, no constraint. */
+  /** hard bandwidth demand in Gbps engine may validate against the catalog. Missing → warning, no constraint. */
   requiredBandwidthGbps?: number;
-  /** Amendment A+5: caller-pinned transceiver catalog id; unsupported ids are rejected explicitly. */
+  /** caller-pinned transceiver catalog id; unsupported ids are rejected explicitly. */
   requestedTransceiver?: string;
 }
 
 export interface MediaRecommendation {
   chosen: TransceiverSpec;
-  /** Amendment A+6: human-readable rationale lines (dedup of explanations for report consumers). */
+  /** human-readable rationale lines (dedup of explanations for report consumers). */
   rationale: string[];
-  /** Amendment A+6: non-fatal engineering warnings (e.g. missing bandwidth input, OM4 reach notes). */
+  /** non-fatal engineering warnings (e.g. missing bandwidth input, OM4 reach notes). */
   warnings: string[];
-  /** Amendment A+6: compatibility issues discovered against the transceiver reach/budget data. */
+  /** compatibility issues discovered against the transceiver reach/budget data. */
   compatibilityIssues: string[];
-  /** Amendment A+6: echoed link identifier when supplied on the query. */
+  /** echoed link identifier when supplied on the query. */
   linkId?: string;
   /** Structured rationale — also pushed to the global explain log. */
   explanations: ExplainRecord[];

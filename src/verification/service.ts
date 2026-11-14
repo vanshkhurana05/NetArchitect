@@ -2,7 +2,6 @@
  * Network Verification Engine.
  * Programmatic fail-closed boundary and invariant checks that must pass
  * before the export manager is allowed to emit artifacts.
- * OWNER: Testing, Integration & Verification Agent (src/verification/).
  */
 import type {
   VerificationCheck,

@@ -1,6 +1,5 @@
 /**
  * Routing Engine Types & Domain Models.
- * OWNER: Routing specialist agent (src/engines/routing/).
  */
 import type {
   RoutingPlan,

@@ -2,7 +2,6 @@
  * Device planner for Campus LAN and Enterprise networks.
  * Calculates switch and router counts using endpoint densities,
  * switch port capacities, reserved uplink ports, PoE, and growth headroom.
- * OWNER: Topology specialist agent (src/engines/topology/).
  */
 import type { BuildingSpec } from "../../contracts/input.js";
 import type { DevicePlanningConfig, BuildingPlanningResult } from "./types.js";

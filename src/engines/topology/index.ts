@@ -1,6 +1,5 @@
 /**
  * Topology engine exports.
- * OWNER: Topology specialist agent (src/engines/topology/).
  */
 export * from "./types.js";
 export * from "./device-planner.js";

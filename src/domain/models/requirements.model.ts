@@ -1,5 +1,5 @@
 /**
- * Input-side domain models (NetworkRequirements) — Foundation/Profiles agent.
+ * Input-side domain models (NetworkRequirements) 
  * Deliberately SEPARATE from design results (design.model.ts): requirements
  * describe what the user asked for; nothing generated is stored here.
  *
@@ -29,7 +29,7 @@ export type {
   VlanRequest,
 };
 
-/** Public alias keeps the architect-approved name `InputSource`. */
+/** Standard alias for InputSourceKind. */
 export type InputSourceKindAlias = InputSourceKind;
 export type InputSource = InputSourceKind;
 

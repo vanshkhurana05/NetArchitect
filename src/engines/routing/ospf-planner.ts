@@ -1,7 +1,6 @@
 /**
  * OSPF Area and Network Advertisement Planner.
  * Plans Area 0, remote areas, network statements, wildcard masks, and ABR summaries.
- * OWNER: Routing specialist agent (src/engines/routing/).
  */
 import type { OspfAreaPlan } from "../../contracts/routing.js";
 import type { SubnetPlanItem } from "../../contracts/vlsm.js";

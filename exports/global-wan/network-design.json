@@ -1,0 +1,603 @@
+{
+  "profile": "global-wan",
+  "source": "preset",
+  "topology": {
+    "tier": "three-tier",
+    "sites": [
+      {
+        "id": "CITY-D",
+        "label": "Delhi HQ (Logistics Control)",
+        "kind": "city",
+        "deviceIds": [
+          "RTR-CITY-D"
+        ]
+      },
+      {
+        "id": "CITY-M",
+        "label": "Mumbai Distribution",
+        "kind": "city",
+        "deviceIds": [
+          "RTR-CITY-M"
+        ]
+      },
+      {
+        "id": "CITY-K",
+        "label": "Kolkata Scanners",
+        "kind": "city",
+        "deviceIds": [
+          "RTR-CITY-K"
+        ]
+      },
+      {
+        "id": "CITY-C",
+        "label": "Chennai Scanners",
+        "kind": "city",
+        "deviceIds": [
+          "RTR-CITY-C"
+        ]
+      },
+      {
+        "id": "SITE-CLOUD-VPC",
+        "label": "Cloud VPC (AWS)",
+        "kind": "cloud-vpc",
+        "deviceIds": [
+          "GW-CLOUD-VPC"
+        ]
+      }
+    ],
+    "devices": [
+      {
+        "id": "RTR-CITY-D",
+        "name": "WAN Router Delhi HQ (Logistics Control)",
+        "role": "wan-router",
+        "siteId": "CITY-D",
+        "portCount": 16
+      },
+      {
+        "id": "RTR-CITY-M",
+        "name": "WAN Router Mumbai Distribution",
+        "role": "wan-router",
+        "siteId": "CITY-M",
+        "portCount": 16
+      },
+      {
+        "id": "RTR-CITY-K",
+        "name": "WAN Router Kolkata Scanners",
+        "role": "wan-router",
+        "siteId": "CITY-K",
+        "portCount": 16
+      },
+      {
+        "id": "RTR-CITY-C",
+        "name": "WAN Router Chennai Scanners",
+        "role": "wan-router",
+        "siteId": "CITY-C",
+        "portCount": 16
+      },
+      {
+        "id": "GW-CLOUD-VPC",
+        "name": "Cloud VPN Gateway (AWS VGW)",
+        "role": "cloud-vpn-gateway",
+        "siteId": "SITE-CLOUD-VPC",
+        "portCount": 8
+      }
+    ],
+    "links": [
+      {
+        "id": "LINK-WAN-CITY-D-CITY-M",
+        "aDeviceId": "RTR-CITY-D",
+        "bDeviceId": "RTR-CITY-M",
+        "kind": "ipsec-tunnel",
+        "bandwidthMbps": 100,
+        "betweenSites": [
+          "CITY-D",
+          "CITY-M"
+        ]
+      },
+      {
+        "id": "LINK-WAN-CITY-D-CITY-K",
+        "aDeviceId": "RTR-CITY-D",
+        "bDeviceId": "RTR-CITY-K",
+        "kind": "ipsec-tunnel",
+        "bandwidthMbps": 100,
+        "betweenSites": [
+          "CITY-D",
+          "CITY-K"
+        ]
+      },
+      {
+        "id": "LINK-WAN-CITY-D-CITY-C",
+        "aDeviceId": "RTR-CITY-D",
+        "bDeviceId": "RTR-CITY-C",
+        "kind": "ipsec-tunnel",
+        "bandwidthMbps": 100,
+        "betweenSites": [
+          "CITY-D",
+          "CITY-C"
+        ]
+      },
+      {
+        "id": "LINK-IPSEC-HQ-CLOUD",
+        "aDeviceId": "RTR-CITY-D",
+        "bDeviceId": "GW-CLOUD-VPC",
+        "kind": "ipsec-tunnel",
+        "bandwidthMbps": 1000,
+        "betweenSites": [
+          "CITY-D",
+          "SITE-CLOUD-VPC"
+        ]
+      },
+      {
+        "id": "LINK-BGP-HQ-CLOUD",
+        "aDeviceId": "RTR-CITY-D",
+        "bDeviceId": "GW-CLOUD-VPC",
+        "kind": "bgp-session",
+        "bandwidthMbps": 1000,
+        "betweenSites": [
+          "CITY-D",
+          "SITE-CLOUD-VPC"
+        ]
+      }
+    ],
+    "explanations": [
+      {
+        "id": "TOPO.GLOBAL-WAN-MESH",
+        "module": "topology",
+        "rule": "TOPO.04",
+        "decision": "Constructed hub-and-spoke WAN with IPsec tunnels and Cloud VPC gateway",
+        "rationale": "Hub-and-spoke topology with IPsec VPN connectivity enables cost-effective WAN integration of 2,000 distributed IoT nodes with secure VPC aggregation.",
+        "inputs": {
+          "citiesCount": 4,
+          "cloudProvider": "aws"
+        },
+        "references": [
+          "RFC 4301 IPsec Architecture",
+          "RFC 4271 BGP-4"
+        ]
+      }
+    ]
+  },
+  "vlans": {
+    "items": [
+      {
+        "vlanId": 10,
+        "name": "MGMT",
+        "purpose": "management",
+        "subnetName": "MGMT-NET"
+      },
+      {
+        "vlanId": 20,
+        "name": "IOT-NODES",
+        "purpose": "iot",
+        "subnetName": "IOT-NODES-NET"
+      },
+      {
+        "vlanId": 30,
+        "name": "SCANNERS",
+        "purpose": "wireless",
+        "subnetName": "SCANNERS-NET"
+      },
+      {
+        "vlanId": 40,
+        "name": "ANALYTICS",
+        "purpose": "servers",
+        "subnetName": "ANALYTICS-NET"
+      }
+    ],
+    "trunks": [],
+    "svis": [
+      {
+        "deviceId": "RTR-CITY-D",
+        "vlanId": 10,
+        "ipCidr": "TBD"
+      },
+      {
+        "deviceId": "RTR-CITY-D",
+        "vlanId": 20,
+        "ipCidr": "TBD"
+      },
+      {
+        "deviceId": "RTR-CITY-D",
+        "vlanId": 30,
+        "ipCidr": "TBD"
+      },
+      {
+        "deviceId": "RTR-CITY-D",
+        "vlanId": 40,
+        "ipCidr": "TBD"
+      },
+      {
+        "deviceId": "RTR-CITY-M",
+        "vlanId": 10,
+        "ipCidr": "TBD"
+      },
+      {
+        "deviceId": "RTR-CITY-M",
+        "vlanId": 20,
+        "ipCidr": "TBD"
+      },
+      {
+        "deviceId": "RTR-CITY-M",
+        "vlanId": 30,
+        "ipCidr": "TBD"
+      },
+      {
+        "deviceId": "RTR-CITY-M",
+        "vlanId": 40,
+        "ipCidr": "TBD"
+      },
+      {
+        "deviceId": "RTR-CITY-K",
+        "vlanId": 10,
+        "ipCidr": "TBD"
+      },
+      {
+        "deviceId": "RTR-CITY-K",
+        "vlanId": 20,
+        "ipCidr": "TBD"
+      },
+      {
+        "deviceId": "RTR-CITY-K",
+        "vlanId": 30,
+        "ipCidr": "TBD"
+      },
+      {
+        "deviceId": "RTR-CITY-K",
+        "vlanId": 40,
+        "ipCidr": "TBD"
+      },
+      {
+        "deviceId": "RTR-CITY-C",
+        "vlanId": 10,
+        "ipCidr": "TBD"
+      },
+      {
+        "deviceId": "RTR-CITY-C",
+        "vlanId": 20,
+        "ipCidr": "TBD"
+      },
+      {
+        "deviceId": "RTR-CITY-C",
+        "vlanId": 30,
+        "ipCidr": "TBD"
+      },
+      {
+        "deviceId": "RTR-CITY-C",
+        "vlanId": 40,
+        "ipCidr": "TBD"
+      }
+    ],
+    "explanations": [
+      {
+        "id": "VLAN.DETERMINISTIC-TAGS",
+        "module": "vlan",
+        "rule": "VLAN.01",
+        "decision": "Assigned deterministic 802.1Q tags starting at 10 (+10)",
+        "rationale": "Standardized VLAN numbering ensures uniform broadcast domain mapping across campus switches and prevents conflicting PVIDs.",
+        "inputs": {
+          "totalVlans": 4,
+          "startId": 10,
+          "increment": 10
+        },
+        "references": [
+          "IEEE 802.1Q",
+          "Cisco Campus LAN Best Practices"
+        ]
+      },
+      {
+        "id": "VLAN.NATIVE-HARDENING",
+        "module": "vlan",
+        "rule": "VLAN.02",
+        "decision": "Configured Native VLAN 99 as untagged and unused on all trunks",
+        "rationale": "Setting the native VLAN to an unused ID (VLAN 99) and disallowing default VLAN 1 mitigates 802.1Q double-tagging and VLAN hopping security vulnerabilities.",
+        "inputs": {
+          "nativeVlanId": 99,
+          "defaultVlanDisabled": 1
+        },
+        "references": [
+          "NIST SP 800-115",
+          "DISA Network Infrastructure STIG"
+        ]
+      },
+      {
+        "id": "VLAN.TRUNK-PRUNING",
+        "module": "vlan",
+        "rule": "VLAN.03",
+        "decision": "Restricted trunk links to explicitly allowed VLAN list [10,20,30,40]",
+        "rationale": "Explicit allowed-VLAN pruning confines broadcast/multicast traffic strictly to authorized switches, conserving backplane bandwidth.",
+        "inputs": {
+          "allowedVlanIds": [
+            10,
+            20,
+            30,
+            40
+          ]
+        },
+        "references": [
+          "IEEE 802.1Q Clause 9",
+          "RFC 3069"
+        ]
+      }
+    ]
+  },
+  "subnets": [
+    {
+      "name": "IOT-NODES-NET",
+      "index": 0,
+      "network": "10.40.0.0",
+      "prefix": 21,
+      "mask": "255.255.248.0",
+      "wildcard": "0.0.7.255",
+      "broadcast": "10.40.7.255",
+      "firstHost": "10.40.0.1",
+      "lastHost": "10.40.7.254",
+      "gateway": "10.40.0.1",
+      "totalAddresses": 2048,
+      "requestedHosts": 1800,
+      "capacity": 2046,
+      "utilization": 0.8798
+    },
+    {
+      "name": "SCANNERS-NET",
+      "index": 1,
+      "network": "10.40.8.0",
+      "prefix": 24,
+      "mask": "255.255.255.0",
+      "wildcard": "0.0.0.255",
+      "broadcast": "10.40.8.255",
+      "firstHost": "10.40.8.1",
+      "lastHost": "10.40.8.254",
+      "gateway": "10.40.8.1",
+      "totalAddresses": 256,
+      "requestedHosts": 200,
+      "capacity": 254,
+      "utilization": 0.7874
+    },
+    {
+      "name": "ANALYTICS-NET",
+      "index": 2,
+      "network": "10.40.9.0",
+      "prefix": 25,
+      "mask": "255.255.255.128",
+      "wildcard": "0.0.0.127",
+      "broadcast": "10.40.9.127",
+      "firstHost": "10.40.9.1",
+      "lastHost": "10.40.9.126",
+      "gateway": "10.40.9.1",
+      "totalAddresses": 128,
+      "requestedHosts": 100,
+      "capacity": 126,
+      "utilization": 0.7937
+    },
+    {
+      "name": "MGMT-NET",
+      "index": 3,
+      "network": "10.40.9.128",
+      "prefix": 27,
+      "mask": "255.255.255.224",
+      "wildcard": "0.0.0.31",
+      "broadcast": "10.40.9.159",
+      "firstHost": "10.40.9.129",
+      "lastHost": "10.40.9.158",
+      "gateway": "10.40.9.129",
+      "totalAddresses": 32,
+      "requestedHosts": 30,
+      "capacity": 30,
+      "utilization": 1
+    }
+  ],
+  "routing": {
+    "asNumber": 65001,
+    "protocol": "ospf-ebgp",
+    "areas": [
+      {
+        "areaId": 0,
+        "label": "Backbone Area 0 (Delhi HQ (Logistics Control))",
+        "siteIds": [
+          "CITY-D"
+        ],
+        "networks": [
+          {
+            "cidr": "10.40.0.0/21",
+            "wildcard": "0.0.7.255"
+          },
+          {
+            "cidr": "10.40.8.0/24",
+            "wildcard": "0.0.0.255"
+          },
+          {
+            "cidr": "10.40.9.0/25",
+            "wildcard": "0.0.0.127"
+          },
+          {
+            "cidr": "10.40.9.128/27",
+            "wildcard": "0.0.0.31"
+          }
+        ]
+      }
+    ],
+    "bgp": [
+      {
+        "localDeviceId": "RTR-CITY-D",
+        "neighborIp": "203.0.113.10",
+        "remoteAsNumber": 64512,
+        "advertiseCidrs": [
+          "10.40.0.0/20"
+        ]
+      }
+    ],
+    "vpnTunnels": [
+      {
+        "deviceId": "RTR-CITY-D",
+        "peerPublicIp": "203.0.113.10",
+        "ikeVersion": 2,
+        "cryptoProfileName": "IKEv2-PROD-PROFILE",
+        "localProtectedCidr": "10.40.0.0/20",
+        "remoteProtectedCidr": "172.20.0.0/16"
+      },
+      {
+        "deviceId": "RTR-CITY-D",
+        "peerPublicIp": "203.0.113.11",
+        "ikeVersion": 2,
+        "cryptoProfileName": "IKEv2-PROD-PROFILE",
+        "localProtectedCidr": "10.40.0.0/20",
+        "remoteProtectedCidr": "172.20.0.0/16"
+      }
+    ],
+    "explanations": [
+      {
+        "id": "ROUTING.PROTOCOL.OSPF-EBGP",
+        "module": "routing",
+        "rule": "ROUTING.03",
+        "decision": "Selected OSPF + eBGP multi-domain routing architecture",
+        "rationale": "Enterprise Autonomous System AS 65001 connects to external Cloud VPC boundary. eBGP handles policy-based inter-AS exchange (RFC 4271), while multi-area OSPF isolates internal enterprise areas.",
+        "inputs": {
+          "asNumber": 65001,
+          "subnetCount": 4,
+          "cloudVpcProvider": "aws",
+          "distinctAutonomousSystems": true
+        },
+        "references": [
+          "RFC 4271 BGP-4",
+          "RFC 4364 BGP/MPLS IP VPNs",
+          "RFC 2328 OSPFv2"
+        ]
+      },
+      {
+        "id": "ROUTING.OSPF.AREAS",
+        "module": "routing",
+        "rule": "ROUTING.04",
+        "decision": "Configured 1 OSPF area(s) with 4 network statements",
+        "rationale": "Network statements map exact network-aligned CIDRs and inverse wildcard masks directly from the VLSM plan, ensuring flawless LSDB population.",
+        "inputs": {
+          "areasCount": 1,
+          "totalNetworks": 4
+        },
+        "references": [
+          "RFC 2328 Section 3.1",
+          "RFC 1878"
+        ]
+      },
+      {
+        "id": "ROUTING.BGP.EBGP-PEERING",
+        "module": "routing",
+        "rule": "ROUTING.05",
+        "decision": "Established eBGP peering between Enterprise AS 65001 and Cloud Provider AS 64512",
+        "rationale": "eBGP session advertises summarized enterprise supernet towards Cloud VPC peer IP to prevent routing table bloat and enforce policy separation.",
+        "inputs": {
+          "localAs": 65001,
+          "remoteAs": 64512,
+          "peerIps": [
+            "203.0.113.10",
+            "203.0.113.11"
+          ]
+        },
+        "references": [
+          "RFC 4271 BGP-4",
+          "RFC 6996 Autonomous System Number Reservation"
+        ]
+      },
+      {
+        "id": "ROUTING.SECURITY.IPSEC-IKEV2",
+        "module": "security",
+        "rule": "SEC.01",
+        "decision": "Configured 2 IKEv2 site-to-site IPsec tunnel(s) toward Cloud VPC",
+        "rationale": "IKEv2 protects transit between enterprise border routers and Cloud VPC with AES-256-GCM encryption and SHA-384 integrity (RFC 7296).",
+        "inputs": {
+          "tunnelsCount": 2,
+          "peerIps": [
+            "203.0.113.10",
+            "203.0.113.11"
+          ]
+        },
+        "references": [
+          "RFC 7296 IKEv2",
+          "NIST SP 800-77"
+        ]
+      },
+      {
+        "id": "ROUTING.FAILOVER.METRIC-STEERING",
+        "module": "routing",
+        "rule": "ROUTING.06",
+        "decision": "Planned deterministic route failover across 1 circuit pair(s)",
+        "rationale": "Primary circuits are biased with metric 10 while secondary circuits carry metric 20, guaranteeing hitless failover upon primary link flap.",
+        "inputs": {
+          "failoverPairs": 1
+        },
+        "references": [
+          "Cisco Resilient Network Design",
+          "RFC 2328 Cost Metric Semantics"
+        ]
+      }
+    ]
+  },
+  "verification": {
+    "passed": true,
+    "checks": [
+      {
+        "id": "V-01",
+        "name": "Bitwise Zero-Overlap Invariant",
+        "category": "vlsm",
+        "passed": true,
+        "detail": "All allocated subnets are strictly disjoint (zero overlap)."
+      },
+      {
+        "id": "V-02",
+        "name": "Root Network Containment Check",
+        "category": "vlsm",
+        "passed": true,
+        "detail": "All subnets are contained within root block 10.40.0.0/16."
+      },
+      {
+        "id": "V-03",
+        "name": "Gateway Subnet Belonging Check",
+        "category": "vlsm",
+        "passed": true,
+        "detail": "All gateway IP addresses belong to their respective subnet address blocks."
+      },
+      {
+        "id": "V-04",
+        "name": "Wildcard Mask Inversion Check",
+        "category": "routing",
+        "passed": true,
+        "detail": "All wildcard masks independently verified against bitwise complement (~netmask)."
+      },
+      {
+        "id": "V-05",
+        "name": "Host Capacity Sufficiency Check",
+        "category": "vlsm",
+        "passed": true,
+        "detail": "All carved subnets provide usable host capacity >= requested demand."
+      },
+      {
+        "id": "V-06",
+        "name": "VLAN Safety & Native Hardening Check",
+        "category": "vlan",
+        "passed": true,
+        "detail": "VLAN IDs are unique, within range 1..4094, and native VLAN 99 is unused for access."
+      },
+      {
+        "id": "V-07",
+        "name": "Link Endpoint Existence Check",
+        "category": "config",
+        "passed": true,
+        "detail": "All physical and logical links terminate on valid, known devices."
+      },
+      {
+        "id": "V-08",
+        "name": "Physical Media Feasibility Check",
+        "category": "media",
+        "passed": true,
+        "detail": "All physical link runs strictly obey IEEE 802.3 transceiver reach limits."
+      },
+      {
+        "id": "V-09",
+        "name": "Routing Advertisement Consistency Check",
+        "category": "routing",
+        "passed": true,
+        "detail": "All OSPF network statements map directly to allocated VLSM subnets."
+      }
+    ],
+    "advisories": []
+  }
+}

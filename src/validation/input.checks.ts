@@ -1,5 +1,5 @@
 /**
- * Semantic validation of requirements and design graphs — Foundation agent.
+ * Semantic validation of requirements and design graphs.
  * Layered ON TOP of the frozen Zod union (never re-implementing shape rules):
  * 1. shape/schema: Zod (contracts/input.ts)
  * 2. semantics:    cross-field + uniqueness + alignment checks here

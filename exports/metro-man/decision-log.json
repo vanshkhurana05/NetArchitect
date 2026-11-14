@@ -1,0 +1,280 @@
+[
+  {
+    "decisionId": "TOPO.METRO-EVPL-DUALHOMED",
+    "ruleId": "TOPO.03",
+    "module": "topology",
+    "selected": "Configured dual-homed EVPL connections with primary and backup paths",
+    "inputs": {
+      "remoteSitesCount": 2,
+      "dualHomedFailover": true,
+      "evplBandwidthMbps": 200
+    },
+    "rationale": [
+      "Dual-homing remote edge routers to distinct HQ provider interfaces satisfies high-availability SLAs and sub-5ms failover guarantees."
+    ],
+    "warnings": [],
+    "assumptions": [],
+    "references": [
+      "MEF 6.2 EVPL Specification",
+      "IEEE 802.3ae 10GBASE-ER"
+    ]
+  },
+  {
+    "decisionId": "VLAN.DETERMINISTIC-TAGS",
+    "ruleId": "VLAN.01",
+    "module": "vlan",
+    "selected": "Assigned deterministic 802.1Q tags starting at 10 (+10)",
+    "inputs": {
+      "totalVlans": 4,
+      "startId": 10,
+      "increment": 10
+    },
+    "rationale": [
+      "Standardized VLAN numbering ensures uniform broadcast domain mapping across campus switches and prevents conflicting PVIDs."
+    ],
+    "warnings": [],
+    "assumptions": [],
+    "references": [
+      "IEEE 802.1Q",
+      "Cisco Campus LAN Best Practices"
+    ]
+  },
+  {
+    "decisionId": "VLAN.NATIVE-HARDENING",
+    "ruleId": "VLAN.02",
+    "module": "vlan",
+    "selected": "Configured Native VLAN 99 as untagged and unused on all trunks",
+    "inputs": {
+      "nativeVlanId": 99,
+      "defaultVlanDisabled": 1
+    },
+    "rationale": [
+      "Setting the native VLAN to an unused ID (VLAN 99) and disallowing default VLAN 1 mitigates 802.1Q double-tagging and VLAN hopping security vulnerabilities."
+    ],
+    "warnings": [],
+    "assumptions": [],
+    "references": [
+      "NIST SP 800-115",
+      "DISA Network Infrastructure STIG"
+    ]
+  },
+  {
+    "decisionId": "VLAN.TRUNK-PRUNING",
+    "ruleId": "VLAN.03",
+    "module": "vlan",
+    "selected": "Restricted trunk links to explicitly allowed VLAN list [10,20,30,40]",
+    "inputs": {
+      "allowedVlanIds": [
+        10,
+        20,
+        30,
+        40
+      ]
+    },
+    "rationale": [
+      "Explicit allowed-VLAN pruning confines broadcast/multicast traffic strictly to authorized switches, conserving backplane bandwidth."
+    ],
+    "warnings": [],
+    "assumptions": [],
+    "references": [
+      "IEEE 802.1Q Clause 9",
+      "RFC 3069"
+    ]
+  },
+  {
+    "decisionId": "VLSM.ALLOC-0-USERS-NET",
+    "ruleId": "VLSM.DESCENDING-CARVE",
+    "module": "vlsm",
+    "selected": "Allocated USERS-NET as 10.30.0.0/23",
+    "inputs": {
+      "hosts": 450,
+      "inputIndex": 1,
+      "prefix": 23
+    },
+    "rationale": [
+      "450 requested hosts map to the minimal /23 under RFC 3021 host-capacity math; carved monotonically after all larger blocks, gateway reserved at 10.30.0.1 (first usable IP)."
+    ],
+    "warnings": [],
+    "assumptions": [],
+    "references": [
+      "RFC 950",
+      "RFC 3021"
+    ]
+  },
+  {
+    "decisionId": "VLSM.ALLOC-1-BRANCH-X-NET",
+    "ruleId": "VLSM.DESCENDING-CARVE",
+    "module": "vlsm",
+    "selected": "Allocated BRANCH-X-NET as 10.30.2.0/24",
+    "inputs": {
+      "hosts": 250,
+      "inputIndex": 3,
+      "prefix": 24
+    },
+    "rationale": [
+      "250 requested hosts map to the minimal /24 under RFC 3021 host-capacity math; carved monotonically after all larger blocks, gateway reserved at 10.30.2.1 (first usable IP)."
+    ],
+    "warnings": [],
+    "assumptions": [],
+    "references": [
+      "RFC 950",
+      "RFC 3021"
+    ]
+  },
+  {
+    "decisionId": "VLSM.ALLOC-2-TXN-SERVERS-NET",
+    "ruleId": "VLSM.DESCENDING-CARVE",
+    "module": "vlsm",
+    "selected": "Allocated TXN-SERVERS-NET as 10.30.3.0/26",
+    "inputs": {
+      "hosts": 40,
+      "inputIndex": 2,
+      "prefix": 26
+    },
+    "rationale": [
+      "40 requested hosts map to the minimal /26 under RFC 3021 host-capacity math; carved monotonically after all larger blocks, gateway reserved at 10.30.3.1 (first usable IP)."
+    ],
+    "warnings": [],
+    "assumptions": [],
+    "references": [
+      "RFC 950",
+      "RFC 3021"
+    ]
+  },
+  {
+    "decisionId": "VLSM.ALLOC-3-MGMT-NET",
+    "ruleId": "VLSM.DESCENDING-CARVE",
+    "module": "vlsm",
+    "selected": "Allocated MGMT-NET as 10.30.3.64/28",
+    "inputs": {
+      "hosts": 10,
+      "inputIndex": 0,
+      "prefix": 28
+    },
+    "rationale": [
+      "10 requested hosts map to the minimal /28 under RFC 3021 host-capacity math; carved monotonically after all larger blocks, gateway reserved at 10.30.3.65 (first usable IP)."
+    ],
+    "warnings": [],
+    "assumptions": [],
+    "references": [
+      "RFC 950",
+      "RFC 3021"
+    ]
+  },
+  {
+    "decisionId": "VLSM.UTILIZATION",
+    "ruleId": "VLSM.CAPACITY",
+    "module": "vlsm",
+    "selected": "Root-block utilization 1.28%",
+    "inputs": {
+      "allocatedCapacity": 840,
+      "rootCapacity": 65534
+    },
+    "rationale": [
+      "(840 usable addresses of 65534 in 10.30.0.0/16, 4 blocks carved, 64688 address(es) left free."
+    ],
+    "warnings": [],
+    "assumptions": [],
+    "references": [
+      "RFC 950"
+    ]
+  },
+  {
+    "decisionId": "VLSM.NO-OVERLAP",
+    "ruleId": "VLSM.INVARIANT",
+    "module": "vlsm",
+    "selected": "No-overlap invariant holds across all allocations.",
+    "inputs": {
+      "count": 4
+    },
+    "rationale": [
+      "Monotone carving guarantees non-intersection; verified with an O(n) boundary assertion."
+    ],
+    "warnings": [],
+    "assumptions": [],
+    "references": [
+      "RFC 950"
+    ]
+  },
+  {
+    "decisionId": "ROUTING.PROTOCOL.MULTI-AREA-OSPF",
+    "ruleId": "ROUTING.02",
+    "module": "routing",
+    "selected": "Selected Multi-Area OSPF architecture with Area 0 backbone",
+    "inputs": {
+      "asNumber": 65001,
+      "subnetCount": 4,
+      "threshold": 50,
+      "sitesCount": 3
+    },
+    "rationale": [
+      "Multi-site topology (3 sites) requires routing-domain isolation. Hierarchical area design isolates LSA flooding, reduces SPF recalculation frequency, and enforces area boundary summarization."
+    ],
+    "warnings": [],
+    "assumptions": [],
+    "references": [
+      "RFC 2328 OSPFv2 Section 3.2",
+      "RFC 3509 Alternative OSPF ABR Implementations"
+    ]
+  },
+  {
+    "decisionId": "ROUTING.OSPF.AREAS",
+    "ruleId": "ROUTING.04",
+    "module": "routing",
+    "selected": "Configured 1 OSPF area(s) with 4 network statements",
+    "inputs": {
+      "areasCount": 1,
+      "totalNetworks": 4
+    },
+    "rationale": [
+      "Network statements map exact network-aligned CIDRs and inverse wildcard masks directly from the VLSM plan, ensuring flawless LSDB population."
+    ],
+    "warnings": [],
+    "assumptions": [],
+    "references": [
+      "RFC 2328 Section 3.1",
+      "RFC 1878"
+    ]
+  },
+  {
+    "decisionId": "ROUTING.QOS.DIFFSERV-QUEUING",
+    "ruleId": "QOS.01",
+    "module": "qos",
+    "selected": "Configured 4-class DiffServ QoS policy on EVPL provider circuits",
+    "inputs": {
+      "classes": [
+        "VOICE-EF",
+        "TRANSACTIONAL-AF31",
+        "VIDEO-AF21",
+        "DEFAULT-BEST-EFFORT"
+      ]
+    },
+    "rationale": [
+      "Classifies EF Voice (30% priority queue) and AF31 Transactional data (40% bandwidth queue) to guarantee sub-5ms SLA latency under congestion."
+    ],
+    "warnings": [],
+    "assumptions": [],
+    "references": [
+      "RFC 4594 DiffServ Class Architecture",
+      "RFC 3246 Expedited Forwarding"
+    ]
+  },
+  {
+    "decisionId": "ROUTING.FAILOVER.METRIC-STEERING",
+    "ruleId": "ROUTING.06",
+    "module": "routing",
+    "selected": "Planned deterministic route failover across 2 circuit pair(s)",
+    "inputs": {
+      "failoverPairs": 2
+    },
+    "rationale": [
+      "Primary circuits are biased with metric 10 while secondary circuits carry metric 20, guaranteeing hitless failover upon primary link flap."
+    ],
+    "warnings": [],
+    "assumptions": [],
+    "references": [
+      "Cisco Resilient Network Design",
+      "RFC 2328 Cost Metric Semantics"
+    ]
+  }
+]

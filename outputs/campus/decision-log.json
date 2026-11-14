@@ -22,60 +22,63 @@
     "decisionId": "TOPO.BUILDING-PLAN.BLD-A",
     "ruleId": "TOPO.02",
     "module": "topology",
-    "selected": "Sized 17 access switches and 1 distribution switch for BLD-A",
+    "selected": "Sized 17 access switches for BLD-A (represented as ACC-BLD-A Stack for deployment)",
     "inputs": {
       "endpoints": 620,
       "accessSwitches": 17,
       "apCount": 26
     },
     "rationale": [
-      "Building Building A (Engineering) (BLD-A): 620 endpoints with 20% growth buffer require 744 active drops. Using 48-port switches with 4 reserved uplink ports yields 44 usable access ports per switch. Allocated 17 access switch(es) providing 748 total access ports (4 spare ports). Calculated 26 PoE+ wireless access points (24 endpoints per AP). Allocated 1 distribution switch/stack for building aggregation."
+      "Building Building A (Engineering) (BLD-A): 620 endpoints with 20% growth buffer require 744 active drops. Using 48-port switches with 4 reserved uplink ports yields 44 usable access ports per switch. Allocated 17 access switch(es) providing 748 total access ports (4 spare ports). Calculated 26 PoE+ wireless access points (24 endpoints per AP). Allocated 1 distribution switch/stack for building aggregation. Aggregated into a representative Catalyst Stack for streamlined Packet Tracer / GNS3 verification."
     ],
     "warnings": [],
     "assumptions": [],
     "references": [
       "IEEE 802.3at PoE+",
-      "ANSI/TIA-568.0-D"
+      "ANSI/TIA-568.0-D",
+      "Cisco Catalyst StackWise Architecture"
     ]
   },
   {
     "decisionId": "TOPO.BUILDING-PLAN.BLD-B",
     "ruleId": "TOPO.02",
     "module": "topology",
-    "selected": "Sized 16 access switches and 1 distribution switch for BLD-B",
+    "selected": "Sized 16 access switches for BLD-B (represented as ACC-BLD-B Stack for deployment)",
     "inputs": {
       "endpoints": 580,
       "accessSwitches": 16,
       "apCount": 25
     },
     "rationale": [
-      "Building Building B (Library) (BLD-B): 580 endpoints with 20% growth buffer require 696 active drops. Using 48-port switches with 4 reserved uplink ports yields 44 usable access ports per switch. Allocated 16 access switch(es) providing 704 total access ports (8 spare ports). Calculated 25 PoE+ wireless access points (24 endpoints per AP). Allocated 1 distribution switch/stack for building aggregation."
+      "Building Building B (Library) (BLD-B): 580 endpoints with 20% growth buffer require 696 active drops. Using 48-port switches with 4 reserved uplink ports yields 44 usable access ports per switch. Allocated 16 access switch(es) providing 704 total access ports (8 spare ports). Calculated 25 PoE+ wireless access points (24 endpoints per AP). Allocated 1 distribution switch/stack for building aggregation. Aggregated into a representative Catalyst Stack for streamlined Packet Tracer / GNS3 verification."
     ],
     "warnings": [],
     "assumptions": [],
     "references": [
       "IEEE 802.3at PoE+",
-      "ANSI/TIA-568.0-D"
+      "ANSI/TIA-568.0-D",
+      "Cisco Catalyst StackWise Architecture"
     ]
   },
   {
     "decisionId": "TOPO.BUILDING-PLAN.BLD-C",
     "ruleId": "TOPO.02",
     "module": "topology",
-    "selected": "Sized 11 access switches and 1 distribution switch for BLD-C",
+    "selected": "Sized 11 access switches for BLD-C (represented as ACC-BLD-C Stack for deployment)",
     "inputs": {
       "endpoints": 400,
       "accessSwitches": 11,
       "apCount": 17
     },
     "rationale": [
-      "Building Building C (Admin) (BLD-C): 400 endpoints with 20% growth buffer require 480 active drops. Using 48-port switches with 4 reserved uplink ports yields 44 usable access ports per switch. Allocated 11 access switch(es) providing 484 total access ports (4 spare ports). Calculated 17 PoE+ wireless access points (24 endpoints per AP). Allocated 1 distribution switch/stack for building aggregation."
+      "Building Building C (Admin) (BLD-C): 400 endpoints with 20% growth buffer require 480 active drops. Using 48-port switches with 4 reserved uplink ports yields 44 usable access ports per switch. Allocated 11 access switch(es) providing 484 total access ports (4 spare ports). Calculated 17 PoE+ wireless access points (24 endpoints per AP). Allocated 1 distribution switch/stack for building aggregation. Aggregated into a representative Catalyst Stack for streamlined Packet Tracer / GNS3 verification."
     ],
     "warnings": [],
     "assumptions": [],
     "references": [
       "IEEE 802.3at PoE+",
-      "ANSI/TIA-568.0-D"
+      "ANSI/TIA-568.0-D",
+      "Cisco Catalyst StackWise Architecture"
     ]
   },
   {

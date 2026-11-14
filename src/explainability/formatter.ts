@@ -2,7 +2,6 @@
  * Rationale Formatter.
  * Formats structured engineering decisions into clean Markdown summaries and detail cards.
  * Enforces deterministic templates with zero LLM hallucinations.
- * OWNER: Explainability & Report Generation Agent (src/explainability/).
  */
 import type { EngineeringDecision } from "./model.js";
 

@@ -6,7 +6,7 @@
     "selected": "Configured dual-homed EVPL connections with primary and backup paths",
     "inputs": {
       "remoteSitesCount": 2,
-      "dualHomedFailover": false,
+      "dualHomedFailover": true,
       "evplBandwidthMbps": 200
     },
     "rationale": [
@@ -25,7 +25,7 @@
     "module": "vlan",
     "selected": "Assigned deterministic 802.1Q tags starting at 10 (+10)",
     "inputs": {
-      "totalVlans": 2,
+      "totalVlans": 4,
       "startId": 10,
       "increment": 10
     },
@@ -62,11 +62,13 @@
     "decisionId": "VLAN.TRUNK-PRUNING",
     "ruleId": "VLAN.03",
     "module": "vlan",
-    "selected": "Restricted trunk links to explicitly allowed VLAN list [10,20]",
+    "selected": "Restricted trunk links to explicitly allowed VLAN list [10,20,30,40]",
     "inputs": {
       "allowedVlanIds": [
         10,
-        20
+        20,
+        30,
+        40
       ]
     },
     "rationale": [
@@ -83,14 +85,14 @@
     "decisionId": "VLSM.ALLOC-0-USERS-NET",
     "ruleId": "VLSM.DESCENDING-CARVE",
     "module": "vlsm",
-    "selected": "Allocated USERS-NET as 10.60.0.0/23",
+    "selected": "Allocated USERS-NET as 10.30.0.0/23",
     "inputs": {
-      "hosts": 260,
+      "hosts": 450,
       "inputIndex": 1,
       "prefix": 23
     },
     "rationale": [
-      "260 requested hosts map to the minimal /23 under RFC 3021 host-capacity math; carved monotonically after all larger blocks, gateway reserved at 10.60.0.1 (first usable IP)."
+      "450 requested hosts map to the minimal /23 under RFC 3021 host-capacity math; carved monotonically after all larger blocks, gateway reserved at 10.30.0.1 (first usable IP)."
     ],
     "warnings": [],
     "assumptions": [],
@@ -100,17 +102,57 @@
     ]
   },
   {
-    "decisionId": "VLSM.ALLOC-1-MGMT-NET",
+    "decisionId": "VLSM.ALLOC-1-BRANCH-X-NET",
     "ruleId": "VLSM.DESCENDING-CARVE",
     "module": "vlsm",
-    "selected": "Allocated MGMT-NET as 10.60.2.0/28",
+    "selected": "Allocated BRANCH-X-NET as 10.30.2.0/24",
+    "inputs": {
+      "hosts": 250,
+      "inputIndex": 3,
+      "prefix": 24
+    },
+    "rationale": [
+      "250 requested hosts map to the minimal /24 under RFC 3021 host-capacity math; carved monotonically after all larger blocks, gateway reserved at 10.30.2.1 (first usable IP)."
+    ],
+    "warnings": [],
+    "assumptions": [],
+    "references": [
+      "RFC 950",
+      "RFC 3021"
+    ]
+  },
+  {
+    "decisionId": "VLSM.ALLOC-2-TXN-SERVERS-NET",
+    "ruleId": "VLSM.DESCENDING-CARVE",
+    "module": "vlsm",
+    "selected": "Allocated TXN-SERVERS-NET as 10.30.3.0/26",
+    "inputs": {
+      "hosts": 40,
+      "inputIndex": 2,
+      "prefix": 26
+    },
+    "rationale": [
+      "40 requested hosts map to the minimal /26 under RFC 3021 host-capacity math; carved monotonically after all larger blocks, gateway reserved at 10.30.3.1 (first usable IP)."
+    ],
+    "warnings": [],
+    "assumptions": [],
+    "references": [
+      "RFC 950",
+      "RFC 3021"
+    ]
+  },
+  {
+    "decisionId": "VLSM.ALLOC-3-MGMT-NET",
+    "ruleId": "VLSM.DESCENDING-CARVE",
+    "module": "vlsm",
+    "selected": "Allocated MGMT-NET as 10.30.3.64/28",
     "inputs": {
       "hosts": 10,
       "inputIndex": 0,
       "prefix": 28
     },
     "rationale": [
-      "10 requested hosts map to the minimal /28 under RFC 3021 host-capacity math; carved monotonically after all larger blocks, gateway reserved at 10.60.2.1 (first usable IP)."
+      "10 requested hosts map to the minimal /28 under RFC 3021 host-capacity math; carved monotonically after all larger blocks, gateway reserved at 10.30.3.65 (first usable IP)."
     ],
     "warnings": [],
     "assumptions": [],
@@ -123,13 +165,13 @@
     "decisionId": "VLSM.UTILIZATION",
     "ruleId": "VLSM.CAPACITY",
     "module": "vlsm",
-    "selected": "Root-block utilization 0.80%",
+    "selected": "Root-block utilization 1.28%",
     "inputs": {
-      "allocatedCapacity": 524,
+      "allocatedCapacity": 840,
       "rootCapacity": 65534
     },
     "rationale": [
-      "(524 usable addresses of 65534 in 10.60.0.0/16, 2 blocks carved, 65008 address(es) left free."
+      "(840 usable addresses of 65534 in 10.30.0.0/16, 4 blocks carved, 64688 address(es) left free."
     ],
     "warnings": [],
     "assumptions": [],
@@ -143,7 +185,7 @@
     "module": "vlsm",
     "selected": "No-overlap invariant holds across all allocations.",
     "inputs": {
-      "count": 2
+      "count": 4
     },
     "rationale": [
       "Monotone carving guarantees non-intersection; verified with an O(n) boundary assertion."
@@ -161,7 +203,7 @@
     "selected": "Selected Multi-Area OSPF architecture with Area 0 backbone",
     "inputs": {
       "asNumber": 65001,
-      "subnetCount": 2,
+      "subnetCount": 4,
       "threshold": 50,
       "sitesCount": 3
     },
@@ -179,10 +221,10 @@
     "decisionId": "ROUTING.OSPF.AREAS",
     "ruleId": "ROUTING.04",
     "module": "routing",
-    "selected": "Configured 1 OSPF area(s) with 2 network statements",
+    "selected": "Configured 1 OSPF area(s) with 4 network statements",
     "inputs": {
       "areasCount": 1,
-      "totalNetworks": 2
+      "totalNetworks": 4
     },
     "rationale": [
       "Network statements map exact network-aligned CIDRs and inverse wildcard masks directly from the VLSM plan, ensuring flawless LSDB population."
@@ -215,6 +257,24 @@
     "references": [
       "RFC 4594 DiffServ Class Architecture",
       "RFC 3246 Expedited Forwarding"
+    ]
+  },
+  {
+    "decisionId": "ROUTING.FAILOVER.METRIC-STEERING",
+    "ruleId": "ROUTING.06",
+    "module": "routing",
+    "selected": "Planned deterministic route failover across 2 circuit pair(s)",
+    "inputs": {
+      "failoverPairs": 2
+    },
+    "rationale": [
+      "Primary circuits are biased with metric 10 while secondary circuits carry metric 20, guaranteeing hitless failover upon primary link flap."
+    ],
+    "warnings": [],
+    "assumptions": [],
+    "references": [
+      "Cisco Resilient Network Design",
+      "RFC 2328 Cost Metric Semantics"
     ]
   }
 ]

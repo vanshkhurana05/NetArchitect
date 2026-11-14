@@ -2,7 +2,6 @@
  * Cisco IOS Configuration Renderer.
  * Translates Intermediate Device Configuration Models into copy-paste-ready Cisco CLI lines.
  * Stage 2 of the two-stage configuration architecture.
- * OWNER: Configuration Generator Agent (src/configuration/).
  */
 import type { DeviceConfigModel, InterfaceConfigModel } from "./model.js";
 

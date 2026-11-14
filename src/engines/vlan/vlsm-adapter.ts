@@ -1,7 +1,6 @@
 /**
  * Adapter converting VLAN requests to VLSM subnet requests.
  * Ensures the VLAN engine feeds the bitwise allocator rather than implementing its own IP logic.
- * OWNER: VLAN specialist agent (src/engines/vlan/).
  */
 import type { VlanItem, VlanRequestItem } from "../../contracts/vlan.js";
 import type { VlsmRequest } from "../../contracts/vlsm.js";

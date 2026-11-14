@@ -1,10 +1,6 @@
 /**
- * Design-result-side domain models — Foundation/Profiles agent.
- * Holds the generated design ONLY (never user requirements), so an
- * orchestrator can serialise a complete, self-contained design document.
- *
- * Aliases re-export frozen contract types so every downstream engine and
- * future prompt keeps a single, drift-free vocabulary.
+ * Design-result-side domain models.
+ * Holds the generated network design representation.
  */
 import type { Site, Device, DeviceRole, Link } from "../../contracts/topology.js";
 import type { VlanItem, TrunkPlan, VlanPlan } from "../../contracts/vlan.js";
@@ -19,7 +15,7 @@ import type { LinkKind, ProfileKind, AddressFamily } from "../enums/index.js";
 type InputSource = InputSourceKind;
 
 /* ------------------------------------------------------------------ */
-/* Aliases over frozen contracts (names from the approved domain list) */
+/* Aliases over frozen contracts  */
 /* ------------------------------------------------------------------ */
 
 export type { Site, Device, DeviceRole, RoutingPlan, TrunkPlan, VlanPlan };
@@ -46,7 +42,7 @@ export type NetworkDecision = ExplainRecord;
 export type DeviceConfiguration = DeviceConfig;
 
 /* ------------------------------------------------------------------ */
-/* Agent-owned models (no contract change required)                    */
+/* Core domain models                                                 */
 /* ------------------------------------------------------------------ */
 
 /** One port/interface of a configured device, enough for IOS rendering. */

@@ -1,7 +1,6 @@
 /**
  * Routing Configuration Generator.
  * Populates OSPF, BGP, and DiffServ QoS intermediate models.
- * OWNER: Configuration Generator Agent (src/configuration/).
  */
 import type { Device } from "../../contracts/topology.js";
 import type { RoutingPlan } from "../../contracts/routing.js";

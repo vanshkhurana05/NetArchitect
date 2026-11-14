@@ -1,0 +1,198 @@
+{
+  "root": {
+    "baseNetwork": "10.20.0.0",
+    "prefix": 16
+  },
+  "subnets": [
+    {
+      "name": "STAFF-NET",
+      "index": 0,
+      "network": "10.20.0.0",
+      "prefix": 22,
+      "mask": "255.255.252.0",
+      "wildcard": "0.0.3.255",
+      "broadcast": "10.20.3.255",
+      "firstHost": "10.20.0.1",
+      "lastHost": "10.20.3.254",
+      "gateway": "10.20.0.1",
+      "totalAddresses": 1024,
+      "requestedHosts": 650,
+      "capacity": 1022,
+      "utilization": 0.636
+    },
+    {
+      "name": "STUDENTS-NET",
+      "index": 1,
+      "network": "10.20.4.0",
+      "prefix": 22,
+      "mask": "255.255.252.0",
+      "wildcard": "0.0.3.255",
+      "broadcast": "10.20.7.255",
+      "firstHost": "10.20.4.1",
+      "lastHost": "10.20.7.254",
+      "gateway": "10.20.4.1",
+      "totalAddresses": 1024,
+      "requestedHosts": 850,
+      "capacity": 1022,
+      "utilization": 0.8317
+    },
+    {
+      "name": "SERVERS-NET",
+      "index": 2,
+      "network": "10.20.8.0",
+      "prefix": 26,
+      "mask": "255.255.255.192",
+      "wildcard": "0.0.0.63",
+      "broadcast": "10.20.8.63",
+      "firstHost": "10.20.8.1",
+      "lastHost": "10.20.8.62",
+      "gateway": "10.20.8.1",
+      "totalAddresses": 64,
+      "requestedHosts": 60,
+      "capacity": 62,
+      "utilization": 0.9677
+    },
+    {
+      "name": "MGMT-NET",
+      "index": 3,
+      "network": "10.20.8.64",
+      "prefix": 27,
+      "mask": "255.255.255.224",
+      "wildcard": "0.0.0.31",
+      "broadcast": "10.20.8.95",
+      "firstHost": "10.20.8.65",
+      "lastHost": "10.20.8.94",
+      "gateway": "10.20.8.65",
+      "totalAddresses": 32,
+      "requestedHosts": 20,
+      "capacity": 30,
+      "utilization": 0.6667
+    },
+    {
+      "name": "PRINTERS-NET",
+      "index": 4,
+      "network": "10.20.8.96",
+      "prefix": 27,
+      "mask": "255.255.255.224",
+      "wildcard": "0.0.0.31",
+      "broadcast": "10.20.8.127",
+      "firstHost": "10.20.8.97",
+      "lastHost": "10.20.8.126",
+      "gateway": "10.20.8.97",
+      "totalAddresses": 32,
+      "requestedHosts": 20,
+      "capacity": 30,
+      "utilization": 0.6667
+    }
+  ],
+  "efficiency": 0.0331,
+  "explanations": [
+    {
+      "module": "vlsm",
+      "id": "VLSM.ALLOC-0-STAFF-NET",
+      "rule": "VLSM.DESCENDING-CARVE",
+      "decision": "Allocated STAFF-NET as 10.20.0.0/22",
+      "rationale": "650 requested hosts map to the minimal /22 under RFC 3021 host-capacity math; carved monotonically after all larger blocks, gateway reserved at 10.20.0.1 (first usable IP).",
+      "inputs": {
+        "hosts": 650,
+        "inputIndex": 1,
+        "prefix": 22
+      },
+      "references": [
+        "RFC 950",
+        "RFC 3021"
+      ]
+    },
+    {
+      "module": "vlsm",
+      "id": "VLSM.ALLOC-1-STUDENTS-NET",
+      "rule": "VLSM.DESCENDING-CARVE",
+      "decision": "Allocated STUDENTS-NET as 10.20.4.0/22",
+      "rationale": "850 requested hosts map to the minimal /22 under RFC 3021 host-capacity math; carved monotonically after all larger blocks, gateway reserved at 10.20.4.1 (first usable IP).",
+      "inputs": {
+        "hosts": 850,
+        "inputIndex": 2,
+        "prefix": 22
+      },
+      "references": [
+        "RFC 950",
+        "RFC 3021"
+      ]
+    },
+    {
+      "module": "vlsm",
+      "id": "VLSM.ALLOC-2-SERVERS-NET",
+      "rule": "VLSM.DESCENDING-CARVE",
+      "decision": "Allocated SERVERS-NET as 10.20.8.0/26",
+      "rationale": "60 requested hosts map to the minimal /26 under RFC 3021 host-capacity math; carved monotonically after all larger blocks, gateway reserved at 10.20.8.1 (first usable IP).",
+      "inputs": {
+        "hosts": 60,
+        "inputIndex": 3,
+        "prefix": 26
+      },
+      "references": [
+        "RFC 950",
+        "RFC 3021"
+      ]
+    },
+    {
+      "module": "vlsm",
+      "id": "VLSM.ALLOC-3-MGMT-NET",
+      "rule": "VLSM.DESCENDING-CARVE",
+      "decision": "Allocated MGMT-NET as 10.20.8.64/27",
+      "rationale": "20 requested hosts map to the minimal /27 under RFC 3021 host-capacity math; carved monotonically after all larger blocks, gateway reserved at 10.20.8.65 (first usable IP).",
+      "inputs": {
+        "hosts": 20,
+        "inputIndex": 0,
+        "prefix": 27
+      },
+      "references": [
+        "RFC 950",
+        "RFC 3021"
+      ]
+    },
+    {
+      "module": "vlsm",
+      "id": "VLSM.ALLOC-4-PRINTERS-NET",
+      "rule": "VLSM.DESCENDING-CARVE",
+      "decision": "Allocated PRINTERS-NET as 10.20.8.96/27",
+      "rationale": "20 requested hosts map to the minimal /27 under RFC 3021 host-capacity math; carved monotonically after all larger blocks, gateway reserved at 10.20.8.97 (first usable IP).",
+      "inputs": {
+        "hosts": 20,
+        "inputIndex": 4,
+        "prefix": 27
+      },
+      "references": [
+        "RFC 950",
+        "RFC 3021"
+      ]
+    },
+    {
+      "module": "vlsm",
+      "id": "VLSM.UTILIZATION",
+      "rule": "VLSM.CAPACITY",
+      "decision": "Root-block utilization 3.31%",
+      "rationale": "(2166 usable addresses of 65534 in 10.20.0.0/16, 5 blocks carved, 63360 address(es) left free.",
+      "inputs": {
+        "allocatedCapacity": 2166,
+        "rootCapacity": 65534
+      },
+      "references": [
+        "RFC 950"
+      ]
+    },
+    {
+      "module": "vlsm",
+      "id": "VLSM.NO-OVERLAP",
+      "rule": "VLSM.INVARIANT",
+      "decision": "No-overlap invariant holds across all allocations.",
+      "rationale": "Monotone carving guarantees non-intersection; verified with an O(n) boundary assertion.",
+      "inputs": {
+        "count": 5
+      },
+      "references": [
+        "RFC 950"
+      ]
+    }
+  ]
+}

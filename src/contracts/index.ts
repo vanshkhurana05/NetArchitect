@@ -1,9 +1,7 @@
 /**
- * NetArchitect — Shared Domain Contracts (ARCHITECT-OWNED)
+ * NetArchitect — Core Domain Interfaces & Type Definitions
  * ---------------------------------------------------------
- * These types and Zod schemas are the single source of truth.
- * Specialist agents MUST NOT edit anything under src/contracts/.
- * Contract change requests go through the Lead Architect only.
+ * These types and Zod schemas define the shared data models.
  */
 export * from "./input.js";
 export * from "./explain.js";

@@ -3,7 +3,6 @@
  * final report contains natural-language engineering justifications for
  * EVERY media type, transceiver, routing protocol, and topology tier
  * decision (assignment rubric: 25 pts).
- * OWNER: Lead Architect; the collector lives in src/explain/.
  */
 
 export type ExplainModule =

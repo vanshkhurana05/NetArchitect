@@ -2,7 +2,6 @@
  * Route Summarization Utility.
  * Computes minimal covering CIDR supernets across subnet collections
  * and detects route summary overlaps.
- * OWNER: Routing specialist agent (src/engines/routing/).
  */
 import type { SubnetPlanItem } from "../../contracts/vlsm.js";
 import {

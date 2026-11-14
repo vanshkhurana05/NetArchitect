@@ -1,0 +1,166 @@
+{
+  "root": {
+    "baseNetwork": "10.40.0.0",
+    "prefix": 16
+  },
+  "subnets": [
+    {
+      "name": "IOT-NODES-NET",
+      "index": 0,
+      "network": "10.40.0.0",
+      "prefix": 21,
+      "mask": "255.255.248.0",
+      "wildcard": "0.0.7.255",
+      "broadcast": "10.40.7.255",
+      "firstHost": "10.40.0.1",
+      "lastHost": "10.40.7.254",
+      "gateway": "10.40.0.1",
+      "totalAddresses": 2048,
+      "requestedHosts": 1800,
+      "capacity": 2046,
+      "utilization": 0.8798
+    },
+    {
+      "name": "SCANNERS-NET",
+      "index": 1,
+      "network": "10.40.8.0",
+      "prefix": 24,
+      "mask": "255.255.255.0",
+      "wildcard": "0.0.0.255",
+      "broadcast": "10.40.8.255",
+      "firstHost": "10.40.8.1",
+      "lastHost": "10.40.8.254",
+      "gateway": "10.40.8.1",
+      "totalAddresses": 256,
+      "requestedHosts": 200,
+      "capacity": 254,
+      "utilization": 0.7874
+    },
+    {
+      "name": "ANALYTICS-NET",
+      "index": 2,
+      "network": "10.40.9.0",
+      "prefix": 25,
+      "mask": "255.255.255.128",
+      "wildcard": "0.0.0.127",
+      "broadcast": "10.40.9.127",
+      "firstHost": "10.40.9.1",
+      "lastHost": "10.40.9.126",
+      "gateway": "10.40.9.1",
+      "totalAddresses": 128,
+      "requestedHosts": 100,
+      "capacity": 126,
+      "utilization": 0.7937
+    },
+    {
+      "name": "MGMT-NET",
+      "index": 3,
+      "network": "10.40.9.128",
+      "prefix": 27,
+      "mask": "255.255.255.224",
+      "wildcard": "0.0.0.31",
+      "broadcast": "10.40.9.159",
+      "firstHost": "10.40.9.129",
+      "lastHost": "10.40.9.158",
+      "gateway": "10.40.9.129",
+      "totalAddresses": 32,
+      "requestedHosts": 30,
+      "capacity": 30,
+      "utilization": 1
+    }
+  ],
+  "efficiency": 0.0375,
+  "explanations": [
+    {
+      "module": "vlsm",
+      "id": "VLSM.ALLOC-0-IOT-NODES-NET",
+      "rule": "VLSM.DESCENDING-CARVE",
+      "decision": "Allocated IOT-NODES-NET as 10.40.0.0/21",
+      "rationale": "1800 requested hosts map to the minimal /21 under RFC 3021 host-capacity math; carved monotonically after all larger blocks, gateway reserved at 10.40.0.1 (first usable IP).",
+      "inputs": {
+        "hosts": 1800,
+        "inputIndex": 1,
+        "prefix": 21
+      },
+      "references": [
+        "RFC 950",
+        "RFC 3021"
+      ]
+    },
+    {
+      "module": "vlsm",
+      "id": "VLSM.ALLOC-1-SCANNERS-NET",
+      "rule": "VLSM.DESCENDING-CARVE",
+      "decision": "Allocated SCANNERS-NET as 10.40.8.0/24",
+      "rationale": "200 requested hosts map to the minimal /24 under RFC 3021 host-capacity math; carved monotonically after all larger blocks, gateway reserved at 10.40.8.1 (first usable IP).",
+      "inputs": {
+        "hosts": 200,
+        "inputIndex": 2,
+        "prefix": 24
+      },
+      "references": [
+        "RFC 950",
+        "RFC 3021"
+      ]
+    },
+    {
+      "module": "vlsm",
+      "id": "VLSM.ALLOC-2-ANALYTICS-NET",
+      "rule": "VLSM.DESCENDING-CARVE",
+      "decision": "Allocated ANALYTICS-NET as 10.40.9.0/25",
+      "rationale": "100 requested hosts map to the minimal /25 under RFC 3021 host-capacity math; carved monotonically after all larger blocks, gateway reserved at 10.40.9.1 (first usable IP).",
+      "inputs": {
+        "hosts": 100,
+        "inputIndex": 3,
+        "prefix": 25
+      },
+      "references": [
+        "RFC 950",
+        "RFC 3021"
+      ]
+    },
+    {
+      "module": "vlsm",
+      "id": "VLSM.ALLOC-3-MGMT-NET",
+      "rule": "VLSM.DESCENDING-CARVE",
+      "decision": "Allocated MGMT-NET as 10.40.9.128/27",
+      "rationale": "30 requested hosts map to the minimal /27 under RFC 3021 host-capacity math; carved monotonically after all larger blocks, gateway reserved at 10.40.9.129 (first usable IP).",
+      "inputs": {
+        "hosts": 30,
+        "inputIndex": 0,
+        "prefix": 27
+      },
+      "references": [
+        "RFC 950",
+        "RFC 3021"
+      ]
+    },
+    {
+      "module": "vlsm",
+      "id": "VLSM.UTILIZATION",
+      "rule": "VLSM.CAPACITY",
+      "decision": "Root-block utilization 3.75%",
+      "rationale": "(2456 usable addresses of 65534 in 10.40.0.0/16, 4 blocks carved, 63072 address(es) left free.",
+      "inputs": {
+        "allocatedCapacity": 2456,
+        "rootCapacity": 65534
+      },
+      "references": [
+        "RFC 950"
+      ]
+    },
+    {
+      "module": "vlsm",
+      "id": "VLSM.NO-OVERLAP",
+      "rule": "VLSM.INVARIANT",
+      "decision": "No-overlap invariant holds across all allocations.",
+      "rationale": "Monotone carving guarantees non-intersection; verified with an O(n) boundary assertion.",
+      "inputs": {
+        "count": 4
+      },
+      "references": [
+        "RFC 950"
+      ]
+    }
+  ]
+}

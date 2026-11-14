@@ -2,7 +2,6 @@
  * Intermediate Device Configuration Model (IR).
  * Decouples logical network planning from physical CLI command rendering.
  * Stage 1 of the two-stage configuration architecture.
- * OWNER: Configuration Generator Agent (src/configuration/).
  */
 
 export type CiscoDeviceType =

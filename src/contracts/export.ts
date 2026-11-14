@@ -1,6 +1,5 @@
 /**
  * Export manager contracts — produces design report + IOS files + JSON.
- * OWNER: export specialist agent (implementation in src/export/).
  */
 export interface ExportedArtifact {
   path: string;

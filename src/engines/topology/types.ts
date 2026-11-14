@@ -1,6 +1,5 @@
 /**
  * Topology Engine Types & Graph Models.
- * OWNER: Topology specialist agent (src/engines/topology/).
  */
 import type { DeviceRole, Link, Site, Device } from "../../contracts/topology.js";
 import type { TransceiverSpec, EthernetStandard } from "../../contracts/media.js";
@@ -60,4 +59,10 @@ export interface TopologyBuilderOptions {
   planningConfig?: Partial<DevicePlanningConfig>;
   /** If false, uses standard 3-tier; if true (default), collapsed-core */
   collapsedCore?: boolean;
+  /**
+   * If true, builds representative access switch stacks (1 per building)
+   * for streamlined Packet Tracer / GNS3 deployment, while preserving
+   * full mathematical capacity planning in the architecture report.
+   */
+  representativeAccess?: boolean;
 }

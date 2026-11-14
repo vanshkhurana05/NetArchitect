@@ -1,6 +1,5 @@
 /**
  * VLAN engine contracts (802.1Q tagging, trunking, SVI planning).
- * OWNER: VLSM+VLAN specialist agent (implementation in src/vlan/).
  */
 import type { ExplainRecord } from "./explain.js";
 import type { Device, Link } from "./topology.js";
@@ -36,7 +35,7 @@ export interface VlanRequestItem {
 }
 
 /**
- * Amendment A+8 (architect): optional devices and links passed to VLAN engine
+ * optional devices and links passed to VLAN engine
  * so trunk plans and SVI mappings can resolve device/link identifiers directly.
  */
 export interface VlanEngineInput {

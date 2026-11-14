@@ -1,6 +1,5 @@
 /**
  * Configuration generator contracts (Cisco IOS-XE style output).
- * OWNER: config-gen specialist agent (implementation in src/configgen/).
  */
 import type { Device, Link } from "./topology.js";
 import type { VlanPlan } from "./vlan.js";

@@ -1,5 +1,5 @@
 /**
- * Preset loading + custom input ingestion — Foundation/Profiles agent.
+ * Preset loading + custom input ingestion 
  * External JSON boundary; all Zod + semantic checking funnels through
  * src/validation/. No networking algorithms here.
  */

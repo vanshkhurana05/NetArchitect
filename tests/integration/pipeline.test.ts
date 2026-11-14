@@ -1,7 +1,6 @@
 /**
  * Level 2 Integration Testing — Complete Pipeline End-to-End.
  * Tests: Profile -> Validation -> Media -> Topology -> VLAN -> VLSM -> Routing -> Device Model -> Cisco Config -> Verification.
- * OWNER: Testing, Integration & Verification Agent (tests/integration/).
  */
 import { describe, it, expect } from "vitest";
 import { loadPreset } from "../../src/profiles/index.js";

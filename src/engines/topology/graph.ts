@@ -1,7 +1,6 @@
 /**
  * Graph data structure representing network nodes, interface-to-interface
  * connections, and site containers.
- * OWNER: Topology specialist agent (src/engines/topology/).
  */
 import type { Site, Topology, Device, Link } from "../../contracts/topology.js";
 import type { ExplainRecord } from "../../contracts/explain.js";

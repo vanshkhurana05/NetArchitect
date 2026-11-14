@@ -2,7 +2,6 @@
  * Topology Graph Builder.
  * Implements topology construction across Campus LAN, Metro MAN, and Global WAN.
  * Populates device hierarchies, interface-to-interface mappings, and media integration.
- * OWNER: Topology specialist agent (src/engines/topology/).
  */
 import type { TopologyRequest, Topology, Site, DeviceRole } from "../../contracts/topology.js";
 import type { ExplainRecord } from "../../contracts/explain.js";
@@ -188,19 +187,19 @@ function buildCampusTopology(
     coreUplinkPortIndex++;
 
     // Access Switches for Building
-    for (let sw = 1; sw <= plan.accessSwitchesCount; sw++) {
-      const accessSwitchId = `ACC-${bld.id}-SW${sw}`;
+    const isRepresentative = options?.representativeAccess === true;
+
+    if (isRepresentative) {
+      // Representative Access Switch Stack (1 logical managed entity per building for Packet Tracer deployment)
+      const accessSwitchId = `ACC-${bld.id}`;
       const accessSwitch: TopologyNode = {
         id: accessSwitchId,
-        name: `Access Switch ${bld.id} #${sw}`,
+        name: `Access Switch ${bld.id} (Stack of ${plan.accessSwitchesCount}x 48-port Catalyst 2960)`,
         role: "access-switch",
         siteId: bld.id,
         portCount: 48,
         poe: true,
-        endpointsServed: Math.min(
-          plan.endpoints,
-          Math.ceil(plan.endpoints / plan.accessSwitchesCount),
-        ),
+        endpointsServed: plan.endpoints,
         interfaces: [
           ...createInterfaces("GigabitEthernet", 48, 1000, "copper"),
           ...createInterfaces("TenGigabitEthernet", 4, 10000, "fiber"),
@@ -208,14 +207,13 @@ function buildCampusTopology(
       };
       graph.addNode(accessSwitch);
 
-      // Access Uplink to Building Distribution Switch
       const accessMedia = recommendMedia({ runMeters: bld.accessRunMeters, role: "access" });
       const accessUplink: TopologyEdge = {
         id: `LINK-${accessSwitchId}-${distSwitchId}`,
         aDeviceId: accessSwitchId,
         bDeviceId: distSwitchId,
         aInterface: "TenGigabitEthernet1/0/1",
-        bInterface: `GigabitEthernet1/0/${sw}`,
+        bInterface: "GigabitEthernet1/0/1",
         kind: "physical",
         bandwidthMbps: 1000,
         phys: {
@@ -225,17 +223,66 @@ function buildCampusTopology(
         },
       };
       graph.addEdge(accessUplink);
-    }
 
-    graph.addExplanation({
-      id: `TOPO.BUILDING-PLAN.${bld.id}`,
-      module: "topology",
-      rule: "TOPO.02",
-      decision: `Sized ${plan.accessSwitchesCount} access switches and 1 distribution switch for ${bld.id}`,
-      rationale: plan.rationale.join(" "),
-      inputs: { endpoints: bld.endpoints, accessSwitches: plan.accessSwitchesCount, apCount: plan.apCount },
-      references: ["IEEE 802.3at PoE+", "ANSI/TIA-568.0-D"],
-    });
+      graph.addExplanation({
+        id: `TOPO.BUILDING-PLAN.${bld.id}`,
+        module: "topology",
+        rule: "TOPO.02",
+        decision: `Sized ${plan.accessSwitchesCount} access switches for ${bld.id} (represented as ${accessSwitchId} Stack for deployment)`,
+        rationale: `${plan.rationale.join(" ")} Aggregated into a representative Catalyst Stack for streamlined Packet Tracer / GNS3 verification.`,
+        inputs: { endpoints: bld.endpoints, accessSwitches: plan.accessSwitchesCount, apCount: plan.apCount },
+        references: ["IEEE 802.3at PoE+", "ANSI/TIA-568.0-D", "Cisco Catalyst StackWise Architecture"],
+      });
+    } else {
+      for (let sw = 1; sw <= plan.accessSwitchesCount; sw++) {
+        const accessSwitchId = `ACC-${bld.id}-SW${sw}`;
+        const accessSwitch: TopologyNode = {
+          id: accessSwitchId,
+          name: `Access Switch ${bld.id} #${sw}`,
+          role: "access-switch",
+          siteId: bld.id,
+          portCount: 48,
+          poe: true,
+          endpointsServed: Math.min(
+            plan.endpoints,
+            Math.ceil(plan.endpoints / plan.accessSwitchesCount),
+          ),
+          interfaces: [
+            ...createInterfaces("GigabitEthernet", 48, 1000, "copper"),
+            ...createInterfaces("TenGigabitEthernet", 4, 10000, "fiber"),
+          ],
+        };
+        graph.addNode(accessSwitch);
+
+        // Access Uplink to Building Distribution Switch
+        const accessMedia = recommendMedia({ runMeters: bld.accessRunMeters, role: "access" });
+        const accessUplink: TopologyEdge = {
+          id: `LINK-${accessSwitchId}-${distSwitchId}`,
+          aDeviceId: accessSwitchId,
+          bDeviceId: distSwitchId,
+          aInterface: "TenGigabitEthernet1/0/1",
+          bInterface: `GigabitEthernet1/0/${sw}`,
+          kind: "physical",
+          bandwidthMbps: 1000,
+          phys: {
+            runMeters: bld.accessRunMeters,
+            spec: accessMedia.chosen,
+            standard: accessMedia.chosen.standard,
+          },
+        };
+        graph.addEdge(accessUplink);
+      }
+
+      graph.addExplanation({
+        id: `TOPO.BUILDING-PLAN.${bld.id}`,
+        module: "topology",
+        rule: "TOPO.02",
+        decision: `Sized ${plan.accessSwitchesCount} access switches and 1 distribution switch for ${bld.id}`,
+        rationale: plan.rationale.join(" "),
+        inputs: { endpoints: bld.endpoints, accessSwitches: plan.accessSwitchesCount, apCount: plan.apCount },
+        references: ["IEEE 802.3at PoE+", "ANSI/TIA-568.0-D"],
+      });
+    }
   }
 
   return graph;
@@ -545,13 +592,18 @@ export function buildTopology(
   options?: TopologyBuilderOptions,
 ): Topology {
   let graph: NetworkGraph;
+  const mergedOptions: TopologyBuilderOptions = {
+    ...options,
+    representativeAccess:
+      options?.representativeAccess ?? (request.profileShape as any).representativeAccess,
+  };
 
   switch (request.profileShape.profile) {
     case "campus-lan":
       graph = buildCampusTopology(
         request.profileShape.buildings,
         request.mediaByRole,
-        options,
+        mergedOptions,
       );
       break;
 

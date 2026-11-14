@@ -1,6 +1,5 @@
 /**
  * Cisco IOS Configuration Generator Exports.
- * OWNER: Configuration Generator Agent (src/configuration/).
  */
 export * from "./model.js";
 export * from "./renderer.js";

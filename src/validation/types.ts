@@ -1,5 +1,5 @@
 /**
- * Structured validation result contract — Foundation/Profiles agent.
+ * Structured validation result contract 
  * Errors block the run; advisories are non-fatal boundary observations
  * that get carried into the explain log downstream.
  */

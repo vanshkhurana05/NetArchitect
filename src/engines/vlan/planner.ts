@@ -2,7 +2,6 @@
  * VLAN planning engine.
  * Plans 802.1Q VLAN IDs, trunk allowed lists, native VLAN hardening,
  * access port assignments, and SVI layer-3 routing interfaces.
- * OWNER: VLAN specialist agent (src/engines/vlan/).
  */
 import type {
   VlanEngineInput,

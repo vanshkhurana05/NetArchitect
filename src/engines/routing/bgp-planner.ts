@@ -1,7 +1,6 @@
 /**
  * BGP Peering and Autonomous System Planner.
  * Enforces external BGP (eBGP) between distinct autonomous systems.
- * OWNER: Routing specialist agent (src/engines/routing/).
  */
 import type { BgpSession } from "../../contracts/routing.js";
 import type { Device } from "../../contracts/topology.js";

@@ -5,7 +5,7 @@
  *
  * Usage: npm run example:configgen
  */
-import { writeFileSync, mkdirSync } from "node:fs";
+import { writeFileSync, mkdirSync, rmSync, existsSync } from "node:fs";
 import { join } from "node:path";
 import { loadPreset } from "../src/profiles/index.js";
 import { buildTopology } from "../src/engines/topology/index.js";
@@ -31,7 +31,11 @@ async function generateAllSampleConfigs() {
     const topo = buildTopology({
       profileShape: {
         profile: scenario,
-        ...(scenario === "campus-lan" && { buildings: input.buildings, collapsedCore: input.collapsedCore }),
+        ...(scenario === "campus-lan" && {
+          buildings: input.buildings,
+          collapsedCore: input.collapsedCore,
+          representativeAccess: true,
+        }),
         ...(scenario === "metro-man" && { sites: input.sites, dualHomedFailover: input.dualHomedFailover, evplBandwidthMbps: input.evplBandwidthMbps }),
         ...(scenario === "global-wan" && { cities: input.cities, cloudVpc: input.cloudVpc }),
       } as any,
@@ -81,6 +85,9 @@ async function generateAllSampleConfigs() {
     });
 
     const outDir = join(process.cwd(), "samples", scenario);
+    if (existsSync(outDir)) {
+      rmSync(outDir, { recursive: true, force: true });
+    }
     mkdirSync(outDir, { recursive: true });
 
     console.log(`  Rendered ${result.configs.length} device configurations.`);

@@ -2,7 +2,6 @@
  * Engineering Decision Model.
  * Provides a structured schema for explainability metadata, algorithmic rule IDs,
  * rationales, assumptions, and warnings across all engines.
- * OWNER: Explainability & Report Generation Agent (src/explainability/).
  */
 import type { ExplainRecord, ExplainModule } from "../contracts/explain.js";
 

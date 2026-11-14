@@ -1,0 +1,19 @@
+{
+  "profile": "campus-lan",
+  "buildings": [
+    { "id": "SCI", "name": "Science & Engineering Hall", "backboneRunMeters": 280, "floors": 4, "accessRunMeters": 45, "endpoints": 650 },
+    { "id": "ADM", "name": "Administrative Complex", "backboneRunMeters": 85, "floors": 3, "accessRunMeters": 50, "endpoints": 400 },
+    { "id": "LIB", "name": "Central Library & Tech Hub", "backboneRunMeters": 350, "floors": 2, "accessRunMeters": 60, "endpoints": 550 }
+  ],
+  "vlanRequests": [
+    { "name": "Students_WLAN",       "purpose": "students",   "hosts": 900 },
+    { "name": "Faculty_Staff",       "purpose": "staff",      "hosts": 350 },
+    { "name": "Smart_Classrooms_IoT","purpose": "iot",        "hosts": 200 },
+    { "name": "VoIP_Telephony",      "purpose": "voice",      "hosts": 120 },
+    { "name": "Security_CCTV",       "purpose": "servers",    "hosts": 30 },
+    { "name": "MGMT",                "purpose": "management", "hosts": 15 }
+  ],
+  "rootBlockCidr": "10.100.0.0/16",
+  "collapsedCore": true,
+  "ospfSingleArea": true
+}

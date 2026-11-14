@@ -1,6 +1,5 @@
 /**
  * Export Manager implementation.
- * OWNER: Final Integration & Release Agent (src/engines/export/).
  */
 import type { ExportManager, ExportBundle, ExportDirectoryLayout, ExportManifest } from "../../contracts/export.js";
 import { writeFileSync, mkdirSync } from "node:fs";

@@ -1,6 +1,5 @@
 /**
  * VLAN Engine Types.
- * OWNER: VLAN specialist agent (src/engines/vlan/).
  */
 import type { VlanItem, VlanPlan, VlanRequestItem } from "../../contracts/vlan.js";
 import type { VlsmRequest } from "../../contracts/vlsm.js";

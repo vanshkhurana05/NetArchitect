@@ -2,7 +2,6 @@
  * Engineering Decision Collector.
  * Aggregates decisions from physical media, topology, VLAN, VLSM,
  * routing, and configuration generator engines into an immutable audit trail.
- * OWNER: Explainability & Report Generation Agent (src/explainability/).
  */
 import type { ExplainRecord, ExplainLog } from "../contracts/explain.js";
 import type { EngineeringDecision, DecisionModule } from "./model.js";

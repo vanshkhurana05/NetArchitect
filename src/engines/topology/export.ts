@@ -1,7 +1,6 @@
 /**
  * Topology serialization and export utility.
  * Generates JSON snapshots and Graphviz DOT representations for visual inspection.
- * OWNER: Topology specialist agent (src/engines/topology/).
  */
 import type { Topology } from "../../contracts/topology.js";
 

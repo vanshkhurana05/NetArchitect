@@ -1,0 +1,904 @@
+{
+  "profile": "campus-lan",
+  "source": "custom",
+  "topology": {
+    "tier": "collapsed-core",
+    "sites": [
+      {
+        "id": "SITE-CORE",
+        "label": "Campus Main Distribution Facility (MDF)",
+        "kind": "building",
+        "deviceIds": [
+          "CORE-01",
+          "CORE-02"
+        ]
+      },
+      {
+        "id": "SCI",
+        "label": "Science & Engineering Hall",
+        "kind": "building",
+        "deviceIds": [
+          "DIST-SCI",
+          "ACC-SCI"
+        ]
+      },
+      {
+        "id": "ADM",
+        "label": "Administrative Complex",
+        "kind": "building",
+        "deviceIds": [
+          "DIST-ADM",
+          "ACC-ADM"
+        ]
+      },
+      {
+        "id": "LIB",
+        "label": "Central Library & Tech Hub",
+        "kind": "building",
+        "deviceIds": [
+          "DIST-LIB",
+          "ACC-LIB"
+        ]
+      }
+    ],
+    "devices": [
+      {
+        "id": "CORE-01",
+        "name": "Campus Core Switch 01",
+        "role": "core-switch",
+        "siteId": "SITE-CORE",
+        "mgmtIp": "10.0.0.1",
+        "portCount": 24
+      },
+      {
+        "id": "CORE-02",
+        "name": "Campus Core Switch 02",
+        "role": "core-switch",
+        "siteId": "SITE-CORE",
+        "mgmtIp": "10.0.0.2",
+        "portCount": 24
+      },
+      {
+        "id": "DIST-SCI",
+        "name": "Distribution Switch Science & Engineering Hall",
+        "role": "distribution-switch",
+        "siteId": "SCI",
+        "portCount": 24
+      },
+      {
+        "id": "ACC-SCI",
+        "name": "Access Switch SCI (Stack of 18x 48-port Catalyst 2960)",
+        "role": "access-switch",
+        "siteId": "SCI",
+        "portCount": 48,
+        "poe": true
+      },
+      {
+        "id": "DIST-ADM",
+        "name": "Distribution Switch Administrative Complex",
+        "role": "distribution-switch",
+        "siteId": "ADM",
+        "portCount": 24
+      },
+      {
+        "id": "ACC-ADM",
+        "name": "Access Switch ADM (Stack of 11x 48-port Catalyst 2960)",
+        "role": "access-switch",
+        "siteId": "ADM",
+        "portCount": 48,
+        "poe": true
+      },
+      {
+        "id": "DIST-LIB",
+        "name": "Distribution Switch Central Library & Tech Hub",
+        "role": "distribution-switch",
+        "siteId": "LIB",
+        "portCount": 24
+      },
+      {
+        "id": "ACC-LIB",
+        "name": "Access Switch LIB (Stack of 15x 48-port Catalyst 2960)",
+        "role": "access-switch",
+        "siteId": "LIB",
+        "portCount": 48,
+        "poe": true
+      }
+    ],
+    "links": [
+      {
+        "id": "LINK-CORE-INTERCONNECT",
+        "aDeviceId": "CORE-01",
+        "bDeviceId": "CORE-02",
+        "kind": "physical",
+        "bandwidthMbps": 10000,
+        "phys": {
+          "runMeters": 5,
+          "spec": {
+            "id": "cat6a-10gt",
+            "label": "1000BASE/10G-T RJ45",
+            "medium": "cat6a",
+            "standard": "10GBASE-T",
+            "wavelengthNm": 0,
+            "maxReachMeters": 100,
+            "finePrint": "IEEE 802.3an: 10GBASE-T over Cat6a is capped at 100 m (inclusive). Copper runs beyond 100 m are a PhysicalDistanceViolationError by assignment mandate."
+          },
+          "standard": "10GBASE-T"
+        }
+      },
+      {
+        "id": "LINK-DIST-SCI-CORE-01",
+        "aDeviceId": "DIST-SCI",
+        "bDeviceId": "CORE-01",
+        "kind": "physical",
+        "bandwidthMbps": 10000,
+        "phys": {
+          "runMeters": 280,
+          "spec": {
+            "id": "om4-850sr",
+            "label": "850nm-SR",
+            "medium": "om4",
+            "standard": "10GBASE-SR",
+            "wavelengthNm": 850,
+            "maxReachMeters": 400,
+            "powerBudgetDb": 7.3,
+            "finePrint": "IEEE 802.3ae: the 400 m OM4 reach is a 10GBASE-SR @ 850 nm figure. Do not reuse it at other Ethernet speeds — SR-class optics derate OM4 reach as speed rises."
+          },
+          "standard": "10GBASE-SR"
+        }
+      },
+      {
+        "id": "LINK-DIST-SCI-CORE-02",
+        "aDeviceId": "DIST-SCI",
+        "bDeviceId": "CORE-02",
+        "kind": "physical",
+        "bandwidthMbps": 10000,
+        "phys": {
+          "runMeters": 280,
+          "spec": {
+            "id": "om4-850sr",
+            "label": "850nm-SR",
+            "medium": "om4",
+            "standard": "10GBASE-SR",
+            "wavelengthNm": 850,
+            "maxReachMeters": 400,
+            "powerBudgetDb": 7.3,
+            "finePrint": "IEEE 802.3ae: the 400 m OM4 reach is a 10GBASE-SR @ 850 nm figure. Do not reuse it at other Ethernet speeds — SR-class optics derate OM4 reach as speed rises."
+          },
+          "standard": "10GBASE-SR"
+        }
+      },
+      {
+        "id": "LINK-ACC-SCI-DIST-SCI",
+        "aDeviceId": "ACC-SCI",
+        "bDeviceId": "DIST-SCI",
+        "kind": "physical",
+        "bandwidthMbps": 1000,
+        "phys": {
+          "runMeters": 45,
+          "spec": {
+            "id": "cat6a-10gt",
+            "label": "1000BASE/10G-T RJ45",
+            "medium": "cat6a",
+            "standard": "10GBASE-T",
+            "wavelengthNm": 0,
+            "maxReachMeters": 100,
+            "finePrint": "IEEE 802.3an: 10GBASE-T over Cat6a is capped at 100 m (inclusive). Copper runs beyond 100 m are a PhysicalDistanceViolationError by assignment mandate."
+          },
+          "standard": "10GBASE-T"
+        }
+      },
+      {
+        "id": "LINK-DIST-ADM-CORE-01",
+        "aDeviceId": "DIST-ADM",
+        "bDeviceId": "CORE-01",
+        "kind": "physical",
+        "bandwidthMbps": 10000,
+        "phys": {
+          "runMeters": 85,
+          "spec": {
+            "id": "cat6a-10gt",
+            "label": "1000BASE/10G-T RJ45",
+            "medium": "cat6a",
+            "standard": "10GBASE-T",
+            "wavelengthNm": 0,
+            "maxReachMeters": 100,
+            "finePrint": "IEEE 802.3an: 10GBASE-T over Cat6a is capped at 100 m (inclusive). Copper runs beyond 100 m are a PhysicalDistanceViolationError by assignment mandate."
+          },
+          "standard": "10GBASE-T"
+        }
+      },
+      {
+        "id": "LINK-DIST-ADM-CORE-02",
+        "aDeviceId": "DIST-ADM",
+        "bDeviceId": "CORE-02",
+        "kind": "physical",
+        "bandwidthMbps": 10000,
+        "phys": {
+          "runMeters": 85,
+          "spec": {
+            "id": "cat6a-10gt",
+            "label": "1000BASE/10G-T RJ45",
+            "medium": "cat6a",
+            "standard": "10GBASE-T",
+            "wavelengthNm": 0,
+            "maxReachMeters": 100,
+            "finePrint": "IEEE 802.3an: 10GBASE-T over Cat6a is capped at 100 m (inclusive). Copper runs beyond 100 m are a PhysicalDistanceViolationError by assignment mandate."
+          },
+          "standard": "10GBASE-T"
+        }
+      },
+      {
+        "id": "LINK-ACC-ADM-DIST-ADM",
+        "aDeviceId": "ACC-ADM",
+        "bDeviceId": "DIST-ADM",
+        "kind": "physical",
+        "bandwidthMbps": 1000,
+        "phys": {
+          "runMeters": 50,
+          "spec": {
+            "id": "cat6a-10gt",
+            "label": "1000BASE/10G-T RJ45",
+            "medium": "cat6a",
+            "standard": "10GBASE-T",
+            "wavelengthNm": 0,
+            "maxReachMeters": 100,
+            "finePrint": "IEEE 802.3an: 10GBASE-T over Cat6a is capped at 100 m (inclusive). Copper runs beyond 100 m are a PhysicalDistanceViolationError by assignment mandate."
+          },
+          "standard": "10GBASE-T"
+        }
+      },
+      {
+        "id": "LINK-DIST-LIB-CORE-01",
+        "aDeviceId": "DIST-LIB",
+        "bDeviceId": "CORE-01",
+        "kind": "physical",
+        "bandwidthMbps": 10000,
+        "phys": {
+          "runMeters": 350,
+          "spec": {
+            "id": "om4-850sr",
+            "label": "850nm-SR",
+            "medium": "om4",
+            "standard": "10GBASE-SR",
+            "wavelengthNm": 850,
+            "maxReachMeters": 400,
+            "powerBudgetDb": 7.3,
+            "finePrint": "IEEE 802.3ae: the 400 m OM4 reach is a 10GBASE-SR @ 850 nm figure. Do not reuse it at other Ethernet speeds — SR-class optics derate OM4 reach as speed rises."
+          },
+          "standard": "10GBASE-SR"
+        }
+      },
+      {
+        "id": "LINK-DIST-LIB-CORE-02",
+        "aDeviceId": "DIST-LIB",
+        "bDeviceId": "CORE-02",
+        "kind": "physical",
+        "bandwidthMbps": 10000,
+        "phys": {
+          "runMeters": 350,
+          "spec": {
+            "id": "om4-850sr",
+            "label": "850nm-SR",
+            "medium": "om4",
+            "standard": "10GBASE-SR",
+            "wavelengthNm": 850,
+            "maxReachMeters": 400,
+            "powerBudgetDb": 7.3,
+            "finePrint": "IEEE 802.3ae: the 400 m OM4 reach is a 10GBASE-SR @ 850 nm figure. Do not reuse it at other Ethernet speeds — SR-class optics derate OM4 reach as speed rises."
+          },
+          "standard": "10GBASE-SR"
+        }
+      },
+      {
+        "id": "LINK-ACC-LIB-DIST-LIB",
+        "aDeviceId": "ACC-LIB",
+        "bDeviceId": "DIST-LIB",
+        "kind": "physical",
+        "bandwidthMbps": 1000,
+        "phys": {
+          "runMeters": 60,
+          "spec": {
+            "id": "cat6a-10gt",
+            "label": "1000BASE/10G-T RJ45",
+            "medium": "cat6a",
+            "standard": "10GBASE-T",
+            "wavelengthNm": 0,
+            "maxReachMeters": 100,
+            "finePrint": "IEEE 802.3an: 10GBASE-T over Cat6a is capped at 100 m (inclusive). Copper runs beyond 100 m are a PhysicalDistanceViolationError by assignment mandate."
+          },
+          "standard": "10GBASE-T"
+        }
+      }
+    ],
+    "explanations": [
+      {
+        "id": "TOPO.CAMPUS-COLLAPSED-CORE",
+        "module": "topology",
+        "rule": "TOPO.01",
+        "decision": "Deployed 2 redundant L3 Core switches in collapsed-core topology",
+        "rationale": "Collapsed-core topology combines core and distribution functions for campuses < 5,000 endpoints, providing high availability with lower operational complexity.",
+        "inputs": {
+          "buildingsCount": 3,
+          "coreSwitches": 2
+        },
+        "references": [
+          "Cisco Campus LAN Design Guide",
+          "IEEE 802.1D RSTP"
+        ]
+      },
+      {
+        "id": "TOPO.BUILDING-PLAN.SCI",
+        "module": "topology",
+        "rule": "TOPO.02",
+        "decision": "Sized 18 access switches for SCI (represented as ACC-SCI Stack for deployment)",
+        "rationale": "Building Science & Engineering Hall (SCI): 650 endpoints with 20% growth buffer require 780 active drops. Using 48-port switches with 4 reserved uplink ports yields 44 usable access ports per switch. Allocated 18 access switch(es) providing 792 total access ports (12 spare ports). Calculated 28 PoE+ wireless access points (24 endpoints per AP). Allocated 1 distribution switch/stack for building aggregation. Aggregated into a representative Catalyst Stack for streamlined Packet Tracer / GNS3 verification.",
+        "inputs": {
+          "endpoints": 650,
+          "accessSwitches": 18,
+          "apCount": 28
+        },
+        "references": [
+          "IEEE 802.3at PoE+",
+          "ANSI/TIA-568.0-D",
+          "Cisco Catalyst StackWise Architecture"
+        ]
+      },
+      {
+        "id": "TOPO.BUILDING-PLAN.ADM",
+        "module": "topology",
+        "rule": "TOPO.02",
+        "decision": "Sized 11 access switches for ADM (represented as ACC-ADM Stack for deployment)",
+        "rationale": "Building Administrative Complex (ADM): 400 endpoints with 20% growth buffer require 480 active drops. Using 48-port switches with 4 reserved uplink ports yields 44 usable access ports per switch. Allocated 11 access switch(es) providing 484 total access ports (4 spare ports). Calculated 17 PoE+ wireless access points (24 endpoints per AP). Allocated 1 distribution switch/stack for building aggregation. Aggregated into a representative Catalyst Stack for streamlined Packet Tracer / GNS3 verification.",
+        "inputs": {
+          "endpoints": 400,
+          "accessSwitches": 11,
+          "apCount": 17
+        },
+        "references": [
+          "IEEE 802.3at PoE+",
+          "ANSI/TIA-568.0-D",
+          "Cisco Catalyst StackWise Architecture"
+        ]
+      },
+      {
+        "id": "TOPO.BUILDING-PLAN.LIB",
+        "module": "topology",
+        "rule": "TOPO.02",
+        "decision": "Sized 15 access switches for LIB (represented as ACC-LIB Stack for deployment)",
+        "rationale": "Building Central Library & Tech Hub (LIB): 550 endpoints with 20% growth buffer require 660 active drops. Using 48-port switches with 4 reserved uplink ports yields 44 usable access ports per switch. Allocated 15 access switch(es) providing 660 total access ports (0 spare ports). Calculated 23 PoE+ wireless access points (24 endpoints per AP). Allocated 1 distribution switch/stack for building aggregation. Aggregated into a representative Catalyst Stack for streamlined Packet Tracer / GNS3 verification.",
+        "inputs": {
+          "endpoints": 550,
+          "accessSwitches": 15,
+          "apCount": 23
+        },
+        "references": [
+          "IEEE 802.3at PoE+",
+          "ANSI/TIA-568.0-D",
+          "Cisco Catalyst StackWise Architecture"
+        ]
+      }
+    ]
+  },
+  "vlans": {
+    "items": [
+      {
+        "vlanId": 10,
+        "name": "Students_WLAN",
+        "purpose": "students",
+        "subnetName": "Students_WLAN-NET"
+      },
+      {
+        "vlanId": 20,
+        "name": "Faculty_Staff",
+        "purpose": "staff",
+        "subnetName": "Faculty_Staff-NET"
+      },
+      {
+        "vlanId": 30,
+        "name": "Smart_Classrooms_IoT",
+        "purpose": "iot",
+        "subnetName": "Smart_Classrooms_IoT-NET"
+      },
+      {
+        "vlanId": 40,
+        "name": "VoIP_Telephony",
+        "purpose": "voice",
+        "subnetName": "VoIP_Telephony-NET"
+      },
+      {
+        "vlanId": 50,
+        "name": "Security_CCTV",
+        "purpose": "servers",
+        "subnetName": "Security_CCTV-NET"
+      },
+      {
+        "vlanId": 60,
+        "name": "MGMT",
+        "purpose": "management",
+        "subnetName": "MGMT-NET"
+      }
+    ],
+    "trunks": [
+      {
+        "linkId": "LINK-CORE-INTERCONNECT",
+        "allowedVlanIds": [
+          10,
+          20,
+          30,
+          40,
+          50,
+          60
+        ],
+        "nativeVlanId": 99
+      },
+      {
+        "linkId": "LINK-DIST-SCI-CORE-01",
+        "allowedVlanIds": [
+          10,
+          20,
+          30,
+          40,
+          50,
+          60
+        ],
+        "nativeVlanId": 99
+      },
+      {
+        "linkId": "LINK-DIST-SCI-CORE-02",
+        "allowedVlanIds": [
+          10,
+          20,
+          30,
+          40,
+          50,
+          60
+        ],
+        "nativeVlanId": 99
+      },
+      {
+        "linkId": "LINK-ACC-SCI-DIST-SCI",
+        "allowedVlanIds": [
+          10,
+          20,
+          30,
+          40,
+          50,
+          60
+        ],
+        "nativeVlanId": 99
+      },
+      {
+        "linkId": "LINK-DIST-ADM-CORE-01",
+        "allowedVlanIds": [
+          10,
+          20,
+          30,
+          40,
+          50,
+          60
+        ],
+        "nativeVlanId": 99
+      },
+      {
+        "linkId": "LINK-DIST-ADM-CORE-02",
+        "allowedVlanIds": [
+          10,
+          20,
+          30,
+          40,
+          50,
+          60
+        ],
+        "nativeVlanId": 99
+      },
+      {
+        "linkId": "LINK-ACC-ADM-DIST-ADM",
+        "allowedVlanIds": [
+          10,
+          20,
+          30,
+          40,
+          50,
+          60
+        ],
+        "nativeVlanId": 99
+      },
+      {
+        "linkId": "LINK-DIST-LIB-CORE-01",
+        "allowedVlanIds": [
+          10,
+          20,
+          30,
+          40,
+          50,
+          60
+        ],
+        "nativeVlanId": 99
+      },
+      {
+        "linkId": "LINK-DIST-LIB-CORE-02",
+        "allowedVlanIds": [
+          10,
+          20,
+          30,
+          40,
+          50,
+          60
+        ],
+        "nativeVlanId": 99
+      },
+      {
+        "linkId": "LINK-ACC-LIB-DIST-LIB",
+        "allowedVlanIds": [
+          10,
+          20,
+          30,
+          40,
+          50,
+          60
+        ],
+        "nativeVlanId": 99
+      }
+    ],
+    "svis": [
+      {
+        "deviceId": "CORE-01",
+        "vlanId": 10,
+        "ipCidr": "TBD"
+      },
+      {
+        "deviceId": "CORE-01",
+        "vlanId": 20,
+        "ipCidr": "TBD"
+      },
+      {
+        "deviceId": "CORE-01",
+        "vlanId": 30,
+        "ipCidr": "TBD"
+      },
+      {
+        "deviceId": "CORE-01",
+        "vlanId": 40,
+        "ipCidr": "TBD"
+      },
+      {
+        "deviceId": "CORE-01",
+        "vlanId": 50,
+        "ipCidr": "TBD"
+      },
+      {
+        "deviceId": "CORE-01",
+        "vlanId": 60,
+        "ipCidr": "TBD"
+      },
+      {
+        "deviceId": "CORE-02",
+        "vlanId": 10,
+        "ipCidr": "TBD"
+      },
+      {
+        "deviceId": "CORE-02",
+        "vlanId": 20,
+        "ipCidr": "TBD"
+      },
+      {
+        "deviceId": "CORE-02",
+        "vlanId": 30,
+        "ipCidr": "TBD"
+      },
+      {
+        "deviceId": "CORE-02",
+        "vlanId": 40,
+        "ipCidr": "TBD"
+      },
+      {
+        "deviceId": "CORE-02",
+        "vlanId": 50,
+        "ipCidr": "TBD"
+      },
+      {
+        "deviceId": "CORE-02",
+        "vlanId": 60,
+        "ipCidr": "TBD"
+      }
+    ],
+    "explanations": [
+      {
+        "id": "VLAN.DETERMINISTIC-TAGS",
+        "module": "vlan",
+        "rule": "VLAN.01",
+        "decision": "Assigned deterministic 802.1Q tags starting at 10 (+10)",
+        "rationale": "Standardized VLAN numbering ensures uniform broadcast domain mapping across campus switches and prevents conflicting PVIDs.",
+        "inputs": {
+          "totalVlans": 6,
+          "startId": 10,
+          "increment": 10
+        },
+        "references": [
+          "IEEE 802.1Q",
+          "Cisco Campus LAN Best Practices"
+        ]
+      },
+      {
+        "id": "VLAN.NATIVE-HARDENING",
+        "module": "vlan",
+        "rule": "VLAN.02",
+        "decision": "Configured Native VLAN 99 as untagged and unused on all trunks",
+        "rationale": "Setting the native VLAN to an unused ID (VLAN 99) and disallowing default VLAN 1 mitigates 802.1Q double-tagging and VLAN hopping security vulnerabilities.",
+        "inputs": {
+          "nativeVlanId": 99,
+          "defaultVlanDisabled": 1
+        },
+        "references": [
+          "NIST SP 800-115",
+          "DISA Network Infrastructure STIG"
+        ]
+      },
+      {
+        "id": "VLAN.TRUNK-PRUNING",
+        "module": "vlan",
+        "rule": "VLAN.03",
+        "decision": "Restricted trunk links to explicitly allowed VLAN list [10,20,30,40,50,60]",
+        "rationale": "Explicit allowed-VLAN pruning confines broadcast/multicast traffic strictly to authorized switches, conserving backplane bandwidth.",
+        "inputs": {
+          "allowedVlanIds": [
+            10,
+            20,
+            30,
+            40,
+            50,
+            60
+          ]
+        },
+        "references": [
+          "IEEE 802.1Q Clause 9",
+          "RFC 3069"
+        ]
+      }
+    ]
+  },
+  "subnets": [
+    {
+      "name": "Students_WLAN-NET",
+      "index": 0,
+      "network": "10.100.0.0",
+      "prefix": 22,
+      "mask": "255.255.252.0",
+      "wildcard": "0.0.3.255",
+      "broadcast": "10.100.3.255",
+      "firstHost": "10.100.0.1",
+      "lastHost": "10.100.3.254",
+      "gateway": "10.100.0.1",
+      "totalAddresses": 1024,
+      "requestedHosts": 900,
+      "capacity": 1022,
+      "utilization": 0.8806
+    },
+    {
+      "name": "Faculty_Staff-NET",
+      "index": 1,
+      "network": "10.100.4.0",
+      "prefix": 23,
+      "mask": "255.255.254.0",
+      "wildcard": "0.0.1.255",
+      "broadcast": "10.100.5.255",
+      "firstHost": "10.100.4.1",
+      "lastHost": "10.100.5.254",
+      "gateway": "10.100.4.1",
+      "totalAddresses": 512,
+      "requestedHosts": 350,
+      "capacity": 510,
+      "utilization": 0.6863
+    },
+    {
+      "name": "Smart_Classrooms_IoT-NET",
+      "index": 2,
+      "network": "10.100.6.0",
+      "prefix": 24,
+      "mask": "255.255.255.0",
+      "wildcard": "0.0.0.255",
+      "broadcast": "10.100.6.255",
+      "firstHost": "10.100.6.1",
+      "lastHost": "10.100.6.254",
+      "gateway": "10.100.6.1",
+      "totalAddresses": 256,
+      "requestedHosts": 200,
+      "capacity": 254,
+      "utilization": 0.7874
+    },
+    {
+      "name": "VoIP_Telephony-NET",
+      "index": 3,
+      "network": "10.100.7.0",
+      "prefix": 25,
+      "mask": "255.255.255.128",
+      "wildcard": "0.0.0.127",
+      "broadcast": "10.100.7.127",
+      "firstHost": "10.100.7.1",
+      "lastHost": "10.100.7.126",
+      "gateway": "10.100.7.1",
+      "totalAddresses": 128,
+      "requestedHosts": 120,
+      "capacity": 126,
+      "utilization": 0.9524
+    },
+    {
+      "name": "Security_CCTV-NET",
+      "index": 4,
+      "network": "10.100.7.128",
+      "prefix": 27,
+      "mask": "255.255.255.224",
+      "wildcard": "0.0.0.31",
+      "broadcast": "10.100.7.159",
+      "firstHost": "10.100.7.129",
+      "lastHost": "10.100.7.158",
+      "gateway": "10.100.7.129",
+      "totalAddresses": 32,
+      "requestedHosts": 30,
+      "capacity": 30,
+      "utilization": 1
+    },
+    {
+      "name": "MGMT-NET",
+      "index": 5,
+      "network": "10.100.7.160",
+      "prefix": 27,
+      "mask": "255.255.255.224",
+      "wildcard": "0.0.0.31",
+      "broadcast": "10.100.7.191",
+      "firstHost": "10.100.7.161",
+      "lastHost": "10.100.7.190",
+      "gateway": "10.100.7.161",
+      "totalAddresses": 32,
+      "requestedHosts": 15,
+      "capacity": 30,
+      "utilization": 0.5
+    }
+  ],
+  "routing": {
+    "asNumber": 65001,
+    "protocol": "single-area-ospf",
+    "areas": [
+      {
+        "areaId": 0,
+        "label": "Backbone Area 0",
+        "siteIds": [
+          "SITE-CORE",
+          "SCI",
+          "ADM",
+          "LIB"
+        ],
+        "networks": [
+          {
+            "cidr": "10.100.0.0/22",
+            "wildcard": "0.0.3.255"
+          },
+          {
+            "cidr": "10.100.4.0/23",
+            "wildcard": "0.0.1.255"
+          },
+          {
+            "cidr": "10.100.6.0/24",
+            "wildcard": "0.0.0.255"
+          },
+          {
+            "cidr": "10.100.7.0/25",
+            "wildcard": "0.0.0.127"
+          },
+          {
+            "cidr": "10.100.7.128/27",
+            "wildcard": "0.0.0.31"
+          },
+          {
+            "cidr": "10.100.7.160/27",
+            "wildcard": "0.0.0.31"
+          }
+        ]
+      }
+    ],
+    "bgp": [],
+    "vpnTunnels": [],
+    "explanations": [
+      {
+        "id": "ROUTING.PROTOCOL.SINGLE-AREA-OSPF",
+        "module": "routing",
+        "rule": "ROUTING.01",
+        "decision": "Selected Single-Area OSPF (Area 0) for Campus LAN",
+        "rationale": "Campus LAN operates within a single autonomous system with 6 subnets (less than the 50-subnet threshold). OSPF Area 0 provides fast link-state SPF convergence without multi-area ABR summarization complexity.",
+        "inputs": {
+          "asNumber": 65001,
+          "subnetCount": 6,
+          "threshold": 50
+        },
+        "references": [
+          "RFC 2328 OSPFv2 Section 3.1",
+          "Cisco Campus Network Design Guide"
+        ]
+      },
+      {
+        "id": "ROUTING.OSPF.AREAS",
+        "module": "routing",
+        "rule": "ROUTING.04",
+        "decision": "Configured 1 OSPF area(s) with 6 network statements",
+        "rationale": "Network statements map exact network-aligned CIDRs and inverse wildcard masks directly from the VLSM plan, ensuring flawless LSDB population.",
+        "inputs": {
+          "areasCount": 1,
+          "totalNetworks": 6
+        },
+        "references": [
+          "RFC 2328 Section 3.1",
+          "RFC 1878"
+        ]
+      }
+    ]
+  },
+  "verification": {
+    "passed": true,
+    "checks": [
+      {
+        "id": "V-01",
+        "name": "Bitwise Zero-Overlap Invariant",
+        "category": "vlsm",
+        "passed": true,
+        "detail": "All allocated subnets are strictly disjoint (zero overlap)."
+      },
+      {
+        "id": "V-02",
+        "name": "Root Network Containment Check",
+        "category": "vlsm",
+        "passed": true,
+        "detail": "All subnets are contained within root block 10.100.0.0/16."
+      },
+      {
+        "id": "V-03",
+        "name": "Gateway Subnet Belonging Check",
+        "category": "vlsm",
+        "passed": true,
+        "detail": "All gateway IP addresses belong to their respective subnet address blocks."
+      },
+      {
+        "id": "V-04",
+        "name": "Wildcard Mask Inversion Check",
+        "category": "routing",
+        "passed": true,
+        "detail": "All wildcard masks independently verified against bitwise complement (~netmask)."
+      },
+      {
+        "id": "V-05",
+        "name": "Host Capacity Sufficiency Check",
+        "category": "vlsm",
+        "passed": true,
+        "detail": "All carved subnets provide usable host capacity >= requested demand."
+      },
+      {
+        "id": "V-06",
+        "name": "VLAN Safety & Native Hardening Check",
+        "category": "vlan",
+        "passed": true,
+        "detail": "VLAN IDs are unique, within range 1..4094, and native VLAN 99 is unused for access."
+      },
+      {
+        "id": "V-07",
+        "name": "Link Endpoint Existence Check",
+        "category": "config",
+        "passed": true,
+        "detail": "All physical and logical links terminate on valid, known devices."
+      },
+      {
+        "id": "V-08",
+        "name": "Physical Media Feasibility Check",
+        "category": "media",
+        "passed": true,
+        "detail": "All physical link runs strictly obey IEEE 802.3 transceiver reach limits."
+      },
+      {
+        "id": "V-09",
+        "name": "Routing Advertisement Consistency Check",
+        "category": "routing",
+        "passed": true,
+        "detail": "All OSPF network statements map directly to allocated VLSM subnets."
+      }
+    ],
+    "advisories": []
+  }
+}

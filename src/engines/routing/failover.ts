@@ -1,7 +1,6 @@
 /**
  * Redundant Path and Route Failover Planner.
  * Computes primary and backup paths, metric steering, and SLA latency targets.
- * OWNER: Routing specialist agent (src/engines/routing/).
  */
 import type { Link } from "../../contracts/topology.js";
 import type { RedundantPathPlan } from "./types.js";

@@ -1,6 +1,5 @@
 /**
  * VLSM engine contracts (bitwise IPv4 subnet allocator).
- * OWNER: VLSM+VLAN specialist agent (implementation in src/vlsm/).
  */
 import type { ExplainRecord } from "./explain.js";
 
@@ -27,9 +26,9 @@ export interface SubnetPlanItem {
   broadcast: string;
   firstHost: string;
   lastHost: string;
-  /** Amendment A+3: reserved gateway — the first usable host. */
+  /** reserved gateway — the first usable host. */
   gateway: string;
-  /** Amendment A+4: total addresses in the block (2^(32-prefix); /31→2, /32→1). */
+  /** total addresses in the block (2^(32-prefix); /31→2, /32→1). */
   totalAddresses: number;
   /** Total usable addresses including RFC 3021 /31 handling. */
   requestedHosts: number;

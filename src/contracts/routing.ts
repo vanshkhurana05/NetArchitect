@@ -1,6 +1,5 @@
 /**
  * Routing engine contracts (OSPF area design, BGP, IPsec VPN, QoS markers).
- * OWNER: routing specialist agent (implementation in src/routing/).
  */
 import type { ExplainRecord } from "./explain.js";
 import type { Site, Device, Link } from "./topology.js";
@@ -56,7 +55,7 @@ export interface RoutingPlan {
 }
 
 /**
- * Amendment A+9 (architect): optional links, qosClasses, evplBandwidthMbps, and cloudVpc
+ * optional links, qosClasses, evplBandwidthMbps, and cloudVpc
  * passed into RoutingEngineInput for comprehensive OSPF, BGP, IPsec, and QoS planning.
  */
 export interface RoutingEngineInput {

@@ -1,7 +1,6 @@
 /**
  * Topology engine contracts — intermediate device/link model used by every
  * downstream engine (VLAN, VLSM, routing, config gen, verification).
- * OWNER: topology specialist agent (implementation in src/topology/).
  */
 import type { ExplainRecord } from "./explain.js";
 import type { TransceiverSpec, EthernetStandard } from "./media.js";
@@ -67,11 +66,11 @@ export type LinkRoleKey = `${string}:${string}`;
 export type LinkRoleQuery = "access" | "building-backbone" | "man-evpl" | "wan";
 
 /**
- * Amendment A+7 (architect): enriched ProfileShape with topology-steering flags
+ * enriched ProfileShape with topology-steering flags
  * (collapsedCore, dualHomedFailover, evplBandwidthMbps, cloudVpc).
  */
 export type ProfileShape =
-  | { profile: "campus-lan"; buildings: BuildingSpec[]; collapsedCore?: boolean }
+  | { profile: "campus-lan"; buildings: BuildingSpec[]; collapsedCore?: boolean; representativeAccess?: boolean }
   | {
       profile: "metro-man";
       sites: MetroSiteSpec[];

@@ -1,6 +1,6 @@
 /**
  * Validation utilities shared by external JSON ingestion and internal
- * design checks — Foundation/Profiles agent.
+ * design checks 
  *
  * Boundary rule: PURE VALIDATION ONLY. No network algorithms live here
  * (no subnet carving, no media selection, no routing choices). The only

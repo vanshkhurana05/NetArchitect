@@ -1,52 +1,84 @@
 {
   "root": {
-    "baseNetwork": "10.60.0.0",
+    "baseNetwork": "10.30.0.0",
     "prefix": 16
   },
   "subnets": [
     {
       "name": "USERS-NET",
       "index": 0,
-      "network": "10.60.0.0",
+      "network": "10.30.0.0",
       "prefix": 23,
       "mask": "255.255.254.0",
       "wildcard": "0.0.1.255",
-      "broadcast": "10.60.1.255",
-      "firstHost": "10.60.0.1",
-      "lastHost": "10.60.1.254",
-      "gateway": "10.60.0.1",
+      "broadcast": "10.30.1.255",
+      "firstHost": "10.30.0.1",
+      "lastHost": "10.30.1.254",
+      "gateway": "10.30.0.1",
       "totalAddresses": 512,
-      "requestedHosts": 260,
+      "requestedHosts": 450,
       "capacity": 510,
-      "utilization": 0.5098
+      "utilization": 0.8824
+    },
+    {
+      "name": "BRANCH-X-NET",
+      "index": 1,
+      "network": "10.30.2.0",
+      "prefix": 24,
+      "mask": "255.255.255.0",
+      "wildcard": "0.0.0.255",
+      "broadcast": "10.30.2.255",
+      "firstHost": "10.30.2.1",
+      "lastHost": "10.30.2.254",
+      "gateway": "10.30.2.1",
+      "totalAddresses": 256,
+      "requestedHosts": 250,
+      "capacity": 254,
+      "utilization": 0.9843
+    },
+    {
+      "name": "TXN-SERVERS-NET",
+      "index": 2,
+      "network": "10.30.3.0",
+      "prefix": 26,
+      "mask": "255.255.255.192",
+      "wildcard": "0.0.0.63",
+      "broadcast": "10.30.3.63",
+      "firstHost": "10.30.3.1",
+      "lastHost": "10.30.3.62",
+      "gateway": "10.30.3.1",
+      "totalAddresses": 64,
+      "requestedHosts": 40,
+      "capacity": 62,
+      "utilization": 0.6452
     },
     {
       "name": "MGMT-NET",
-      "index": 1,
-      "network": "10.60.2.0",
+      "index": 3,
+      "network": "10.30.3.64",
       "prefix": 28,
       "mask": "255.255.255.240",
       "wildcard": "0.0.0.15",
-      "broadcast": "10.60.2.15",
-      "firstHost": "10.60.2.1",
-      "lastHost": "10.60.2.14",
-      "gateway": "10.60.2.1",
+      "broadcast": "10.30.3.79",
+      "firstHost": "10.30.3.65",
+      "lastHost": "10.30.3.78",
+      "gateway": "10.30.3.65",
       "totalAddresses": 16,
       "requestedHosts": 10,
       "capacity": 14,
       "utilization": 0.7143
     }
   ],
-  "efficiency": 0.008,
+  "efficiency": 0.0128,
   "explanations": [
     {
       "module": "vlsm",
       "id": "VLSM.ALLOC-0-USERS-NET",
       "rule": "VLSM.DESCENDING-CARVE",
-      "decision": "Allocated USERS-NET as 10.60.0.0/23",
-      "rationale": "260 requested hosts map to the minimal /23 under RFC 3021 host-capacity math; carved monotonically after all larger blocks, gateway reserved at 10.60.0.1 (first usable IP).",
+      "decision": "Allocated USERS-NET as 10.30.0.0/23",
+      "rationale": "450 requested hosts map to the minimal /23 under RFC 3021 host-capacity math; carved monotonically after all larger blocks, gateway reserved at 10.30.0.1 (first usable IP).",
       "inputs": {
-        "hosts": 260,
+        "hosts": 450,
         "inputIndex": 1,
         "prefix": 23
       },
@@ -57,10 +89,42 @@
     },
     {
       "module": "vlsm",
-      "id": "VLSM.ALLOC-1-MGMT-NET",
+      "id": "VLSM.ALLOC-1-BRANCH-X-NET",
       "rule": "VLSM.DESCENDING-CARVE",
-      "decision": "Allocated MGMT-NET as 10.60.2.0/28",
-      "rationale": "10 requested hosts map to the minimal /28 under RFC 3021 host-capacity math; carved monotonically after all larger blocks, gateway reserved at 10.60.2.1 (first usable IP).",
+      "decision": "Allocated BRANCH-X-NET as 10.30.2.0/24",
+      "rationale": "250 requested hosts map to the minimal /24 under RFC 3021 host-capacity math; carved monotonically after all larger blocks, gateway reserved at 10.30.2.1 (first usable IP).",
+      "inputs": {
+        "hosts": 250,
+        "inputIndex": 3,
+        "prefix": 24
+      },
+      "references": [
+        "RFC 950",
+        "RFC 3021"
+      ]
+    },
+    {
+      "module": "vlsm",
+      "id": "VLSM.ALLOC-2-TXN-SERVERS-NET",
+      "rule": "VLSM.DESCENDING-CARVE",
+      "decision": "Allocated TXN-SERVERS-NET as 10.30.3.0/26",
+      "rationale": "40 requested hosts map to the minimal /26 under RFC 3021 host-capacity math; carved monotonically after all larger blocks, gateway reserved at 10.30.3.1 (first usable IP).",
+      "inputs": {
+        "hosts": 40,
+        "inputIndex": 2,
+        "prefix": 26
+      },
+      "references": [
+        "RFC 950",
+        "RFC 3021"
+      ]
+    },
+    {
+      "module": "vlsm",
+      "id": "VLSM.ALLOC-3-MGMT-NET",
+      "rule": "VLSM.DESCENDING-CARVE",
+      "decision": "Allocated MGMT-NET as 10.30.3.64/28",
+      "rationale": "10 requested hosts map to the minimal /28 under RFC 3021 host-capacity math; carved monotonically after all larger blocks, gateway reserved at 10.30.3.65 (first usable IP).",
       "inputs": {
         "hosts": 10,
         "inputIndex": 0,
@@ -75,10 +139,10 @@
       "module": "vlsm",
       "id": "VLSM.UTILIZATION",
       "rule": "VLSM.CAPACITY",
-      "decision": "Root-block utilization 0.80%",
-      "rationale": "(524 usable addresses of 65534 in 10.60.0.0/16, 2 blocks carved, 65008 address(es) left free.",
+      "decision": "Root-block utilization 1.28%",
+      "rationale": "(840 usable addresses of 65534 in 10.30.0.0/16, 4 blocks carved, 64688 address(es) left free.",
       "inputs": {
-        "allocatedCapacity": 524,
+        "allocatedCapacity": 840,
         "rootCapacity": 65534
       },
       "references": [
@@ -92,7 +156,7 @@
       "decision": "No-overlap invariant holds across all allocations.",
       "rationale": "Monotone carving guarantees non-intersection; verified with an O(n) boundary assertion.",
       "inputs": {
-        "count": 2
+        "count": 4
       },
       "references": [
         "RFC 950"

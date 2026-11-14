@@ -1,10 +1,7 @@
 /**
- * Domain enums and tag unions — Foundation/Profiles agent, PR phase one.
+ * Domain enums and tag unions.
  *
- * Canonical literal unions live in the frozen contracts (src/contracts/).
- * This module re-exports them and adds agent-owned unions that are not
- * contract-level (interface kinds, transports, cloud vendors). Re-exporting
- * keeps ONE source of truth for every downstream agent.
+ * Literal unions for network interfaces, transports, and vendor specifications.
  */
 import { z } from "zod";
 import type { Medium, EthernetStandard } from "../../contracts/media.js";

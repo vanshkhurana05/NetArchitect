@@ -1,0 +1,230 @@
+{
+  "root": {
+    "baseNetwork": "10.100.0.0",
+    "prefix": 16
+  },
+  "subnets": [
+    {
+      "name": "Students_WLAN-NET",
+      "index": 0,
+      "network": "10.100.0.0",
+      "prefix": 22,
+      "mask": "255.255.252.0",
+      "wildcard": "0.0.3.255",
+      "broadcast": "10.100.3.255",
+      "firstHost": "10.100.0.1",
+      "lastHost": "10.100.3.254",
+      "gateway": "10.100.0.1",
+      "totalAddresses": 1024,
+      "requestedHosts": 900,
+      "capacity": 1022,
+      "utilization": 0.8806
+    },
+    {
+      "name": "Faculty_Staff-NET",
+      "index": 1,
+      "network": "10.100.4.0",
+      "prefix": 23,
+      "mask": "255.255.254.0",
+      "wildcard": "0.0.1.255",
+      "broadcast": "10.100.5.255",
+      "firstHost": "10.100.4.1",
+      "lastHost": "10.100.5.254",
+      "gateway": "10.100.4.1",
+      "totalAddresses": 512,
+      "requestedHosts": 350,
+      "capacity": 510,
+      "utilization": 0.6863
+    },
+    {
+      "name": "Smart_Classrooms_IoT-NET",
+      "index": 2,
+      "network": "10.100.6.0",
+      "prefix": 24,
+      "mask": "255.255.255.0",
+      "wildcard": "0.0.0.255",
+      "broadcast": "10.100.6.255",
+      "firstHost": "10.100.6.1",
+      "lastHost": "10.100.6.254",
+      "gateway": "10.100.6.1",
+      "totalAddresses": 256,
+      "requestedHosts": 200,
+      "capacity": 254,
+      "utilization": 0.7874
+    },
+    {
+      "name": "VoIP_Telephony-NET",
+      "index": 3,
+      "network": "10.100.7.0",
+      "prefix": 25,
+      "mask": "255.255.255.128",
+      "wildcard": "0.0.0.127",
+      "broadcast": "10.100.7.127",
+      "firstHost": "10.100.7.1",
+      "lastHost": "10.100.7.126",
+      "gateway": "10.100.7.1",
+      "totalAddresses": 128,
+      "requestedHosts": 120,
+      "capacity": 126,
+      "utilization": 0.9524
+    },
+    {
+      "name": "Security_CCTV-NET",
+      "index": 4,
+      "network": "10.100.7.128",
+      "prefix": 27,
+      "mask": "255.255.255.224",
+      "wildcard": "0.0.0.31",
+      "broadcast": "10.100.7.159",
+      "firstHost": "10.100.7.129",
+      "lastHost": "10.100.7.158",
+      "gateway": "10.100.7.129",
+      "totalAddresses": 32,
+      "requestedHosts": 30,
+      "capacity": 30,
+      "utilization": 1
+    },
+    {
+      "name": "MGMT-NET",
+      "index": 5,
+      "network": "10.100.7.160",
+      "prefix": 27,
+      "mask": "255.255.255.224",
+      "wildcard": "0.0.0.31",
+      "broadcast": "10.100.7.191",
+      "firstHost": "10.100.7.161",
+      "lastHost": "10.100.7.190",
+      "gateway": "10.100.7.161",
+      "totalAddresses": 32,
+      "requestedHosts": 15,
+      "capacity": 30,
+      "utilization": 0.5
+    }
+  ],
+  "efficiency": 0.0301,
+  "explanations": [
+    {
+      "module": "vlsm",
+      "id": "VLSM.ALLOC-0-Students_WLAN-NET",
+      "rule": "VLSM.DESCENDING-CARVE",
+      "decision": "Allocated Students_WLAN-NET as 10.100.0.0/22",
+      "rationale": "900 requested hosts map to the minimal /22 under RFC 3021 host-capacity math; carved monotonically after all larger blocks, gateway reserved at 10.100.0.1 (first usable IP).",
+      "inputs": {
+        "hosts": 900,
+        "inputIndex": 0,
+        "prefix": 22
+      },
+      "references": [
+        "RFC 950",
+        "RFC 3021"
+      ]
+    },
+    {
+      "module": "vlsm",
+      "id": "VLSM.ALLOC-1-Faculty_Staff-NET",
+      "rule": "VLSM.DESCENDING-CARVE",
+      "decision": "Allocated Faculty_Staff-NET as 10.100.4.0/23",
+      "rationale": "350 requested hosts map to the minimal /23 under RFC 3021 host-capacity math; carved monotonically after all larger blocks, gateway reserved at 10.100.4.1 (first usable IP).",
+      "inputs": {
+        "hosts": 350,
+        "inputIndex": 1,
+        "prefix": 23
+      },
+      "references": [
+        "RFC 950",
+        "RFC 3021"
+      ]
+    },
+    {
+      "module": "vlsm",
+      "id": "VLSM.ALLOC-2-Smart_Classrooms_IoT-NET",
+      "rule": "VLSM.DESCENDING-CARVE",
+      "decision": "Allocated Smart_Classrooms_IoT-NET as 10.100.6.0/24",
+      "rationale": "200 requested hosts map to the minimal /24 under RFC 3021 host-capacity math; carved monotonically after all larger blocks, gateway reserved at 10.100.6.1 (first usable IP).",
+      "inputs": {
+        "hosts": 200,
+        "inputIndex": 2,
+        "prefix": 24
+      },
+      "references": [
+        "RFC 950",
+        "RFC 3021"
+      ]
+    },
+    {
+      "module": "vlsm",
+      "id": "VLSM.ALLOC-3-VoIP_Telephony-NET",
+      "rule": "VLSM.DESCENDING-CARVE",
+      "decision": "Allocated VoIP_Telephony-NET as 10.100.7.0/25",
+      "rationale": "120 requested hosts map to the minimal /25 under RFC 3021 host-capacity math; carved monotonically after all larger blocks, gateway reserved at 10.100.7.1 (first usable IP).",
+      "inputs": {
+        "hosts": 120,
+        "inputIndex": 3,
+        "prefix": 25
+      },
+      "references": [
+        "RFC 950",
+        "RFC 3021"
+      ]
+    },
+    {
+      "module": "vlsm",
+      "id": "VLSM.ALLOC-4-Security_CCTV-NET",
+      "rule": "VLSM.DESCENDING-CARVE",
+      "decision": "Allocated Security_CCTV-NET as 10.100.7.128/27",
+      "rationale": "30 requested hosts map to the minimal /27 under RFC 3021 host-capacity math; carved monotonically after all larger blocks, gateway reserved at 10.100.7.129 (first usable IP).",
+      "inputs": {
+        "hosts": 30,
+        "inputIndex": 4,
+        "prefix": 27
+      },
+      "references": [
+        "RFC 950",
+        "RFC 3021"
+      ]
+    },
+    {
+      "module": "vlsm",
+      "id": "VLSM.ALLOC-5-MGMT-NET",
+      "rule": "VLSM.DESCENDING-CARVE",
+      "decision": "Allocated MGMT-NET as 10.100.7.160/27",
+      "rationale": "15 requested hosts map to the minimal /27 under RFC 3021 host-capacity math; carved monotonically after all larger blocks, gateway reserved at 10.100.7.161 (first usable IP).",
+      "inputs": {
+        "hosts": 15,
+        "inputIndex": 5,
+        "prefix": 27
+      },
+      "references": [
+        "RFC 950",
+        "RFC 3021"
+      ]
+    },
+    {
+      "module": "vlsm",
+      "id": "VLSM.UTILIZATION",
+      "rule": "VLSM.CAPACITY",
+      "decision": "Root-block utilization 3.01%",
+      "rationale": "(1972 usable addresses of 65534 in 10.100.0.0/16, 6 blocks carved, 63552 address(es) left free.",
+      "inputs": {
+        "allocatedCapacity": 1972,
+        "rootCapacity": 65534
+      },
+      "references": [
+        "RFC 950"
+      ]
+    },
+    {
+      "module": "vlsm",
+      "id": "VLSM.NO-OVERLAP",
+      "rule": "VLSM.INVARIANT",
+      "decision": "No-overlap invariant holds across all allocations.",
+      "rationale": "Monotone carving guarantees non-intersection; verified with an O(n) boundary assertion.",
+      "inputs": {
+        "count": 6
+      },
+      "references": [
+        "RFC 950"
+      ]
+    }
+  ]
+}

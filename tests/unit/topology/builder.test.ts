@@ -81,6 +81,25 @@ describe("Topology Builder", () => {
       }
     });
 
+    it("builds streamlined representative access switch stacks when representativeAccess option is enabled", () => {
+      const topo = buildTopology(campusRequest, { representativeAccess: true });
+
+      // In representative mode: 2 core + 3 dist + 3 access switch stacks = 8 devices
+      expect(topo.devices.length).toBe(8);
+
+      const accessSwitches = topo.devices.filter((d) => d.role === "access-switch");
+      expect(accessSwitches.length).toBe(3);
+      expect(accessSwitches.map((d) => d.id)).toEqual(["ACC-BLD-A", "ACC-BLD-B", "ACC-BLD-C"]);
+      expect(accessSwitches[0]?.poe).toBe(true);
+
+      // Verify representative access switch is connected to distribution switch
+      const linkA = topo.links.find(
+        (l) => l.aDeviceId === "ACC-BLD-A" && l.bDeviceId === "DIST-BLD-A",
+      );
+      expect(linkA).toBeDefined();
+      expect(linkA?.bandwidthMbps).toBe(1000);
+    });
+
     it("generates natural-language explainability records", () => {
       const topo = buildTopology(campusRequest);
       expect(topo.explanations.length).toBeGreaterThan(0);

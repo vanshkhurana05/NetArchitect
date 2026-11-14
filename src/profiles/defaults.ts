@@ -1,5 +1,5 @@
 /**
- * Documented, configurable profile defaults — Foundation/Profiles agent.
+ * Documented, configurable profile defaults 
  *
  * These are OUR engineering defaults where the assignment is silent. They
  * are surfaced in report.md as " configurable default (not an assignment

@@ -5,7 +5,6 @@
  *   netarch run --preset campus-lan [--out outputs]
  *   netarch run --input custom.json [--out outputs]
  *   netarch validate --input custom.json
- * OWNER: Lead Architect / Release Agent (src/orchestrator/).
  */
 import { readFileSync } from "node:fs";
 import { resolve } from "node:path";
@@ -32,6 +31,8 @@ async function main() {
   }
 
   const outDir = getFlagValue("--out") ?? "outputs";
+  const isFullChassis = args.includes("--full") || args.includes("--full-chassis");
+  const representative = !isFullChassis; // Default to representative for clean Packet Tracer submission
 
   if (command === "validate") {
     const inputFile = getFlagValue("--input");
@@ -48,12 +49,12 @@ async function main() {
     const inputFile = getFlagValue("--input");
 
     if (preset) {
-      await handleRunPreset(preset, outDir);
+      await handleRunPreset(preset, outDir, representative);
       return;
     }
 
     if (inputFile) {
-      await handleRunCustom(inputFile, outDir);
+      await handleRunCustom(inputFile, outDir, representative);
       return;
     }
 
@@ -63,15 +64,15 @@ async function main() {
 
   // Direct shortcuts: netarch campus | metro | global
   if (command === "campus" || command === "campus-lan") {
-    await handleRunPreset("campus-lan", outDir);
+    await handleRunPreset("campus-lan", outDir, representative);
     return;
   }
   if (command === "metro" || command === "metro-man") {
-    await handleRunPreset("metro-man", outDir);
+    await handleRunPreset("metro-man", outDir, representative);
     return;
   }
   if (command === "global" || command === "global-wan") {
-    await handleRunPreset("global-wan", outDir);
+    await handleRunPreset("global-wan", outDir, representative);
     return;
   }
 
@@ -79,7 +80,7 @@ async function main() {
   process.exit(1);
 }
 
-async function handleRunPreset(presetName: string, outDir: string) {
+async function handleRunPreset(presetName: string, outDir: string, representative: boolean = true) {
   let canonicalName = presetName;
   if (presetName === "campus") canonicalName = "campus-lan";
   if (presetName === "metro") canonicalName = "metro-man";
@@ -87,11 +88,12 @@ async function handleRunPreset(presetName: string, outDir: string) {
 
   console.log(`\n================================================================================`);
   console.log(` NetArchitect — Executing Preset Pipeline: [${canonicalName.toUpperCase()}]`);
+  console.log(` Topology Mode: [${representative ? "REPRESENTATIVE (PACKET TRACER READY)" : "FULL CHASSIS INVENTORY"}]`);
   console.log(`================================================================================\n`);
 
   try {
     const runInput = await loadPreset(canonicalName as any);
-    const report = await runNetArch(runInput, { outDir });
+    const report = await runNetArch(runInput, { outDir, representative });
 
     printReportSummary(report, outDir);
   } catch (err: any) {
@@ -100,9 +102,10 @@ async function handleRunPreset(presetName: string, outDir: string) {
   }
 }
 
-async function handleRunCustom(filePath: string, outDir: string) {
+async function handleRunCustom(filePath: string, outDir: string, representative: boolean = true) {
   console.log(`\n================================================================================`);
   console.log(` NetArchitect — Executing Custom Network Requirements: [${filePath}]`);
+  console.log(` Topology Mode: [${representative ? "REPRESENTATIVE (PACKET TRACER READY)" : "FULL CHASSIS INVENTORY"}]`);
   console.log(`================================================================================\n`);
 
   try {
@@ -118,7 +121,7 @@ async function handleRunCustom(filePath: string, outDir: string) {
       process.exit(1);
     }
 
-    const report = await runNetArch(checked, { outDir });
+    const report = await runNetArch(checked, { outDir, representative });
     printReportSummary(report, outDir);
   } catch (err: any) {
     console.error(`Custom execution failed: ${err.message ?? err}`);
@@ -194,6 +197,7 @@ Presets:
 
 Options:
   --out <dir>                  Output base directory (default: outputs/)
+  --full, --full-chassis       Generate full 49-chassis physical inventory instead of representative stack
   --help, -h                   Show this help message
 `);
 }

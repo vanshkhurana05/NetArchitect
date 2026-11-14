@@ -1,7 +1,6 @@
 /**
  * ACL Configuration Generator.
  * Populates standard, extended, and crypto ACL intermediate models.
- * OWNER: Configuration Generator Agent (src/configuration/).
  */
 import type { Device } from "../../contracts/topology.js";
 import type { RoutingPlan } from "../../contracts/routing.js";

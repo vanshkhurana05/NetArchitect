@@ -2,7 +2,6 @@
  * Layer 3 Routing Decision Engine.
  * Master coordinator planning OSPF areas, eBGP sessions, IPsec tunnels,
  * route summarization, failover paths, and QoS policy classes.
- * OWNER: Routing specialist agent (src/engines/routing/).
  */
 import type {
   RoutingPlan,

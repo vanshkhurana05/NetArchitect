@@ -2,7 +2,6 @@
  * Graph validation functions for network topologies.
  * Enforces structural invariants, interface uniqueness, port capacities,
  * and graph connectivity.
- * OWNER: Topology specialist agent (src/engines/topology/).
  */
 import type { Topology } from "../../contracts/topology.js";
 import type { NetworkGraph } from "./graph.js";

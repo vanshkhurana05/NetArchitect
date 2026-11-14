@@ -1,7 +1,6 @@
 /**
  * Orchestrator contracts — the composition root that fans input through
  * the whole engine chain in dependency order and owns return paths.
- * OWNER: Lead Architect (implementation in src/orchestrator/).
  */
 import type { ValidatedRun } from "./input.js";
 import type { Topology } from "./topology.js";
@@ -42,6 +41,11 @@ export interface RunOptions {
   outDir?: string;
   /** Stop without exporting (used by tests). */
   dryRun?: boolean;
+  /**
+   * If true, builds representative access switch stacks (1 per building)
+   * for streamlined Packet Tracer / GNS3 deployment and verification.
+   */
+  representative?: boolean;
 }
 
 export type RunNetArch = (input: ValidatedRun, opts?: RunOptions) => Promise<RunReport>;

@@ -1,5 +1,5 @@
 /**
- * Profiles + domain model tests — Foundation/Profiles agent.
+ * Profiles + domain model tests 
  * Verifies: preset loading, custom validation round-trip, default
  * documentation presence, and the alias-honesty of the design models.
  */

@@ -2,7 +2,6 @@
  * Master Cisco Configuration Generator.
  * Coordinates Stage 1 (Intermediate Modeling) and Stage 2 (IOS Rendering).
  * Implements src/contracts/config.ts.
- * OWNER: Configuration Generator Agent (src/configuration/).
  */
 import type {
   ConfigGenerator,

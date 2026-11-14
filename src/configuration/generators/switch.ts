@@ -2,7 +2,6 @@
  * Switch Configuration Generator.
  * Populates switchports (access vs trunk), allowed VLAN lists, native VLAN 99,
  * and Rapid Spanning Tree (RSTP / rapid-pvst).
- * OWNER: Configuration Generator Agent (src/configuration/).
  */
 import type { Device, Link } from "../../contracts/topology.js";
 import type { VlanPlan } from "../../contracts/vlan.js";
@@ -73,12 +72,14 @@ export function generateSwitchInterfaces(
     portIdx++;
   }
 
-  // 2. Configure remaining access ports on access switches
+  // 2. Configure representative client access ports on access switches
+  // Provides clean, active test ports across every client VLAN without 200+ lines of repetitive port spam
   if (isAccess) {
     const clientVlans = vlanPlan.items.filter((v) => v.purpose !== "management");
     let currentVlanIdx = 0;
+    const maxAccessPorts = Math.min(portCount - 4, 12);
 
-    for (let p = portIdx; p <= portCount - 4; p++) {
+    for (let p = portIdx; p <= maxAccessPorts; p++) {
       const assignedVlan = clientVlans[currentVlanIdx % clientVlans.length]?.vlanId ?? 10;
       ifaces.push({
         name: `FastEthernet0/${p}`,

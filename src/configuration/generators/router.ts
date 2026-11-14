@@ -2,7 +2,6 @@
  * Router Configuration Generator.
  * Populates routed interfaces, sub-interfaces (Router-on-a-Stick),
  * Loopback0, IPsec tunnel interfaces, and static failover routes.
- * OWNER: Configuration Generator Agent (src/configuration/).
  */
 import type { Device, Link } from "../../contracts/topology.js";
 import type { SubnetPlanItem } from "../../contracts/vlsm.js";

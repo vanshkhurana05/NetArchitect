@@ -1,0 +1,342 @@
+[
+  {
+    "decisionId": "TOPO.CAMPUS-COLLAPSED-CORE",
+    "ruleId": "TOPO.01",
+    "module": "topology",
+    "selected": "Deployed 2 redundant L3 Core switches in collapsed-core topology",
+    "inputs": {
+      "buildingsCount": 3,
+      "coreSwitches": 2
+    },
+    "rationale": [
+      "Collapsed-core topology combines core and distribution functions for campuses < 5,000 endpoints, providing high availability with lower operational complexity."
+    ],
+    "warnings": [],
+    "assumptions": [],
+    "references": [
+      "Cisco Campus LAN Design Guide",
+      "IEEE 802.1D RSTP"
+    ]
+  },
+  {
+    "decisionId": "TOPO.BUILDING-PLAN.SCI",
+    "ruleId": "TOPO.02",
+    "module": "topology",
+    "selected": "Sized 18 access switches for SCI (represented as ACC-SCI Stack for deployment)",
+    "inputs": {
+      "endpoints": 650,
+      "accessSwitches": 18,
+      "apCount": 28
+    },
+    "rationale": [
+      "Building Science & Engineering Hall (SCI): 650 endpoints with 20% growth buffer require 780 active drops. Using 48-port switches with 4 reserved uplink ports yields 44 usable access ports per switch. Allocated 18 access switch(es) providing 792 total access ports (12 spare ports). Calculated 28 PoE+ wireless access points (24 endpoints per AP). Allocated 1 distribution switch/stack for building aggregation. Aggregated into a representative Catalyst Stack for streamlined Packet Tracer / GNS3 verification."
+    ],
+    "warnings": [],
+    "assumptions": [],
+    "references": [
+      "IEEE 802.3at PoE+",
+      "ANSI/TIA-568.0-D",
+      "Cisco Catalyst StackWise Architecture"
+    ]
+  },
+  {
+    "decisionId": "TOPO.BUILDING-PLAN.ADM",
+    "ruleId": "TOPO.02",
+    "module": "topology",
+    "selected": "Sized 11 access switches for ADM (represented as ACC-ADM Stack for deployment)",
+    "inputs": {
+      "endpoints": 400,
+      "accessSwitches": 11,
+      "apCount": 17
+    },
+    "rationale": [
+      "Building Administrative Complex (ADM): 400 endpoints with 20% growth buffer require 480 active drops. Using 48-port switches with 4 reserved uplink ports yields 44 usable access ports per switch. Allocated 11 access switch(es) providing 484 total access ports (4 spare ports). Calculated 17 PoE+ wireless access points (24 endpoints per AP). Allocated 1 distribution switch/stack for building aggregation. Aggregated into a representative Catalyst Stack for streamlined Packet Tracer / GNS3 verification."
+    ],
+    "warnings": [],
+    "assumptions": [],
+    "references": [
+      "IEEE 802.3at PoE+",
+      "ANSI/TIA-568.0-D",
+      "Cisco Catalyst StackWise Architecture"
+    ]
+  },
+  {
+    "decisionId": "TOPO.BUILDING-PLAN.LIB",
+    "ruleId": "TOPO.02",
+    "module": "topology",
+    "selected": "Sized 15 access switches for LIB (represented as ACC-LIB Stack for deployment)",
+    "inputs": {
+      "endpoints": 550,
+      "accessSwitches": 15,
+      "apCount": 23
+    },
+    "rationale": [
+      "Building Central Library & Tech Hub (LIB): 550 endpoints with 20% growth buffer require 660 active drops. Using 48-port switches with 4 reserved uplink ports yields 44 usable access ports per switch. Allocated 15 access switch(es) providing 660 total access ports (0 spare ports). Calculated 23 PoE+ wireless access points (24 endpoints per AP). Allocated 1 distribution switch/stack for building aggregation. Aggregated into a representative Catalyst Stack for streamlined Packet Tracer / GNS3 verification."
+    ],
+    "warnings": [],
+    "assumptions": [],
+    "references": [
+      "IEEE 802.3at PoE+",
+      "ANSI/TIA-568.0-D",
+      "Cisco Catalyst StackWise Architecture"
+    ]
+  },
+  {
+    "decisionId": "VLAN.DETERMINISTIC-TAGS",
+    "ruleId": "VLAN.01",
+    "module": "vlan",
+    "selected": "Assigned deterministic 802.1Q tags starting at 10 (+10)",
+    "inputs": {
+      "totalVlans": 6,
+      "startId": 10,
+      "increment": 10
+    },
+    "rationale": [
+      "Standardized VLAN numbering ensures uniform broadcast domain mapping across campus switches and prevents conflicting PVIDs."
+    ],
+    "warnings": [],
+    "assumptions": [],
+    "references": [
+      "IEEE 802.1Q",
+      "Cisco Campus LAN Best Practices"
+    ]
+  },
+  {
+    "decisionId": "VLAN.NATIVE-HARDENING",
+    "ruleId": "VLAN.02",
+    "module": "vlan",
+    "selected": "Configured Native VLAN 99 as untagged and unused on all trunks",
+    "inputs": {
+      "nativeVlanId": 99,
+      "defaultVlanDisabled": 1
+    },
+    "rationale": [
+      "Setting the native VLAN to an unused ID (VLAN 99) and disallowing default VLAN 1 mitigates 802.1Q double-tagging and VLAN hopping security vulnerabilities."
+    ],
+    "warnings": [],
+    "assumptions": [],
+    "references": [
+      "NIST SP 800-115",
+      "DISA Network Infrastructure STIG"
+    ]
+  },
+  {
+    "decisionId": "VLAN.TRUNK-PRUNING",
+    "ruleId": "VLAN.03",
+    "module": "vlan",
+    "selected": "Restricted trunk links to explicitly allowed VLAN list [10,20,30,40,50,60]",
+    "inputs": {
+      "allowedVlanIds": [
+        10,
+        20,
+        30,
+        40,
+        50,
+        60
+      ]
+    },
+    "rationale": [
+      "Explicit allowed-VLAN pruning confines broadcast/multicast traffic strictly to authorized switches, conserving backplane bandwidth."
+    ],
+    "warnings": [],
+    "assumptions": [],
+    "references": [
+      "IEEE 802.1Q Clause 9",
+      "RFC 3069"
+    ]
+  },
+  {
+    "decisionId": "VLSM.ALLOC-0-Students_WLAN-NET",
+    "ruleId": "VLSM.DESCENDING-CARVE",
+    "module": "vlsm",
+    "selected": "Allocated Students_WLAN-NET as 10.100.0.0/22",
+    "inputs": {
+      "hosts": 900,
+      "inputIndex": 0,
+      "prefix": 22
+    },
+    "rationale": [
+      "900 requested hosts map to the minimal /22 under RFC 3021 host-capacity math; carved monotonically after all larger blocks, gateway reserved at 10.100.0.1 (first usable IP)."
+    ],
+    "warnings": [],
+    "assumptions": [],
+    "references": [
+      "RFC 950",
+      "RFC 3021"
+    ]
+  },
+  {
+    "decisionId": "VLSM.ALLOC-1-Faculty_Staff-NET",
+    "ruleId": "VLSM.DESCENDING-CARVE",
+    "module": "vlsm",
+    "selected": "Allocated Faculty_Staff-NET as 10.100.4.0/23",
+    "inputs": {
+      "hosts": 350,
+      "inputIndex": 1,
+      "prefix": 23
+    },
+    "rationale": [
+      "350 requested hosts map to the minimal /23 under RFC 3021 host-capacity math; carved monotonically after all larger blocks, gateway reserved at 10.100.4.1 (first usable IP)."
+    ],
+    "warnings": [],
+    "assumptions": [],
+    "references": [
+      "RFC 950",
+      "RFC 3021"
+    ]
+  },
+  {
+    "decisionId": "VLSM.ALLOC-2-Smart_Classrooms_IoT-NET",
+    "ruleId": "VLSM.DESCENDING-CARVE",
+    "module": "vlsm",
+    "selected": "Allocated Smart_Classrooms_IoT-NET as 10.100.6.0/24",
+    "inputs": {
+      "hosts": 200,
+      "inputIndex": 2,
+      "prefix": 24
+    },
+    "rationale": [
+      "200 requested hosts map to the minimal /24 under RFC 3021 host-capacity math; carved monotonically after all larger blocks, gateway reserved at 10.100.6.1 (first usable IP)."
+    ],
+    "warnings": [],
+    "assumptions": [],
+    "references": [
+      "RFC 950",
+      "RFC 3021"
+    ]
+  },
+  {
+    "decisionId": "VLSM.ALLOC-3-VoIP_Telephony-NET",
+    "ruleId": "VLSM.DESCENDING-CARVE",
+    "module": "vlsm",
+    "selected": "Allocated VoIP_Telephony-NET as 10.100.7.0/25",
+    "inputs": {
+      "hosts": 120,
+      "inputIndex": 3,
+      "prefix": 25
+    },
+    "rationale": [
+      "120 requested hosts map to the minimal /25 under RFC 3021 host-capacity math; carved monotonically after all larger blocks, gateway reserved at 10.100.7.1 (first usable IP)."
+    ],
+    "warnings": [],
+    "assumptions": [],
+    "references": [
+      "RFC 950",
+      "RFC 3021"
+    ]
+  },
+  {
+    "decisionId": "VLSM.ALLOC-4-Security_CCTV-NET",
+    "ruleId": "VLSM.DESCENDING-CARVE",
+    "module": "vlsm",
+    "selected": "Allocated Security_CCTV-NET as 10.100.7.128/27",
+    "inputs": {
+      "hosts": 30,
+      "inputIndex": 4,
+      "prefix": 27
+    },
+    "rationale": [
+      "30 requested hosts map to the minimal /27 under RFC 3021 host-capacity math; carved monotonically after all larger blocks, gateway reserved at 10.100.7.129 (first usable IP)."
+    ],
+    "warnings": [],
+    "assumptions": [],
+    "references": [
+      "RFC 950",
+      "RFC 3021"
+    ]
+  },
+  {
+    "decisionId": "VLSM.ALLOC-5-MGMT-NET",
+    "ruleId": "VLSM.DESCENDING-CARVE",
+    "module": "vlsm",
+    "selected": "Allocated MGMT-NET as 10.100.7.160/27",
+    "inputs": {
+      "hosts": 15,
+      "inputIndex": 5,
+      "prefix": 27
+    },
+    "rationale": [
+      "15 requested hosts map to the minimal /27 under RFC 3021 host-capacity math; carved monotonically after all larger blocks, gateway reserved at 10.100.7.161 (first usable IP)."
+    ],
+    "warnings": [],
+    "assumptions": [],
+    "references": [
+      "RFC 950",
+      "RFC 3021"
+    ]
+  },
+  {
+    "decisionId": "VLSM.UTILIZATION",
+    "ruleId": "VLSM.CAPACITY",
+    "module": "vlsm",
+    "selected": "Root-block utilization 3.01%",
+    "inputs": {
+      "allocatedCapacity": 1972,
+      "rootCapacity": 65534
+    },
+    "rationale": [
+      "(1972 usable addresses of 65534 in 10.100.0.0/16, 6 blocks carved, 63552 address(es) left free."
+    ],
+    "warnings": [],
+    "assumptions": [],
+    "references": [
+      "RFC 950"
+    ]
+  },
+  {
+    "decisionId": "VLSM.NO-OVERLAP",
+    "ruleId": "VLSM.INVARIANT",
+    "module": "vlsm",
+    "selected": "No-overlap invariant holds across all allocations.",
+    "inputs": {
+      "count": 6
+    },
+    "rationale": [
+      "Monotone carving guarantees non-intersection; verified with an O(n) boundary assertion."
+    ],
+    "warnings": [],
+    "assumptions": [],
+    "references": [
+      "RFC 950"
+    ]
+  },
+  {
+    "decisionId": "ROUTING.PROTOCOL.SINGLE-AREA-OSPF",
+    "ruleId": "ROUTING.01",
+    "module": "routing",
+    "selected": "Selected Single-Area OSPF (Area 0) for Campus LAN",
+    "inputs": {
+      "asNumber": 65001,
+      "subnetCount": 6,
+      "threshold": 50
+    },
+    "rationale": [
+      "Campus LAN operates within a single autonomous system with 6 subnets (less than the 50-subnet threshold). OSPF Area 0 provides fast link-state SPF convergence without multi-area ABR summarization complexity."
+    ],
+    "warnings": [],
+    "assumptions": [],
+    "references": [
+      "RFC 2328 OSPFv2 Section 3.1",
+      "Cisco Campus Network Design Guide"
+    ]
+  },
+  {
+    "decisionId": "ROUTING.OSPF.AREAS",
+    "ruleId": "ROUTING.04",
+    "module": "routing",
+    "selected": "Configured 1 OSPF area(s) with 6 network statements",
+    "inputs": {
+      "areasCount": 1,
+      "totalNetworks": 6
+    },
+    "rationale": [
+      "Network statements map exact network-aligned CIDRs and inverse wildcard masks directly from the VLSM plan, ensuring flawless LSDB population."
+    ],
+    "warnings": [],
+    "assumptions": [],
+    "references": [
+      "RFC 2328 Section 3.1",
+      "RFC 1878"
+    ]
+  }
+]
